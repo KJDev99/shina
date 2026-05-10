@@ -5,23 +5,27 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
     const [active, setActive] = useState(null);
 
+
     const navItems = [
-        "О нас",
-        "Шины для спецтехники",
-        "Производитель",
-        "Каталог",
-        "Новости",
-        "Контакты",
-        "Официальный дилер WOLF",
+        { name: "О нас", path: "/about" },
+        { name: "Шины для спецтехники", path: "/basket" },
+        { name: "Производитель", path: "/manufacturer" },
+        { name: "Каталог", path: "/catalog" },
+        { name: "Новости", path: "/news" },
+        { name: "Контакты", path: "/contact" },
+        { name: "Официальный дилер WOLF", path: "/Diller" },
     ];
+
 
     return (
         <div>
             <div className="max-w-[1436px] m-auto mt-[15px]">
                 <div className="flex ">
-                    <div className="flex justify-center items-center w-[190px] h-[90px] rounded-[69px] bg-[#FFFFFF]">
-                        <img src="/quvonch/icon/navbaricon1.svg" alt="" />
-                    </div>
+                    <Link to={'/'}>
+                        <div className="flex justify-center items-center w-[190px] h-[90px] rounded-[69px] bg-[#FFFFFF]">
+                            <img src="/quvonch/icon/navbaricon1.svg" alt="" />
+                        </div>
+                    </Link>
                     <div className="ml-[29px] relative mr-[24px]">
                         <input placeholder="Поиск товара по названию, артиклу " className="text-[#11111133]  outline-none px-[34px] w-[574px] h-[90px] rounded-[69px] bg-[#FFFFFF]" type="text" />
                         <div className="absolute cursor-pointer top-[7px] right-[7px] w-[76px] h-[76px] rounded-full bg-[#F5F5F5] flex justify-center items-center font-normal text-[15px] leading-[100%] tracking-[0]">
@@ -53,15 +57,15 @@ export default function Navbar() {
                     {navItems.map((item, index) => (
                         <Link
                             key={index}
-                            to="/"
+                            to={item.path}
                             onClick={() => setActive(index)}
-                            className={`font-normal text-[16px] leading-[100%] tracking-[0] uppercase transition-all duration-300 whitespace-nowrap
+                            className={`font-normal text-[16px] leading-[100%] tracking-[0] uppercase whitespace-nowrap transition-all duration-300
             ${active === index
                                     ? "bg-[#F5F5F5] px-[27px] py-[18px] rounded-full"
                                     : "hover:bg-[#F5F5F5] px-[27px] py-[18px] rounded-full"
                                 }`}
                         >
-                            {item}
+                            {item.name}
                         </Link>
                     ))}
                 </div>
