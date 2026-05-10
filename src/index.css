@@ -1,1 +1,21 @@
-@import 'tailwindcss'
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap');
+@import 'tailwindcss';
+
+body {
+    font-family: "Tektur", sans-serif;
+    background-color: #ECF0F5;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee 20s linear infinite;
+}
