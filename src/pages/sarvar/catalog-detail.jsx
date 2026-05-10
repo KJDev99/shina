@@ -2,6 +2,8 @@
 
 export default function CatalogDetail() {
     return (
-        <div>CatalogDetail</div>
+        <div>
+            
+        </div>
     )
 }
