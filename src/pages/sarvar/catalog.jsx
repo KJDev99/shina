@@ -15,6 +15,7 @@ export default function Catalog() {
                             <div key={brand} className="flex justify-between items-center bg-white rounded-[14px] px-[18px] py-[14px]">
                                 <span className="text-[14px] font-semibold">{brand}</span>
                                 <div className="w-[90px] h-[36px] bg-[#eee] rounded-[6px]"/>
+                                
                             </div>
                         ))}
                     </div>
