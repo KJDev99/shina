@@ -15,7 +15,7 @@ export default function Sertifikat() {
     const cards = Array(6).fill(0);
 
     return (
-        <div className="max-w-[1436px] mx-auto mt-[100px] overflow-hidden">
+        <div className="max-w-[1436px] mx-auto mt-[100px] overflow-hidden mb-[100px]">
 
             {/* HEADER */}
             <div className="flex justify-between items-center mb-[30px]">
