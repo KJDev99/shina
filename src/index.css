@@ -19,3 +19,7 @@ body {
 .animate-marquee {
     animation: marquee 20s linear infinite;
 }
+.Grid{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
