@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
+import Badge from "../ui/Badge";
 
 export default function NewsDetail() {
   return (
-    <div>newsDetail123123123</div>
-  )
+    <div>
+    </div>
+  );
 }
