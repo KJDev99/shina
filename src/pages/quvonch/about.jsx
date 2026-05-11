@@ -1,7 +1,15 @@
+import Aboutehero from "./aboutehero";
+import Detail from "./detail";
+import Sertifikat from "./sertifikat";
 
 
 export default function About() {
     return (
-        <div>About</div>
+        <div>
+<Aboutehero/>
+            <Detail />
+            <Sertifikat />
+
+        </div>
     )
 }

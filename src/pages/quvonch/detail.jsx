@@ -12,7 +12,7 @@ export default function Detail() {
     });
 
     return (
-        <div className="px-4 overflow-hidden">
+        <div className="px-4 overflow-hidden ">
             <div className="max-w-7xl mx-auto">
 
                 {/* Title */}
@@ -32,9 +32,7 @@ export default function Detail() {
                     Гарантируем качество, скорость поставки,
                     надежность и оригинальность
                 </p>
-
-                {/* Slider */}
-                <div className="mt-[39px]">
+                <div className="mt-[39px]  w-[1400px]">
                     <Swiper
                         modules={[Autoplay]}
                         spaceBetween={20}
@@ -57,8 +55,8 @@ export default function Detail() {
                     >
                         {cards.map((item, index) => (
                             <SwiperSlide key={index}>
-                                <div className="w-full h-[319px] bg-white p-6 rounded-[25px] flex flex-col justify-between cursor-pointer border border-gray-100">
-                                    
+                                <div className="w-full  h-[319px] bg-white p-6 rounded-[25px] flex flex-col justify-between cursor-pointer border border-gray-100">
+
                                     {/* Logo */}
                                     <div className="flex justify-center items-center h-full">
                                         <img

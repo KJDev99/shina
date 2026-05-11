@@ -16,7 +16,7 @@ export default function Compony() {
     const cards = Array(6).fill(0);
 
     return (
-        <div className="max-w-[1436px] mx-auto mt-[100px] overflow-hidden">
+        <div className="max-w-[1436px] mx-auto mt-[100px] overflow-hidden mb-[100px]">
             <div className="flex justify-between items-center mb-[30px]">
                 <h2 className="font-semibold text-[85px] uppercase">
                     Новости компании                </h2>
