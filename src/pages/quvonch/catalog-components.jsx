@@ -11,11 +11,7 @@ export default function CatalogComponents() {
         { name: "GA Ricambi", count: 20 },
         { name: "Rexroth ", count: 1 },
     ];
-    const catalogData = [
-        { id: 1, title: "Item 1" },
-        { id: 2, title: "Item 2" },
-        { id: 3, title: "Item 3" },
-    ]
+
     return (
         <div>
             <div className="w-[1436px] m-auto">
@@ -28,7 +24,17 @@ export default function CatalogComponents() {
                         </button>
                     ))}
                 </div>
-                <CatalogCart />
+                <div className="grid grid-cols-4 gap-[10px] mt-10">
+                    {Array.from({ length: 8 }).map((_, index) => (
+                        <CatalogCart key={index} />
+                    ))}
+                </div>
+                <div className="flex justify-center">
+
+                    <div className="cursor-pointer w-[299px] h-[96px] rounded-[25px] bg-white text-14px font-medium mt-[30px] flex justify-center items-center">
+                        Смотреть все
+                    </div>
+                </div>
             </div>
         </div>
     )
