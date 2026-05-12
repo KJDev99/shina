@@ -20,6 +20,7 @@ export default function Catalog() {
                         ))}
                     </div>
                 </div>
+                
 
                 
                 <div className="bg-[#ffffff] rounded-[20px] p-5">
