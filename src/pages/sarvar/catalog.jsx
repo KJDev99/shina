@@ -37,6 +37,7 @@ export default function Catalog() {
                         <img src="/sarvar/caterpillar-logo 1.svg" alt="" />
                     </div>
                 </div>
+                
 
 
 
