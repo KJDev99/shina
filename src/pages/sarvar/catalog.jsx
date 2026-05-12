@@ -2,16 +2,17 @@ import Badge from "../../components/ui/Badge";
 import CantactForm from "../../components/ui/cantactform";
 import CatalogCart from "../../components/ui/CatalogCart";
 import Datacard from "../../components/ui/datacard";
+import NewsCart from "../../components/ui/NewsCart";
 
 export default function Catalog() {
     return (
         <div className="bg-[#f4f7f9] min-h-screen">
-          
+
             <div className="ml-4 md:ml-11 mt-[30px] md:mt-[50px]">
                 <Badge text={'Каталог запчастей'} />
             </div>
 
-          
+
             <div className="max-w-[1436px] flex flex-col md:flex-row justify-between items-start md:items-center m-auto px-4 md:px-0">
                 <h1 className="font-semibold text-[36px] sm:text-[48px] md:text-[85px] leading-none tracking-normal uppercase mt-[20px]">
                     Каталог запчастей
@@ -21,10 +22,10 @@ export default function Catalog() {
                 </div>
             </div>
 
-           
+
             <div className="max-w-[1436px] m-auto mt-[30px] md:mt-[50px] mb-[100px] flex flex-col md:flex-row gap-8 px-4 md:px-0">
 
-            
+
                 <div className="w-full md:w-[344px] shrink-0 flex flex-col gap-4">
 
                     <div className="bg-[#FFFFFF] p-5 rounded-[25px]">
@@ -52,7 +53,7 @@ export default function Catalog() {
                         </div>
                     </div>
 
-                
+
                     <div className="flex gap-[10px]">
                         <button className="flex-1 bg-[#355094] text-white border-none rounded-[25px] h-[80px] md:h-[96px] font-bold text-[14px] cursor-pointer active:scale-95 transition-transform">
                             ПРИМЕНИТЬ
@@ -62,11 +63,12 @@ export default function Catalog() {
                         </button>
                     </div>
 
-                  
+
                     <div className="flex flex-col gap-[10px]">
                         <Datacard />
                         <Datacard />
                         <Datacard />
+                        <NewsCart />
                     </div>
 
                     <button className="w-full bg-white border-none rounded-[25px] py-6 font-bold text-[14px] cursor-pointer mt-2 shadow-sm">
@@ -74,17 +76,17 @@ export default function Catalog() {
                     </button>
                 </div>
 
-            
+
                 <div className="flex-1 flex flex-col gap-8">
-                   
+
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-2">
-                       
+
                         {Array.from({ length: 15 }).map((_, index) => (
                             <CatalogCart key={index} />
                         ))}
                     </div>
 
-                  
+
                     <div className="flex justify-center items-center gap-2 mt-4 flex-wrap">
                         <button className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#355094] text-white rounded-[10px] font-semibold">
                             1
@@ -109,8 +111,8 @@ export default function Catalog() {
                 </div>
 
             </div>
-            
-           
+
+
             <CantactForm />
         </div>
     );
