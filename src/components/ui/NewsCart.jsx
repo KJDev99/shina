@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 
 
 export default function NewsCart() {
     return (
-        <div className="w-[351px] h-[428px] rounded-[25px] bg-white p-6 shadow-sm border border-gray-100">
+        <Link to={'/news/1'} className="w-[351px] h-[428px] rounded-[25px] bg-white p-6 shadow-sm border border-gray-100">
             <div className="w-[110px] h-[40px] bg-[#F3F3F3] rounded-2xl flex items-center justify-center">
                 <p className="text-sm font-medium">Полезное</p>
             </div>
@@ -26,6 +27,6 @@ export default function NewsCart() {
                     .03.2026
                 </h4>
             </div>
-        </div>
+        </Link>
     )
 }

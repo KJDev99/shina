@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 
 
 export default function CatalogCart() {
     return (
-        <div className="w-[351px] bg-[#FFFFFF] rounded-[25px] px-[10px] py-2 ">
+        <Link to={'/catalog/1'} className="w-[351px] bg-[#FFFFFF] rounded-[25px] px-[10px] py-2 ">
             <div className="flex justify-between">
                 <div className="text-[14px] font-medium w-[93px] h-[39px] rounded-[15px] flex justify-center items-center bg-[#F5F5F5]">В наличии</div>
                 <div className="w-[43px] h-[43px] rounded-full bg-[#F5F5F5] flex justify-center items-center"><img src="/quvonch/icon/arrow.svg" alt="" /></div>
@@ -21,6 +22,6 @@ export default function CatalogCart() {
                     <div className="flex items-center justify-center w-[59px] h-[59px] rounded-full bg-[#F5F5F5]"><img src="/quvonch/icon/shopicon.svg" alt="" /></div>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
