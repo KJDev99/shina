@@ -6,7 +6,7 @@ import Sertifikat from "./sertifikat";
 export default function About() {
     return (
         <div>
-<Aboutehero/>
+            <Aboutehero />
             <Detail />
             <Sertifikat />
 
