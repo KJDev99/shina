@@ -2,6 +2,7 @@ import CatalogComponents from "./catalog-components";
 import Compony from "./compony";
 import Detail from "./detail";
 import Hero from "./hero";
+import HomeNew from "./homenew";
 import Section from "./section";
 import Sertifikat from "./sertifikat";
 
@@ -10,10 +11,11 @@ export default function Home() {
         <div>
             <Hero />
             <CatalogComponents />
-            <Detail/>
-            <Section/>
-            <Sertifikat/>
-            <Compony/>
+            <Detail />
+            <HomeNew />
+            <Section />
+            <Sertifikat />
+            <Compony />
         </div>
     )
 }

@@ -8,8 +8,8 @@ export default function Navbar() {
 
     const navItems = [
         { name: "О нас", path: "/about" },
-        { name: "Шины для спецтехники", path: "/basket" },
-        { name: "Производитель", path: "/manufacturer" },
+        { name: "Шины для спецтехники", path: "/catalog" },
+        { name: "Производитель", path: "/catalog" },
         { name: "Каталог", path: "/catalog" },
         { name: "Новости", path: "/news" },
         { name: "Контакты", path: "/contact" },
