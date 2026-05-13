@@ -1,3 +1,5 @@
+import FormPost from "./FormPost";
+
 export default function CantactForm() {
   return (
     <div className="w-[1400px] m-auto h-[435px] rounded-[25px] mb-[100px] bg-white  mt-[150px]">
@@ -17,41 +19,7 @@ export default function CantactForm() {
         />
       </div>
 
-      <div className="flex gap-3 mt-8">
-        <div className="w-[352px] h-[101px] rounded-3xl bg-[#F4F7FF] flex flex-col justify-center px-6">
-          <label className="text-[#848B8C] text-sm">Имя</label>
-          <input
-            type="text"
-            placeholder="Александр"
-            className="bg-transparent text-lg font-medium outline-none placeholder:text-black"
-          />
-        </div>
-
-        <div className="w-[352px] h-[101px] rounded-3xl bg-[#F4F7FF] flex flex-col justify-center px-6">
-          <label className="text-[#848B8C] text-sm">Электронный адрес</label>
-          <input
-            type="email"
-            placeholder="example@mail.com"
-            className="bg-transparent text-lg font-medium outline-none"
-          />
-        </div>
-
-        <div className="w-[352px] h-[101px] rounded-3xl bg-[#F4F7FF] flex items-center px-6">
-          <div className="flex items-center gap-3 w-full">
-            <img src="/quvonch/Siroj/image0.png" alt="" className="w-6 h-6" />
-            <span className="text-lg font-medium">+7</span>
-            <input
-              type="tel"
-              placeholder="(___) ___-__-__"
-              className="bg-transparent text-lg outline-none w-full placeholder:text-[#848B8C]"
-            />
-          </div>
-        </div>
-
-        <button className="w-[263px] h-[101px] rounded-3xl bg-[#355094] flex items-center justify-center">
-          <span className="text-white text-lg font-medium">Отправить</span>
-        </button>
-      </div>
+      <FormPost />
     </div>
   );
 }
