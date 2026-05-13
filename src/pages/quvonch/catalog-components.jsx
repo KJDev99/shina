@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CatalogCart from "../../components/ui/CatalogCart";
 
-export default function CatalogComponents() {
+export default function CatalogComponents() {g
     const [active, setActive] = useState(0)
     const items = [
         { name: "Caterpillar", count: 81, },
