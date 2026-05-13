@@ -166,7 +166,7 @@ export default function CatalogDetail() {
         </div>
       </div>
 
-      {/* Description */}
+    
       <div className="mt-2 md:mt-10">
         <p className="text-sm font-bold uppercase tracking-wide text-black mb-3">
           ОПИСАНИЕ
