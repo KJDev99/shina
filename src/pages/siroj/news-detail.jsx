@@ -17,7 +17,7 @@ export default function NewsDetail() {
           </h1>
          <div className="flex mr-5 mt-[60px]">
           <h2 className="font-semibold text-6xl">22</h2>
-          <h3 className="text-3xl font-semibold text-[#11111133]">.03.2026</h3>
+          <h3 className="text-3xl font-semibold text-[#11111133] mt-[23px]">.03.2026</h3>
          </div>
         </div>
       </div>
