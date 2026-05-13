@@ -5,7 +5,6 @@ export default function Homenew() {
             <div className="max-w-[1436px] mx-auto px-4">
 
                 <div className="relative grid grid-cols-3 gap-[10px]">
-                    {/* Title */}
                     <div className="absolute">
                         <h1 className="font-semibold text-[42px] sm:text-[60px] lg:text-[100px] leading-none uppercase ">
                             Наши
@@ -18,7 +17,7 @@ export default function Homenew() {
                     <div></div>
                     <div className="flex flex-col justify-center gap-[10px]">
                         <div className="w-full h-[507px] bg-white ">
-                            test
+                            tes
                         </div>
                         <div className="w-full h-[507px] bg-white ">
                             test
