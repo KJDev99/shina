@@ -1,4 +1,3 @@
-import FormPost from "./FormPost";
 
 export default function CantactForm() {
   return (
@@ -19,7 +18,7 @@ export default function CantactForm() {
         />
       </div>
 
-      <FormPost />
+      <CantactForm />
     </div>
   );
 }
