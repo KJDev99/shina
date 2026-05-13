@@ -48,9 +48,9 @@ export default function Navbar() {
                         </span>
                     </div>
                     <div className="flex items-center">
-                        <div className="w-[59px] h-[59px] cursor-pointer bg-[white] ml-[25px] flex items-center justify-center rounded-full">
+                        <Link to={'/basket'} className="w-[59px] h-[59px] cursor-pointer bg-[white] ml-[25px] flex items-center justify-center rounded-full">
                             <img src="/quvonch/icon/shopicon.svg" alt="" />
-                        </div>
+                        </Link>
                     </div>
                 </div>
                 <div className="mt-[15px] w-[1400px] h-[88px] px-7 bg-white rounded-[69px] flex items-center gap-6">
