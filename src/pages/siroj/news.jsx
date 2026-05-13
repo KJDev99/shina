@@ -1,5 +1,5 @@
 import NewsDetail from "../../components/news/newsDetail";
-import FormPost from "../../components/ui/FormPost";
+import CantactForm from "../../components/ui/cantactform";
 import NewsCart from "../../components/ui/NewsCart";
 
 export default function News() {
@@ -37,11 +37,15 @@ export default function News() {
         <NewsCart />
         <NewsCart />
         <NewsCart />
+        <NewsCart />
+        <NewsCart />
+        <NewsCart />
+        <NewsCart />
       </div>
 
-      <FormPost />
+      <CantactForm />
 
-      <NewsDetail />
+      
     </div>
   );
 }
