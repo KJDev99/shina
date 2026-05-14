@@ -10,14 +10,14 @@ export default function CantactForm() {
           </h1>
           <h3 className="text-[#11111166] font-normal text-base md:text-lg">
             Свяжитесь с нами — подберём запчасти{" "}
-            <br className="hidden md:block" /> и проконсультируем
+            <br className=" md:block" /> и проконсультируем
           </h3>
         </div>
-        <div className="flex justify-center md:block">
+        <div className="flex justify-center items-center max-md:mt-[100px]">
           <img
             src="/quvonch/Siroj/1780.png"
             alt=""
-            className="w-2/3 md:w-auto  mt-[-100px] md:ml-[200px] "
+            className="w-2/3 md:w-auto mt-[-100px] md:ml-[200px]"
           />
         </div>
       </div>
