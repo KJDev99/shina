@@ -1,45 +1,47 @@
-
 export default function FormPost() {
-    return (
-        <div className="w-[1400px] h-[435px] rounded-lg bg-white shadow-lg mt-[150px]">
-            <div className="grid grid-cols-2 ">
-                <div className="mt-10 ml-10     ">
-                    <h1 className="font-semibold text-6xl mb-[15px] ">
-                        Остались вопросы?
-                    </h1>
-                    <h3 className="text-[#11111166] font-normal text-lg">
-                        Свяжитесь с нами — подберём запчасти <br /> и проконсультируем
-                    </h3>
-                </div>
-                <img
-                    src="/quvonch/Siroj/1780.png"
-                    alt=""
-                    className=" mt-[-100px] ml-[200px] "
-                />
-            </div>
+  return (
+    <div className="max-w-[1400px] w-full rounded-[25px] bg-white mt-[30px] md:mt-[50px] px-2 md:px-5 pb-10">
+      <div className="flex flex-col md:flex-row gap-[11px] mt-[10px]">
+        <input
+          type="text"
+          placeholder="Имя"
+          className="w-full md:w-[352px] h-[70px] md:h-[101px] md:ml-[11px] rounded-2xl md:rounded-3xl bg-[#F4F7FF] px-5 outline-none text-lg"
+        />
 
-            <div className="flex gap-[11px] mt-[30px] ">
-                <button className="w-[352px] h-[101px]  ml-[11px] rounded-3xl bg-[#F4F7FF]">
-                    <h1 className="text-[#848B8C] text-base font-nor">Имя</h1>
-                    <h2 className="text-lg font-medium">Александр</h2>
-                </button>
-                <button className="w-[353px] h-[101px]  rounded-3xl bg-[#F4F7FF]">
-                    <h1 className="text-[#848B8C] font-normal text-lg">
-                        Электронный адрес
-                    </h1>
-                </button>
-                <button className="w-[352px] h-[101px]  rounded-3xl bg-[#F4F7FF]">
-                    <div className="flex gap-3 ml-[25px]">
-                        {" "}
-                        <img src="/quvonch/Siroj/image0.png" alt="" />
-                        <h2>+7</h2>
-                        <h3 className="text-[#848B8C]">(___) ___-__-__</h3>
-                    </div>
-                </button>
-                <button className="w-[263px] h-[101px]  rounded-3xl bg-[#355094]">
-                    <h1 className="text-white">Отправить</h1>
-                </button>
-            </div>
+        <input
+          type="email"
+          placeholder="Электронный адрес"
+          className="w-full md:w-[353px] h-[70px] md:h-[101px] rounded-2xl md:rounded-3xl bg-[#F4F7FF] px-5 outline-none text-lg"
+        />
+
+        <div className="w-full md:w-[352px] h-[70px] md:h-[101px] rounded-2xl md:rounded-3xl bg-[#F4F7FF] flex items-center px-5 gap-3">
+          <img src="/quvonch/Siroj/image0.png" alt="" className="w-6 h-auto" />
+          <span className="text-lg">+7</span>
+          <input
+            type="number"
+            placeholder="(___) ___--"
+            className="bg-transparent outline-none text-gray-900 text-lg w-full"
+          />
         </div>
-    )
+
+        <button className="w-full md:w-[263px] h-[70px] md:h-[101px] rounded-2xl md:rounded-3xl bg-[#355094]">
+          <h1 className="text-white font-medium">Отправить</h1>
+        </button>
+      </div>
+      <div className="mt-[20px] mb-[10px] px-2">
+        <label className="custom-checkbox flex items-start">
+          <input type="checkbox" className="mt-1" />
+          <span className="checkmark"></span>
+          <span className="font-normal text-[12px] md:text-[14px] ml-[10px] text-[#97989B] leading-tight">
+            Я даю свое согласие на обработку персональных данных в соответствии
+            с ФЗ №152-ФЗ “О персональных данных” на условиях и для целей,
+            определенных{" "}
+            <a href="#" className="underline">
+              Политикой Конфиденциальности.
+            </a>
+          </span>
+        </label>
+      </div>
+    </div>
+  );
 }
