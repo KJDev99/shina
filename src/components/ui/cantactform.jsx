@@ -2,14 +2,15 @@ import FormPost from "./FormPost";
 
 export default function CantactForm() {
   return (
-    <div className="max-w-[1400px] w-full m-auto h-auto md:h-[455px] rounded-[25px] mb-[50px] md:mb-[100px] bg-white mt-[80px] md:mt-[150px] p-5 md:p-0 overflow-hidden">
+    <div className="max-w-[1400px] w-full m-auto h-auto md:h-[455px] rounded-[25px] mb-[50px] md:mb-[100px] bg-white mt-[80px] md:mt-[150px] p-5 md:p-0">
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="mt-5 md:mt-10 md:ml-10 text-center md:text-left">
           <h1 className="font-semibold text-3xl md:text-6xl mb-[15px]">
             Остались вопросы?
           </h1>
           <h3 className="text-[#11111166] font-normal text-base md:text-lg">
-            Свяжитесь с нами — подберём запчасти <br className="hidden md:block" /> и проконсультируем
+            Свяжитесь с нами — подберём запчасти{" "}
+            <br className="hidden md:block" /> и проконсультируем
           </h3>
         </div>
         <div className="flex justify-center md:block">

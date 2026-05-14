@@ -1,6 +1,6 @@
 export default function FormPost() {
   return (
-    <div className="max-w-[1400px] w-full rounded-lg bg-white mt-[30px] md:mt-[50px] px-2 md:px-0">
+    <div className="max-w-[1400px] w-full rounded-[25px] bg-white mt-[30px] md:mt-[50px] px-2 md:px-5 pb-10">
       <div className="flex flex-col md:flex-row gap-[11px] mt-[10px]">
         <input
           type="text"
