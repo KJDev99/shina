@@ -13,46 +13,55 @@ export default function CatalogDetail() {
   ];
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4 py-5">
-     
+    <div className="max-w-[1436px] mx-auto px-4 py-5">
       <div className="flex items-center gap-2 mb-6 text-sm flex-wrap">
         <span className="text-base font-medium text-black">Главная</span>
         <span className="text-gray-400 text-xs">❯</span>
         <span className="text-black">Каталог запчастей</span>
         <span className="text-gray-400 text-xs">❯</span>
-        <span className="text-gray-400 hidden sm:inline">9Y7573 Плата крепл...</span>
+        <span className="text-gray-400 hidden sm:inline">
+          9Y7573 Плата крепл...
+        </span>
       </div>
 
-   
-      <div className="hidden md:flex gap-8 items-start">
-        <div className="flex gap-3 flex-shrink-0">
+      <div className="hidden md:grid grid-cols-5  gap-8 items-start">
+        <div className="flex gap-3 col-span-3">
           <div className="flex flex-col gap-2">
             {images.map((src, i) => (
               <div
                 key={i}
                 onClick={() => setActiveThumb(i)}
-                className={`w-[68px] h-[68px] rounded-md border cursor-pointer flex items-center justify-center bg-gray-100 overflow-hidden transition-all ${
+                className={`w-[103px] h-[103px] rounded-md border cursor-pointer flex items-center justify-center bg-gray-100 overflow-hidden transition-all ${
                   activeThumb === i ? "border-2" : "border-gray-200"
                 }`}
                 style={activeThumb === i ? { borderColor: "#355094" } : {}}
               >
-                <img src={src} alt={`thumb-${i}`} className="w-full h-full object-cover" />
+                <img
+                  src={src}
+                  alt={`thumb-${i}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
             ))}
           </div>
 
-          <div className="w-[480px] h-[380px] rounded-xl border border-gray-200 bg-gray-100 flex items-center justify-center overflow-hidden">
-            <img src={images[activeThumb]} alt="main" className="w-full h-full object-cover" />
+          <div className="w-full h-[550px] rounded-xl border border-gray-200 bg-gray-100 flex items-center justify-center overflow-hidden">
+            <img
+              src={images[activeThumb]}
+              alt="main"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
 
-       
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 col-span-2">
           <span className="inline-block bg-green-100 text-green-700 text-sm font-medium px-4 py-1 rounded-full mb-4">
             В наличии
           </span>
           <h1 className="text-[22px] font-bold uppercase leading-snug tracking-wide text-black mb-2">
-            9Y7573 ПЛАТА КРЕПЛЕНИЯ<br />КОМПРЕССОРА CAT
+            9Y7573 ПЛАТА КРЕПЛЕНИЯ
+            <br />
+            КОМПРЕССОРА CAT
           </h1>
           <p className="text-sm text-gray-400 mb-4">Артикул: 20417120</p>
           <p className="text-[32px] font-bold text-black mb-1">28 600 ₽</p>
@@ -63,29 +72,41 @@ export default function CatalogDetail() {
             <button
               onClick={() => setQty((q) => Math.max(1, q - 1))}
               className="w-10 h-10 text-xl flex items-center justify-center hover:bg-gray-100 transition"
-            >−</button>
+            >
+              −
+            </button>
             <div className="w-11 h-10 flex items-center justify-center text-base font-medium border-x border-gray-200">
               {qty}
             </div>
             <button
               onClick={() => setQty((q) => q + 1)}
               className="w-10 h-10 text-xl flex items-center justify-center hover:bg-gray-100 transition"
-            >+</button>
+            >
+              +
+            </button>
           </div>
           <div className="flex gap-3">
             <button
               className="flex-1 text-white font-semibold text-sm py-3 px-6 rounded-lg flex items-center justify-center transition"
               style={{ backgroundColor: "#355094" }}
-              onMouseEnter={e => e.currentTarget.style.backgroundColor = "#2a4180"}
-              onMouseLeave={e => e.currentTarget.style.backgroundColor = "#355094"}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#2a4180")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "#355094")
+              }
             >
               В КОРЗИНУ
             </button>
             <button
               className="flex-1 font-semibold text-sm py-3 px-6 rounded-lg flex items-center justify-center transition border"
               style={{ borderColor: "#355094", color: "#355094" }}
-              onMouseEnter={e => e.currentTarget.style.backgroundColor = "#f0f4ff"}
-              onMouseLeave={e => e.currentTarget.style.backgroundColor = "transparent"}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#f0f4ff")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "transparent")
+              }
             >
               БЫСТРЫЙ ЗАКАЗ
             </button>
@@ -93,10 +114,13 @@ export default function CatalogDetail() {
         </div>
       </div>
 
-   
       <div className="flex flex-col md:hidden">
         <div className="w-full h-[300px] rounded-xl border border-gray-200 bg-gray-100 flex items-center justify-center overflow-hidden mb-3">
-          <img src={images[activeThumb]} alt="main" className="w-full h-full object-cover" />
+          <img
+            src={images[activeThumb]}
+            alt="main"
+            className="w-full h-full object-cover"
+          />
         </div>
 
         <div className="flex gap-2 mb-5">
@@ -109,7 +133,11 @@ export default function CatalogDetail() {
               }`}
               style={activeThumb === i ? { borderColor: "#355094" } : {}}
             >
-              <img src={src} alt={`thumb-${i}`} className="w-full h-full object-cover" />
+              <img
+                src={src}
+                alt={`thumb-${i}`}
+                className="w-full h-full object-cover"
+              />
             </div>
           ))}
         </div>
@@ -134,14 +162,18 @@ export default function CatalogDetail() {
               <button
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
                 className="w-10 h-10 text-xl flex items-center justify-center hover:bg-gray-100 transition"
-              >−</button>
+              >
+                −
+              </button>
               <div className="w-11 h-10 flex items-center justify-center text-base font-medium border-x border-gray-200">
                 {qty}
               </div>
               <button
                 onClick={() => setQty((q) => q + 1)}
                 className="w-10 h-10 text-xl flex items-center justify-center hover:bg-gray-100 transition"
-              >+</button>
+              >
+                +
+              </button>
             </div>
           </div>
         </div>
@@ -150,23 +182,30 @@ export default function CatalogDetail() {
           <button
             className="flex-1 text-white font-semibold text-sm py-3 px-4 rounded-lg flex items-center justify-center transition"
             style={{ backgroundColor: "#355094" }}
-            onMouseEnter={e => e.currentTarget.style.backgroundColor = "#2a4180"}
-            onMouseLeave={e => e.currentTarget.style.backgroundColor = "#355094"}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "#2a4180")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "#355094")
+            }
           >
             В КОРЗИНУ
           </button>
           <button
             className="flex-1 font-semibold text-sm py-3 px-4 rounded-lg flex items-center justify-center transition border"
             style={{ borderColor: "#355094", color: "#355094" }}
-            onMouseEnter={e => e.currentTarget.style.backgroundColor = "#f0f4ff"}
-            onMouseLeave={e => e.currentTarget.style.backgroundColor = "transparent"}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "#f0f4ff")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "transparent")
+            }
           >
             БЫСТРЫЙ ЗАКАЗ
           </button>
         </div>
       </div>
 
-    
       <div className="mt-2 md:mt-10">
         <p className="text-sm font-bold uppercase tracking-wide text-black mb-3">
           ОПИСАНИЕ
