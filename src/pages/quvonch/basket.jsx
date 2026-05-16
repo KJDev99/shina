@@ -5,37 +5,37 @@ export default function Basket() {
 
   return (
     <div className="max-w-[1436px] m-auto py-10 px-4">
-      <div className="flex items-center gap-2 mb-6 text-[14px]">
+      <div className="flex items-center gap-2 mb-6 text-[14px] max-md:text-[12px]">
         <span className="text-black">Главная</span>
         <span className="text-[#999999] text-[10px]">❯</span>
         <span className="text-[#999999]">Caterpillar</span>
       </div>
 
-      <div className="flex items-center justify-between py-6 mr-[150px]">
-        <div className="flex items-end gap-6">
-          <h1 className="text-8xl font-semibold uppercase tracking-tight text-black">
+      <div className="flex items-center justify-between py-6 mr-[150px] max-md:mr-0 max-md:flex-col max-md:items-start max-md:gap-4">
+        <div className="flex items-end gap-6 max-md:flex-col max-md:items-start max-md:gap-2">
+          <h1 className="text-8xl font-semibold uppercase tracking-tight text-black max-md:text-4xl">
             Корзина
           </h1>
 
-          <span className="text-[30px] font-semibold text-[#11111133] mb-3">
+          <span className="text-[30px] font-semibold text-[#11111133] mb-3 max-md:text-[18px] max-md:mb-0">
             2 товара
           </span>
         </div>
 
-        <label className="flex items-center gap-3 font-medium text-[15px] text-[#111111] cursor-pointer">
+        <label className="flex items-center gap-3 font-medium text-[15px] text-[#111111] cursor-pointer max-md:text-[13px]">
           <span>Выбрать все</span>
           <input type="checkbox" className="w-5 h-5" />
         </label>
       </div>
 
-      <div className="flex items-start gap-[30px] py-10 font-sans">
-        <div className="flex flex-col gap-[10px]">
+      <div className="flex items-start gap-[30px] py-10 font-sans max-md:flex-col">
+        <div className="flex flex-col gap-[10px] max-md:w-full">
           {[1, 2].map((item) => (
             <div
               key={item}
-              className="w-[829px] h-[149px] rounded-[20px] bg-white flex items-center p-[10px] gap-[20px] shadow-sm"
+              className="w-[829px] h-[149px] rounded-[20px] bg-white flex items-center p-[10px] gap-[20px] shadow-sm max-md:w-full max-md:h-auto max-md:flex-col max-md:items-start"
             >
-              <div className="w-[129px] h-[129px] rounded-[20px] overflow-hidden flex-shrink-0">
+              <div className="w-[129px] h-[129px] rounded-[20px] overflow-hidden flex-shrink-0 max-md:w-full max-md:h-[200px]">
                 <img
                   src="/quvonch/Siroj/hi.png"
                   alt=""
@@ -43,17 +43,17 @@ export default function Basket() {
                 />
               </div>
 
-              <div className="flex flex-col justify-center flex-1">
+              <div className="flex flex-col justify-center flex-1 max-md:w-full">
                 <p className="text-[14px] font-normal text-[#A1A1A1]">
                   Название:
                 </p>
 
-                <h2 className="text-[18px] font-bold leading-tight text-[#1A1A1A] uppercase">
+                <h2 className="text-[18px] font-bold leading-tight text-[#1A1A1A] uppercase max-md:text-[14px]">
                   9Y7573 ПЛАТА КРЕПЛЕНИЯ КОМПРЕССОРА CAT
                 </h2>
               </div>
 
-              <div className="flex flex-col items-end justify-between h-full py-2 pr-4">
+              <div className="flex flex-col items-end justify-between h-full py-2 pr-4 max-md:w-full max-md:items-start max-md:gap-3">
                 <div className="flex items-center gap-[15px]">
                   <div className="flex items-center border border-[#E0E0E0] rounded-lg overflow-hidden bg-white">
                     <button className="w-[32px] h-[32px] flex items-center justify-center text-gray-500 border-r border-[#E0E0E0]">
@@ -73,9 +73,9 @@ export default function Basket() {
                   />
                 </div>
 
-                <div className="flex items-center gap-[40px]">
+                <div className="flex items-center gap-[40px] max-md:justify-between max-md:w-full">
                   <div className="text-right">
-                    <p className="text-[22px] font-bold text-[#1A1A1A]">
+                    <p className="text-[22px] font-bold text-[#1A1A1A] max-md:text-[18px]">
                       28 600₽
                     </p>
 
@@ -97,7 +97,7 @@ export default function Basket() {
           ))}
         </div>
 
-        <div className="w-[430px] bg-white rounded-[25px] p-8 shadow-sm flex flex-col">
+        <div className="w-[430px] bg-white rounded-[25px] p-8 shadow-sm flex flex-col max-md:w-full max-md:p-4">
           <div className="flex justify-between items-center border-b border-[#E0E0E0] pb-5 mb-6">
             <span className="text-[17px] font-semibold uppercase tracking-tight text-black">
               итого:
@@ -123,8 +123,10 @@ export default function Basket() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <div className="w-full h-[88px] rounded-[24px] bg-[#F4F7FF] flex flex-col justify-center px-8">
-              <label className="text-[#848B8C] text-[15px] font-normal mb-0.5">Имя</label>
+            <div className="w-full h-[88px] rounded-[24px] bg-[#F4F7FF] flex flex-col justify-center px-8 max-md:px-4">
+              <label className="text-[#848B8C] text-[15px] font-normal mb-0.5">
+                Имя
+              </label>
 
               <input
                 type="text"
@@ -133,7 +135,7 @@ export default function Basket() {
               />
             </div>
 
-            <div className="w-full h-[88px] rounded-[24px] bg-[#F4F7FF] flex items-center px-8">
+            <div className="w-full h-[88px] rounded-[24px] bg-[#F4F7FF] flex items-center px-8 max-md:px-4">
               <div className="flex items-center gap-3 w-full">
                 <img
                   src="/quvonch/Siroj/image0.png"
@@ -179,7 +181,7 @@ export default function Basket() {
             </div>
 
             <button className="w-full h-[96px] rounded-[28px] bg-[#4E6EB3] hover:bg-[#3d5a9c] transition-all flex items-center justify-center mt-2">
-              <span className="text-white text-[15px] font-bold uppercase tracking-[1px]">
+              <span className="text-white text-[14px] font-medium uppercase tracking-[1px]">
                 Отправить заявку
               </span>
             </button>
@@ -191,9 +193,8 @@ export default function Basket() {
               className="w-5 h-5 rounded border-[#C4C4C4] mt-1 accent-[#4E6EB3] flex-shrink-0 cursor-pointer"
             />
 
-            <label className="text-[#A1A1A1] text-[11px] leading-[1.5]">
-              Я даю свое согласие на обработку персональных данных в
-              соответствии с ФЗ №152-ФЗ "О персональных данных"
+            <label className="text-[#A1A1A1] text-[14px] font-normal leading-[1.5]">
+              Я даю свое согласие на обработку персональных данных в соответствии с ФЗ №152-ФЗ "О персональных данных"
             </label>
           </div>
         </div>
