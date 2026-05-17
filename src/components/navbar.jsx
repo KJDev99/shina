@@ -5,6 +5,8 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { NavbarSearchDesktop, NavbarSearchMobile } from "./NavbarSearch";
+import MobileSearchOverlay from "./MobileSearchOverlay";
 
 const navItems = [
     { name: "О нас", path: "/about" },
@@ -83,16 +85,7 @@ function MobileMenu({ open, onClose }) {
                 </div>
 
                 <div className="flex-1 overflow-y-auto overscroll-contain">
-                    <div className="p-4 relative">
-                        <input
-                            placeholder="Поиск товара..."
-                            className="w-full h-[52px] rounded-full bg-white outline-none px-5 pr-14 text-[14px] text-[#11111166]"
-                            type="search"
-                        />
-                        <div className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#F5F5F5] flex items-center justify-center">
-                            <CiSearch size={18} />
-                        </div>
-                    </div>
+                    <NavbarSearchMobile onClose={onClose} inMenu />
 
                     <nav className="flex flex-col gap-1 px-4 pb-4">
                         {navItems.map((item, index) => (
@@ -138,13 +131,16 @@ function MobileMenu({ open, onClose }) {
 export default function Navbar() {
     const [active, setActive] = useState(null);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
     const { cartCount } = useCart();
     const location = useLocation();
 
     const closeMenu = () => setMenuOpen(false);
+    const closeSearch = () => setSearchOpen(false);
 
     useEffect(() => {
         setMenuOpen(false);
+        setSearchOpen(false);
     }, [location.pathname]);
 
     useEffect(() => {
@@ -173,6 +169,15 @@ export default function Navbar() {
                         </Link>
 
                         <div className="flex items-center gap-2 sm:gap-3">
+                            <button
+                                type="button"
+                                onClick={() => setSearchOpen(true)}
+                                aria-label="Поиск товаров"
+                                className="w-[48px] h-[48px] sm:w-[52px] sm:h-[52px] bg-white flex items-center justify-center rounded-full shrink-0"
+                            >
+                                <CiSearch className="text-[22px] sm:text-[24px] text-black" />
+                            </button>
+
                             <Link
                                 to="/basket"
                                 className="relative w-[48px] h-[48px] sm:w-[52px] sm:h-[52px] bg-white flex items-center justify-center rounded-full shrink-0"
@@ -209,16 +214,7 @@ export default function Navbar() {
                             </div>
                         </Link>
 
-                        <div className="flex-1 relative min-w-0">
-                            <input
-                                placeholder="Поиск товара по названию, артиклу"
-                                className="text-[#11111133] outline-none px-[34px] w-full max-w-[614px] h-[90px] rounded-[69px] bg-white"
-                                type="text"
-                            />
-                            <div className="absolute cursor-pointer top-[7px] right-[7px] w-[76px] h-[76px] rounded-full bg-[#F5F5F5] flex justify-center items-center">
-                                <CiSearch size={22} />
-                            </div>
-                        </div>
+                        <NavbarSearchDesktop />
 
                         <div className="flex items-center gap-5 shrink-0">
                             <img className="w-[35px] h-[30px] cursor-pointer" src="/quvonch/icon/tg.png" alt="Telegram" />
@@ -275,6 +271,7 @@ export default function Navbar() {
             </header>
 
             <MobileMenu open={menuOpen} onClose={closeMenu} />
+            <MobileSearchOverlay open={searchOpen} onClose={closeSearch} />
         </>
     );
 }
