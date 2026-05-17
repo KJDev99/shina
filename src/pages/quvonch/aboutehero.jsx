@@ -17,7 +17,7 @@ export default function Aboutehero() {
     }, []);
 
     return (
-        <div className="max-w-[1436px] m-auto mt-[87px] px-4 sm:px-6 lg:px-0">
+        <div className="max-w-[1436px] m-auto mt-8 sm:mt-12 lg:mt-[87px] px-4 sm:px-6 lg:px-0">
             <h2 className="font-semibold text-[55px] sm:text-[90px] lg:text-[150px] leading-none tracking-normal uppercase">
                 о нашей
             </h2>

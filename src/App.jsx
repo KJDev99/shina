@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/footer";
 import Navbar from "./components/navbar";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/quvonch/home";
 import About from "./pages/quvonch/about";
 import Basket from "./pages/quvonch/basket";
@@ -14,7 +15,8 @@ import Diller from "./pages/siroj/diller";
 
 export default function App() {
   return (
-    <div>
+    <div className="min-h-screen overflow-x-hidden">
+      <ScrollToTop />
       <Navbar />
 
       <Routes >

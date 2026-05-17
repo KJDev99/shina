@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import CatalogCart from "../../components/ui/CatalogCart";
 
 export default function CatalogComponents() {
-    const [active, setActive] = useState(null); // null = hammasi
+    const [active, setActive] = useState(null);
     const [manufacturers, setManufacturers] = useState([]);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Barcha productlardan manufacturerlarni ajratib olish
     useEffect(() => {
         fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=80")
             .then((res) => res.json())
@@ -21,7 +20,10 @@ export default function CatalogComponents() {
                 all.forEach((p) => {
                     if (p.manufacturer && !seen.has(p.manufacturer.id)) {
                         seen.add(p.manufacturer.id);
-                        unique.push({ ...p.manufacturer, count: all.filter(x => x.manufacturer?.id === p.manufacturer.id).length });
+                        unique.push({
+                            ...p.manufacturer,
+                            count: all.filter((x) => x.manufacturer?.id === p.manufacturer.id).length,
+                        });
                     }
                 });
                 setManufacturers(unique);
@@ -30,7 +32,6 @@ export default function CatalogComponents() {
             .finally(() => setLoading(false));
     }, []);
 
-    // Filter bosilganda
     useEffect(() => {
         if (active === null) return;
         setLoading(true);
@@ -42,47 +43,49 @@ export default function CatalogComponents() {
     }, [active]);
 
     return (
-        <div>
-            <div className="w-[1436px] m-auto">
-                <h1 className="font-semibold text-[85px] leading-[100%] uppercase mb-[20px]">
-                    каталог запчастей
-                </h1>
-                <div className="flex gap-[5px] bg-[#EEF3F8] p-3 rounded-[30px] w-fit">
+        <section className="max-w-[1436px] mx-auto px-4 sm:px-6 lg:px-0 py-8 sm:py-0">
+            <h1 className="font-semibold text-[36px] sm:text-[60px] lg:text-[85px] leading-none uppercase mb-4 sm:mb-[20px]">
+                каталог запчастей
+            </h1>
+
+            <div className="flex gap-2 overflow-x-auto pb-2 bg-[#EEF3F8] p-2 sm:p-3 rounded-[20px] sm:rounded-[30px] w-full sm:w-fit max-w-full scrollbar-hide">
+                <button
+                    onClick={() => setActive(null)}
+                    className={`shrink-0 px-4 sm:px-5 py-3 sm:py-5 rounded-full font-semibold text-[13px] sm:text-[15px] transition ${
+                        active === null ? "bg-white text-black" : "bg-white text-gray-400 hover:text-black"
+                    }`}
+                >
+                    Все
+                </button>
+                {manufacturers.map((m) => (
                     <button
-                        onClick={() => setActive(null)}
-                        className={`p-5 rounded-full font-semibold text-[15px] leading-none tracking-normal transition ${active === null ? "bg-white text-black" : "bg-white text-gray-400 hover:text-black"
-                            }`}
+                        key={m.id}
+                        onClick={() => setActive(m.id)}
+                        className={`shrink-0 px-4 sm:px-5 py-3 sm:py-5 rounded-full font-semibold text-[13px] sm:text-[15px] whitespace-nowrap transition ${
+                            active === m.id ? "bg-white text-black" : "bg-white text-gray-400 hover:text-black"
+                        }`}
                     >
-                        Все
+                        {m.name} <span className="text-gray-500">({m.count})</span>
                     </button>
-                    {manufacturers.map((m) => (
-                        <button
-                            key={m.id}
-                            onClick={() => setActive(m.id)}
-                            className={`p-5 rounded-full font-semibold text-[15px] leading-none tracking-normal transition ${active === m.id ? "bg-white text-black" : "bg-white text-gray-400 hover:text-black"
-                                }`}
-                        >
-                            {m.name} <span className="text-gray-500">({m.count})</span>
-                        </button>
-                    ))}
-                </div>
-
-                <div className="grid grid-cols-4 gap-[10px] mt-10">
-                    {loading
-                        ? <div className="col-span-4 flex justify-center py-10 text-gray-400">Загрузка...</div>
-                        : products.map((item) => <CatalogCart key={item.id} item={item} />)
-                    }
-                </div>
-
-                <div className="flex justify-center">
-                    <Link
-                        to="/catalog"
-                        className="cursor-pointer w-[299px] h-[96px] rounded-[25px] bg-white text-[14px] font-medium mt-[30px] flex justify-center items-center"
-                    >
-                        Смотреть все
-                    </Link>
-                </div>
+                ))}
             </div>
-        </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-[10px] mt-6 sm:mt-10">
+                {loading ? (
+                    <div className="col-span-full flex justify-center py-10 text-gray-400">Загрузка...</div>
+                ) : (
+                    products.map((item) => <CatalogCart key={item.id} item={item} />)
+                )}
+            </div>
+
+            <div className="flex justify-center mt-6 sm:mt-[30px]">
+                <Link
+                    to="/catalog"
+                    className="w-full sm:w-[299px] h-[72px] sm:h-[96px] rounded-[20px] sm:rounded-[25px] bg-white text-[14px] font-medium flex justify-center items-center hover:bg-gray-50 transition-colors"
+                >
+                    Смотреть все
+                </Link>
+            </div>
+        </section>
     );
 }

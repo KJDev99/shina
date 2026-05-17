@@ -19,7 +19,16 @@ body {
 .animate-marquee {
     animation: marquee 20s linear infinite;
 }
-.Grid{
+.Grid {
     display: grid;
     grid-template-columns: 1fr 3fr;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
 }

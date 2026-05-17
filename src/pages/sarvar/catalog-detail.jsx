@@ -84,7 +84,7 @@ export default function CatalogDetail() {
         <div className="w-11 h-10 flex items-center justify-center text-base font-medium border-x border-gray-200">{qty}</div>
         <button onClick={() => setQty((q) => q + 1)} className="w-10 h-10 text-xl flex items-center justify-center hover:bg-gray-100 transition">+</button>
       </div>
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <button
           onClick={handleAddToCart}
           disabled={isInCart}

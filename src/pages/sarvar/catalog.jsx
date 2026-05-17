@@ -231,7 +231,7 @@ export default function Catalog() {
           </div>
 
           {/* Sidebar news */}
-          <div className="flex flex-col gap-[10px]">
+          <div className="flex flex-col gap-[10px] max-md:hidden">
             {sidebarNews.map((item) => (
               <NewsCart key={item.id} item={item} />
             ))}
@@ -298,7 +298,9 @@ export default function Catalog() {
         </div>
       </div>
 
+      <div className="max-md:px-5">
       <CantactForm />
+      </div>
     </div>
   );
 }

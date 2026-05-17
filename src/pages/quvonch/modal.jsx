@@ -1,27 +1,31 @@
-"use client";
-
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { IoCloseOutline } from "react-icons/io5";
 
 function Toast({ message, type, onClose }) {
     useEffect(() => {
         const t = setTimeout(onClose, 3000);
         return () => clearTimeout(t);
-    }, []);
+    }, [onClose]);
 
     return (
-        <div className={`fixed bottom-6 right-6 z-[100] text-white px-6 py-4 rounded-[20px] shadow-lg flex items-center gap-3 ${type === "success" ? "bg-[#355094]" : "bg-red-500"
-            }`}>
+        <div
+            className={`fixed bottom-4 left-4 right-4 sm:bottom-6 sm:right-6 sm:left-auto z-[10001] text-white px-5 py-3.5 sm:px-6 sm:py-4 rounded-[16px] sm:rounded-[20px] shadow-lg flex items-center gap-3 max-w-md sm:max-w-none ml-auto ${
+                type === "success" ? "bg-[#355094]" : "bg-red-500"
+            }`}
+        >
             {type === "success" ? (
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" className="shrink-0">
                     <polyline points="20 6 9 17 4 12" />
                 </svg>
             ) : (
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                    <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" className="shrink-0">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
                 </svg>
             )}
-            <span className="font-medium text-[15px]">{message}</span>
+            <span className="font-medium text-[14px] sm:text-[15px]">{message}</span>
         </div>
     );
 }
@@ -33,6 +37,33 @@ export default function ModalExample({ setOpen }) {
     const [agreed, setAgreed] = useState(false);
     const [loading, setLoading] = useState(false);
     const [toast, setToast] = useState(null);
+    const [animateIn, setAnimateIn] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setAnimateIn(true), 20);
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        const prev = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = prev;
+        };
+    }, []);
+
+    const handleClose = () => {
+        setAnimateIn(false);
+        setTimeout(() => setOpen(false), 250);
+    };
+
+    useEffect(() => {
+        const onKey = (e) => {
+            if (e.key === "Escape") handleClose();
+        };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [setOpen]);
 
     const formatPhone = (value) => {
         let numbers = value.replace(/\D/g, "");
@@ -65,7 +96,7 @@ export default function ModalExample({ setOpen }) {
                 setEmail("");
                 setPhone("");
                 setAgreed(false);
-                setTimeout(() => setOpen(false), 1500);
+                setTimeout(() => handleClose(), 1500);
             } else {
                 setToast({ message: "Ошибка при отправке. Попробуйте снова.", type: "error" });
             }
@@ -76,65 +107,116 @@ export default function ModalExample({ setOpen }) {
         }
     };
 
-    return (
-        <>
-            {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+    const inputClass =
+        "outline-none w-full h-[64px] sm:h-[80px] md:h-[101px] rounded-[18px] sm:rounded-[22px] md:rounded-[25px] bg-[#F4F7FF] px-4 sm:px-5 md:px-[25px] text-[16px] md:text-[18px] text-[#1A1A1A] placeholder:text-[#848B8C]";
 
-            <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/60">
-                <div className="w-[698px] h-[697px] rounded-[35px] bg-[#FFFFFF] p-[30px]">
-                    <div className="flex justify-between items-center">
-                        <h1 className="font-semibold text-[60px] leading-[100%] uppercase">оставить заявку</h1>
-                        <div
-                            onClick={() => setOpen(false)}
-                            className="w-[64px] h-[64px] rounded-[25px] bg-[#355094] flex justify-center items-center text-white cursor-pointer hover:bg-[#2a4180] transition-colors"
-                        >
-                            <IoCloseOutline size={30} />
-                        </div>
+    return createPortal(
+        <>
+            {toast && (
+                <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
+            )}
+
+            <div
+                className="fixed inset-0 z-[10000] flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-6"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-title"
+            >
+                <div
+                    className={`absolute inset-0 bg-black/60 transition-opacity duration-250 ${
+                        animateIn ? "opacity-100" : "opacity-0"
+                    }`}
+                    onClick={handleClose}
+                    aria-hidden="true"
+                />
+
+                <div
+                    className={`relative w-full sm:max-w-[560px] md:max-w-[698px] max-h-[92dvh] sm:max-h-[90vh] flex flex-col bg-white shadow-2xl transition-all duration-250 ease-out
+                        rounded-t-[28px] sm:rounded-[30px] md:rounded-[35px]
+                        pb-[env(safe-area-inset-bottom)]
+                        ${animateIn ? "translate-y-0 opacity-100 sm:scale-100" : "translate-y-full opacity-0 sm:translate-y-4 sm:scale-95"}`}
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    {/* Drag handle — mobile only */}
+                    <div className="flex justify-center pt-3 pb-1 sm:hidden shrink-0">
+                        <div className="w-10 h-1 rounded-full bg-[#E0E0E0]" />
                     </div>
 
-                    <div>
-                        <input
-                            placeholder="Имя"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="outline-none w-[638px] h-[101px] rounded-[25px] bg-[#F4F7FF] px-[25px] text-[18px] mt-[38px] text-[#848B8C]"
-                            type="text"
-                        />
-                        <input
-                            placeholder="Электронный адрес"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="outline-none w-[638px] h-[101px] rounded-[25px] bg-[#F4F7FF] px-[25px] text-[18px] mt-[11px] text-[#848B8C]"
-                            type="email"
-                        />
-                        <input
-                            value={phone}
-                            onChange={(e) => setPhone(formatPhone(e.target.value))}
-                            placeholder="+7 (___) ___-__-__"
-                            className="outline-none w-[638px] h-[101px] rounded-[25px] bg-[#F4F7FF] px-[25px] text-[18px] mt-[11px]"
-                            type="text"
-                        />
-                        <button
-                            onClick={handleSubmit}
-                            disabled={loading}
-                            className="outline-none w-[638px] h-[101px] rounded-[25px] bg-[linear-gradient(180deg,#355094_0%,#5A80C7_100%)] text-white text-[14px] font-medium mt-[11px] hover:opacity-90 transition-opacity disabled:opacity-60"
-                        >
-                            {loading ? "Отправка..." : "Отправить"}
-                        </button>
-                        <div className="flex gap-[10px] mt-[30px]">
-                            <input
-                                className="w-[19px] h-[19px] cursor-pointer accent-[#355094]"
-                                type="checkbox"
-                                checked={agreed}
-                                onChange={(e) => setAgreed(e.target.checked)}
-                            />
-                            <p className="font-normal text-[14px] leading-[100%]">
-                                Я даю свое согласие на обработку персональных данных в соответствии с ФЗ №152-ФЗ "О персональных данных" на условиях и для целей, определенных Политикой Конфиденциальности.
-                            </p>
+                    <div className="overflow-y-auto overscroll-contain flex-1 px-4 pt-2 pb-5 sm:px-6 sm:pt-6 sm:pb-6 md:p-[30px] md:pb-[30px]">
+                        <div className="flex justify-between items-start gap-3 sm:gap-4">
+                            <h1
+                                id="modal-title"
+                                className="font-semibold text-[24px] leading-tight sm:text-[36px] md:text-[48px] lg:text-[60px] uppercase pr-2"
+                            >
+                                оставить заявку
+                            </h1>
+                            <button
+                                type="button"
+                                onClick={handleClose}
+                                aria-label="Закрыть"
+                                className="w-[44px] h-[44px] sm:w-[56px] sm:h-[56px] md:w-[64px] md:h-[64px] rounded-[16px] sm:rounded-[20px] md:rounded-[25px] bg-[#355094] flex justify-center items-center text-white shrink-0 hover:bg-[#2a4180] active:scale-95 transition-all"
+                            >
+                                <IoCloseOutline className="w-6 h-6 sm:w-7 sm:h-7 md:w-[30px] md:h-[30px]" />
+                            </button>
                         </div>
+
+                        <form
+                            className="mt-5 sm:mt-6 md:mt-[38px] space-y-2.5 sm:space-y-3 md:space-y-[11px]"
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                handleSubmit();
+                            }}
+                        >
+                            <input
+                                placeholder="Имя"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                className={inputClass}
+                                type="text"
+                                autoComplete="name"
+                            />
+                            <input
+                                placeholder="Электронный адрес"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className={inputClass}
+                                type="email"
+                                autoComplete="email"
+                            />
+                            <input
+                                value={phone}
+                                onChange={(e) => setPhone(formatPhone(e.target.value))}
+                                placeholder="+7 (___) ___-__-__"
+                                className={inputClass}
+                                type="tel"
+                                autoComplete="tel"
+                            />
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="w-full h-[64px] sm:h-[80px] md:h-[101px] rounded-[18px] sm:rounded-[22px] md:rounded-[25px] bg-gradient-to-b from-[#355094] to-[#5A80C7] text-white text-[14px] font-medium hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-60"
+                            >
+                                {loading ? "Отправка..." : "Отправить"}
+                            </button>
+
+                            <label className="flex gap-2.5 sm:gap-[10px] pt-3 sm:pt-4 md:pt-[30px] cursor-pointer items-start">
+                                <input
+                                    className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px] cursor-pointer accent-[#355094] shrink-0 mt-0.5"
+                                    type="checkbox"
+                                    checked={agreed}
+                                    onChange={(e) => setAgreed(e.target.checked)}
+                                />
+                                <span className="font-normal text-[12px] sm:text-[13px] md:text-[14px] leading-snug text-[#666]">
+                                    Я даю свое согласие на обработку персональных данных в соответствии с ФЗ №152-ФЗ
+                                    «О персональных данных» на условиях и для целей, определенных Политикой
+                                    Конфиденциальности.
+                                </span>
+                            </label>
+                        </form>
                     </div>
                 </div>
             </div>
-        </>
+        </>,
+        document.body
     );
 }

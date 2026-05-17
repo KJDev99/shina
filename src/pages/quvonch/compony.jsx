@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useRef, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -19,35 +20,31 @@ export default function Compony() {
     }, []);
 
     return (
-        <section className="overflow-hidden mt-[100px] mb-[100px]">
-
-            {/* HEADER */}
-            <div className="max-w-[1436px] mx-auto">
-                <div className="flex justify-between items-center mb-[30px]">
-                    <h2 className="font-semibold text-[85px] leading-[100%] uppercase">
+        <section className="overflow-hidden mt-[60px] lg:mt-[100px] mb-[60px] lg:mb-[100px]">
+            <div className="max-w-[1436px] mx-auto px-4 sm:px-6 lg:px-0">
+                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-5 mb-[30px]">
+                    <h2 className="font-semibold text-[36px] sm:text-[60px] lg:text-[85px] leading-none uppercase">
                         Новости компании
                     </h2>
 
-                    <div className="flex gap-[6px] items-center">
+                    <div className="flex gap-[6px] items-center sm:self-end">
                         <button
                             ref={prevRef}
-                            className="w-[63px] h-[63px] rounded-full bg-white flex justify-center items-center"
+                            className="w-[50px] h-[50px] lg:w-[63px] lg:h-[63px] rounded-full bg-white flex justify-center items-center shrink-0"
                         >
-                            <img src="/quvonch/icon/arrowleft.svg" alt="" />
+                            <img src="/quvonch/icon/arrowleft.svg" alt="" className="w-4 lg:w-auto" />
                         </button>
-
                         <button
                             ref={nextRef}
-                            className="w-[63px] h-[63px] rounded-full bg-white flex justify-center items-center"
+                            className="w-[50px] h-[50px] lg:w-[63px] lg:h-[63px] rounded-full bg-white flex justify-center items-center shrink-0"
                         >
-                            <img src="/quvonch/icon/arrowright1.svg" alt="" />
+                            <img src="/quvonch/icon/arrowright1.svg" alt="" className="w-4 lg:w-auto" />
                         </button>
                     </div>
                 </div>
             </div>
 
-            {/* SWIPER */}
-            <div className="pl-[calc((100vw-1436px)/2)] overflow-hidden">
+            <div className="lg:pl-[calc((100vw-1436px)/2)] pl-4 sm:pl-6 overflow-hidden">
                 <Swiper
                     modules={[Navigation]}
                     slidesPerView="auto"
@@ -63,11 +60,20 @@ export default function Compony() {
                     className="!overflow-visible"
                 >
                     {news.map((item) => (
-                        <SwiperSlide key={item.id} className="!w-[351px]">
+                        <SwiperSlide key={item.id} className="!w-[280px] sm:!w-[320px] lg:!w-[351px]">
                             <NewsCart item={item} />
                         </SwiperSlide>
                     ))}
                 </Swiper>
+            </div>
+
+            <div className="flex justify-center mt-8 px-4">
+                <Link
+                    to="/news"
+                    className="w-full sm:w-auto px-10 h-[72px] sm:h-[96px] rounded-[25px] bg-white text-[14px] font-medium flex items-center justify-center hover:bg-gray-50 transition-colors"
+                >
+                    Все новости
+                </Link>
             </div>
         </section>
     );
