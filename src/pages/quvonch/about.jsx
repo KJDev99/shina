@@ -11,8 +11,6 @@ export default function About() {
             <Detail />
             <Homenew />
             <Sertifikat />
-
-
         </div>
     )
 }

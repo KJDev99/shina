@@ -1,18 +1,22 @@
-"use client";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import Datacard from "../../components/ui/datacard";
+import NewsCart from "../../components/ui/NewsCart";
 
 export default function Compony() {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
+    const [news, setNews] = useState([]);
 
-    const cards = Array(5).fill(0);
+    useEffect(() => {
+        fetch("https://adent-admin.migfastkg.ru/api/v1/news/?page=1&page_size=10")
+            .then((res) => res.json())
+            .then((data) => setNews(data.results || []))
+            .catch((err) => console.error(err));
+    }, []);
 
     return (
         <section className="overflow-hidden mt-[100px] mb-[100px]">
@@ -29,20 +33,14 @@ export default function Compony() {
                             ref={prevRef}
                             className="w-[63px] h-[63px] rounded-full bg-white flex justify-center items-center"
                         >
-                            <img
-                                src="/quvonch/icon/arrowleft.svg"
-                                alt=""
-                            />
+                            <img src="/quvonch/icon/arrowleft.svg" alt="" />
                         </button>
 
                         <button
                             ref={nextRef}
                             className="w-[63px] h-[63px] rounded-full bg-white flex justify-center items-center"
                         >
-                            <img
-                                src="/quvonch/icon/arrowright1.svg"
-                                alt=""
-                            />
+                            <img src="/quvonch/icon/arrowright1.svg" alt="" />
                         </button>
                     </div>
                 </div>
@@ -59,22 +57,14 @@ export default function Compony() {
                         nextEl: nextRef.current,
                     }}
                     onBeforeInit={(swiper) => {
-                        // @ts-ignore
-                        swiper.params.navigation.prevEl =
-                            prevRef.current;
-
-                        // @ts-ignore
-                        swiper.params.navigation.nextEl =
-                            nextRef.current;
+                        swiper.params.navigation.prevEl = prevRef.current;
+                        swiper.params.navigation.nextEl = nextRef.current;
                     }}
                     className="!overflow-visible"
                 >
-                    {cards.map((_, i) => (
-                        <SwiperSlide
-                            key={i}
-                            className="!w-[351px]"
-                        >
-                            <Datacard />
+                    {news.map((item) => (
+                        <SwiperSlide key={item.id} className="!w-[351px]">
+                            <NewsCart item={item} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

@@ -26,7 +26,7 @@ export default function App() {
         <Route path="/news" element={<News />} />
         <Route path="/news/:id" element={<NewsDetail />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/diller" element={<Diller />} />
+        <Route path="/manufacturer/:id" element={<Diller />} />
       </Routes>
 
       <Footer />
