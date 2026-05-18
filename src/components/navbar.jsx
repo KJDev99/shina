@@ -10,7 +10,7 @@ import MobileSearchOverlay from "./MobileSearchOverlay";
 
 const navItems = [
     { name: "О нас", path: "/about" },
-    { name: "Шины для спецтехники", path: "/catalog" },
+    { name: "Шины для спецтехники", path: "/equipment" },
     { name: "Производитель", path: "/catalog" },
     { name: "Каталог", path: "/catalog" },
     { name: "Новости", path: "/news" },
@@ -52,17 +52,15 @@ function MobileMenu({ open, onClose }) {
             aria-label="Меню навигации"
         >
             <div
-                className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
-                    animateIn ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${animateIn ? "opacity-100" : "opacity-0"
+                    }`}
                 onClick={onClose}
                 aria-hidden="true"
             />
 
             <div
-                className={`absolute top-0 right-0 h-[100dvh] w-[min(100%,360px)] bg-[#ECF0F5] shadow-2xl flex flex-col overflow-hidden transition-transform duration-300 ease-out ${
-                    animateIn ? "translate-x-0" : "translate-x-full"
-                }`}
+                className={`absolute top-0 right-0 h-[100dvh] w-[min(100%,360px)] bg-[#ECF0F5] shadow-2xl flex flex-col overflow-hidden transition-transform duration-300 ease-out ${animateIn ? "translate-x-0" : "translate-x-full"
+                    }`}
             >
                 <div className="flex items-center justify-between p-4 border-b border-black/5 shrink-0">
                     <Link to="/" onClick={onClose}>
@@ -257,11 +255,10 @@ export default function Navbar() {
                                 key={index}
                                 to={item.path}
                                 onClick={() => setActive(index)}
-                                className={`font-normal text-[16px] uppercase whitespace-nowrap transition-all duration-300 shrink-0 ${
-                                    active === index
+                                className={`font-normal text-[16px] uppercase whitespace-nowrap transition-all duration-300 shrink-0 ${active === index
                                         ? "bg-[#F5F5F5] px-[27px] py-[18px] rounded-full"
                                         : "hover:bg-[#F5F5F5] px-[27px] py-[18px] rounded-full"
-                                }`}
+                                    }`}
                             >
                                 {item.name}
                             </Link>

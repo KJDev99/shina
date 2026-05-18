@@ -11,6 +11,7 @@ import News from "./pages/siroj/news";
 import NewsDetail from "./pages/siroj/news-detail";
 import Contact from "./pages/siroj/contact";
 import Diller from "./pages/siroj/diller";
+import Equipment from "./pages/sarvar/equipment";
 
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/basket" element={<Basket />} />
         <Route path="/catalog" element={<Catalog />} />
+        <Route path="/equipment" element={<Equipment />} />
         <Route path="/catalog/:id" element={<CatalogDetail />} />
         <Route path="/news" element={<News />} />
         <Route path="/news/:id" element={<NewsDetail />} />

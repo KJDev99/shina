@@ -39,7 +39,7 @@ export default function Catalog() {
     if (appliedMax) params.set("max_price", appliedMax);
     if (orderPrice) params.set("order_price", orderPrice);
 
-    fetch(`https://adent-admin.migfastkg.ru/api/v1/products/?${params}`)
+    fetch(`https://adent-admin.migfastkg.ru/api/v1/products/?${params}&type=spare_parts`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.results || []);
@@ -299,7 +299,7 @@ export default function Catalog() {
       </div>
 
       <div className="max-md:px-5">
-      <CantactForm />
+        <CantactForm />
       </div>
     </div>
   );
