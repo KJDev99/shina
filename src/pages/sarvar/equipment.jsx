@@ -1,36 +1,64 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Badge from "../../components/ui/Badge";
 import CantactForm from "../../components/ui/cantactform";
 import CatalogCart from "../../components/ui/CatalogCart";
 import NewsCart from "../../components/ui/NewsCart";
 
 export default function Equipment() {
+    const [searchParams, setSearchParams] = useSearchParams();
+
     const [products, setProducts] = useState([]);
     const [manufacturers, setManufacturers] = useState([]);
-    const [selectedManufacturer, setSelectedManufacturer] = useState(null);
+    const [selectedManufacturer, setSelectedManufacturer] = useState(
+        searchParams.get("manufacturer") ? Number(searchParams.get("manufacturer")) : null
+    );
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(true);
     const [sidebarNews, setSidebarNews] = useState([]);
 
-    // Narx filterlari
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
     const [appliedMin, setAppliedMin] = useState("");
     const [appliedMax, setAppliedMax] = useState("");
-
-    // Saralash
     const [orderPrice, setOrderPrice] = useState("");
 
     const PAGE_SIZE = 15;
 
+    // URL param o'zgarganda selectedManufacturer yangilansin
+    useEffect(() => {
+        const mId = searchParams.get("manufacturer");
+        setSelectedManufacturer(mId ? Number(mId) : null);
+        setCurrentPage(1);
+    }, [searchParams]);
+
+    // Sidebar news
     useEffect(() => {
         fetch("https://adent-admin.migfastkg.ru/api/v1/news/?page=1&page_size=4")
             .then((res) => res.json())
             .then((data) => setSidebarNews(data.results || []));
     }, []);
 
+    // Barcha manufacturerlarni bir marta, filtersiz yuklash
+    useEffect(() => {
+        fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=tires")
+            .then((res) => res.json())
+            .then((data) => {
+                const unique = [];
+                const seen = new Set();
+                (data.results || []).forEach((p) => {
+                    if (p.manufacturer && !seen.has(p.manufacturer.id)) {
+                        seen.add(p.manufacturer.id);
+                        unique.push(p.manufacturer);
+                    }
+                });
+                setManufacturers(unique);
+            })
+            .catch((err) => console.error(err));
+    }, []);
+
+    // Mahsulotlarni yuklash (filter bilan)
     useEffect(() => {
         setLoading(true);
         const params = new URLSearchParams({ page: currentPage, page_size: PAGE_SIZE });
@@ -44,26 +72,19 @@ export default function Equipment() {
             .then((data) => {
                 setProducts(data.results || []);
                 setTotalPages(data.total_pages || 1);
-
-                if (manufacturers.length === 0 && data.results?.length > 0) {
-                    const unique = [];
-                    const seen = new Set();
-                    data.results.forEach((p) => {
-                        if (p.manufacturer && !seen.has(p.manufacturer.id)) {
-                            seen.add(p.manufacturer.id);
-                            unique.push(p.manufacturer);
-                        }
-                    });
-                    setManufacturers(unique);
-                }
             })
             .catch((err) => console.error(err))
             .finally(() => setLoading(false));
     }, [currentPage, selectedManufacturer, appliedMin, appliedMax, orderPrice]);
 
     const handleManufacturer = (id) => {
-        setSelectedManufacturer(id === selectedManufacturer ? null : id);
+        const newId = id === selectedManufacturer ? null : id;
         setCurrentPage(1);
+        if (newId) {
+            setSearchParams({ manufacturer: newId });
+        } else {
+            setSearchParams({});
+        }
     };
 
     const handleApply = () => {
@@ -73,13 +94,13 @@ export default function Equipment() {
     };
 
     const handleReset = () => {
-        setSelectedManufacturer(null);
         setMinPrice("");
         setMaxPrice("");
         setAppliedMin("");
         setAppliedMax("");
         setOrderPrice("");
         setCurrentPage(1);
+        setSearchParams({});
     };
 
     const getPaginationPages = () => {
@@ -107,7 +128,6 @@ export default function Equipment() {
                     Шины для спецтехники
                 </h1>
 
-                {/* Saralash */}
                 <div className="relative w-full md:w-[221px] mt-5 md:mt-0">
                     <select
                         value={orderPrice}
@@ -118,7 +138,6 @@ export default function Equipment() {
                         <option value="asc">Сначала дешевле</option>
                         <option value="desc">Сначала дороже</option>
                     </select>
-
                 </div>
             </div>
 
@@ -136,8 +155,7 @@ export default function Equipment() {
                                 <div
                                     key={m.id}
                                     onClick={() => handleManufacturer(m.id)}
-                                    className={`h-[75px] rounded-[20px] flex items-center justify-between px-4 cursor-pointer transition-colors ${selectedManufacturer === m.id ? "bg-[#355094] text-white" : "bg-[#F5F5F5]"
-                                        }`}
+                                    className={`h-[75px] rounded-[20px] flex items-center justify-between px-4 cursor-pointer transition-colors ${selectedManufacturer === m.id ? "bg-[#355094] text-white" : "bg-[#F5F5F5]"}`}
                                 >
                                     <h1 className="font-semibold text-[16px] leading-none tracking-normal uppercase">
                                         {m.name}
@@ -155,8 +173,7 @@ export default function Equipment() {
                         <div className="mt-6">
                             <p className="font-medium text-[15px] leading-none tracking-normal mb-[10px]">Цена</p>
                             <div className="flex items-center gap-2">
-                                <div className={`flex-1 h-[72px] rounded-[15px] flex items-center px-3 transition-colors ${minPrice ? "bg-[#EEF3FF] border border-[#355094]" : "bg-[#F5F5F5]"
-                                    }`}>
+                                <div className={`flex-1 h-[72px] rounded-[15px] flex items-center px-3 transition-colors ${minPrice ? "bg-[#EEF3FF] border border-[#355094]" : "bg-[#F5F5F5]"}`}>
                                     <div className="flex flex-col w-full">
                                         <span className="text-[10px] text-[#848B8C]">от</span>
                                         <input
@@ -164,10 +181,7 @@ export default function Equipment() {
                                             inputMode="numeric"
                                             placeholder="0"
                                             value={minPrice}
-                                            onChange={(e) => {
-                                                const val = e.target.value.replace(/\D/g, "");
-                                                setMinPrice(val);
-                                            }}
+                                            onChange={(e) => setMinPrice(e.target.value.replace(/\D/g, ""))}
                                             className="bg-transparent outline-none text-[14px] font-medium w-full"
                                         />
                                     </div>
@@ -176,8 +190,7 @@ export default function Equipment() {
 
                                 <p className="text-[#111]">—</p>
 
-                                <div className={`flex-1 h-[72px] rounded-[15px] flex items-center px-3 transition-colors ${maxPrice ? "bg-[#EEF3FF] border border-[#355094]" : "bg-[#F5F5F5]"
-                                    }`}>
+                                <div className={`flex-1 h-[72px] rounded-[15px] flex items-center px-3 transition-colors ${maxPrice ? "bg-[#EEF3FF] border border-[#355094]" : "bg-[#F5F5F5]"}`}>
                                     <div className="flex flex-col w-full">
                                         <span className="text-[10px] text-[#848B8C]">до</span>
                                         <input
@@ -185,10 +198,7 @@ export default function Equipment() {
                                             inputMode="numeric"
                                             placeholder="∞"
                                             value={maxPrice}
-                                            onChange={(e) => {
-                                                const val = e.target.value.replace(/\D/g, "");
-                                                setMaxPrice(val);
-                                            }}
+                                            onChange={(e) => setMaxPrice(e.target.value.replace(/\D/g, ""))}
                                             className="bg-transparent outline-none text-[14px] font-medium w-full"
                                         />
                                     </div>
@@ -196,7 +206,6 @@ export default function Equipment() {
                                 </div>
                             </div>
 
-                            {/* Active filtr ko'rsatgichi */}
                             {(appliedMin || appliedMax) && (
                                 <div className="mt-3 flex items-center gap-2 text-[13px] text-[#355094] font-medium">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#355094" strokeWidth="2.5">
@@ -262,7 +271,6 @@ export default function Equipment() {
                         </div>
                     )}
 
-                    {/* Pagination */}
                     {totalPages > 1 && (
                         <div className="flex justify-center items-center gap-2 mt-4 flex-wrap">
                             {getPaginationPages().map((page, i) =>
@@ -272,8 +280,7 @@ export default function Equipment() {
                                     <button
                                         key={page}
                                         onClick={() => setCurrentPage(page)}
-                                        className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-[10px] font-semibold transition-colors ${currentPage === page ? "bg-[#355094] text-white" : "bg-white text-[#111]"
-                                            }`}
+                                        className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-[10px] font-semibold transition-colors ${currentPage === page ? "bg-[#355094] text-white" : "bg-white text-[#111]"}`}
                                     >
                                         {page}
                                     </button>
