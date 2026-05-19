@@ -28,7 +28,7 @@ export default function Hero() {
                 >
                     {banners.map((banner) => (
                         <SwiperSlide key={banner.id}>
-                            <div className="bg-white p-5 sm:p-8 lg:p-10 flex flex-col lg:flex-row justify-between relative min-h-[420px] sm:min-h-[480px] lg:h-[517px]">
+                            <div className="bg-white max-sm:px-5 max-sm:pt-5 max-sm:pb-0 sm:p-8 lg:p-10 flex flex-col lg:flex-row justify-between relative min-h-[420px] sm:min-h-[480px] lg:h-[517px]">
                                 <div className="w-full lg:w-[580px] z-10 relative">
                                     <h1 className="font-semibold text-[28px] sm:text-[44px] lg:text-[60px] leading-tight sm:leading-[60px] lg:leading-[70px] uppercase">
                                         {banner.title}
@@ -61,9 +61,8 @@ export default function Hero() {
                                         {banners.map((_, i) => (
                                             <div
                                                 key={i}
-                                                className={`w-[8px] h-[8px] rounded-full transition-colors duration-300 ${
-                                                    i === activeIndex ? "bg-[#355094]" : "bg-white"
-                                                }`}
+                                                className={`w-[8px] h-[8px] rounded-full transition-colors duration-300 ${i === activeIndex ? "bg-[#355094]" : "bg-white"
+                                                    }`}
                                             />
                                         ))}
                                     </div>
