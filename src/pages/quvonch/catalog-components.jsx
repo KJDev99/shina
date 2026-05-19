@@ -33,13 +33,20 @@ export default function CatalogComponents() {
     }, []);
 
     useEffect(() => {
-        if (active === null) return;
         setLoading(true);
-        fetch(`https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=80&manufacturer=${active}`)
-            .then((res) => res.json())
-            .then((data) => setProducts((data.results || []).slice(0, 8)))
-            .catch((err) => console.error(err))
-            .finally(() => setLoading(false));
+        if (active === null) {
+            fetch(`https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=80`)
+                .then((res) => res.json())
+                .then((data) => setProducts((data.results || []).slice(0, 8)))
+                .catch((err) => console.error(err))
+                .finally(() => setLoading(false));
+        } else {
+            fetch(`https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=80&manufacturer=${active}`)
+                .then((res) => res.json())
+                .then((data) => setProducts((data.results || []).slice(0, 8)))
+                .catch((err) => console.error(err))
+                .finally(() => setLoading(false));
+        }
     }, [active]);
 
     return (
@@ -51,9 +58,8 @@ export default function CatalogComponents() {
             <div className="flex gap-2 overflow-x-auto pb-2 bg-[#EEF3F8] p-2 sm:p-3 rounded-[20px] sm:rounded-[30px] w-full sm:w-fit max-w-full scrollbar-hide">
                 <button
                     onClick={() => setActive(null)}
-                    className={`shrink-0 px-4 sm:px-5 py-3 sm:py-5 rounded-full font-semibold text-[13px] sm:text-[15px] transition ${
-                        active === null ? "bg-white text-black" : "bg-white text-gray-400 hover:text-black"
-                    }`}
+                    className={`shrink-0 px-4 sm:px-5 py-3 sm:py-5 rounded-full font-semibold text-[13px] sm:text-[15px] transition ${active === null ? "bg-white text-black" : "bg-white text-gray-400 hover:text-black"
+                        }`}
                 >
                     Все
                 </button>
@@ -61,9 +67,8 @@ export default function CatalogComponents() {
                     <button
                         key={m.id}
                         onClick={() => setActive(m.id)}
-                        className={`shrink-0 px-4 sm:px-5 py-3 sm:py-5 rounded-full font-semibold text-[13px] sm:text-[15px] whitespace-nowrap transition ${
-                            active === m.id ? "bg-white text-black" : "bg-white text-gray-400 hover:text-black"
-                        }`}
+                        className={`shrink-0 px-4 sm:px-5 py-3 sm:py-5 rounded-full font-semibold text-[13px] sm:text-[15px] whitespace-nowrap transition ${active === m.id ? "bg-white text-black" : "bg-white text-gray-400 hover:text-black"
+                            }`}
                     >
                         {m.name} <span className="text-gray-500">({m.count})</span>
                     </button>

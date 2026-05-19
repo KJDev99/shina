@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaTelegramPlane } from "react-icons/fa";
 
 const pages = [
-    { label: "Шины для спецтехники", path: "/catalog" },
+    { label: "Шины для спецтехники", path: "/equipment" },
     { label: "Контакты", path: "/contact" },
     { label: "Официальный дилер WOLF", path: "/manufacturer/1" },
     { label: "Новости", path: "/news" },
@@ -10,9 +11,40 @@ const pages = [
     { label: "О нас", path: "/about" },
 ];
 
-const brands = ["Caterpillar", "Atlas Copco", "Epiroc", "Sandvik", "Cummins", "DEUTZ"];
+const extractUnique = (results) => {
+    const unique = [];
+    const seen = new Set();
+    (results || []).forEach((p) => {
+        if (p.manufacturer && !seen.has(p.manufacturer.id)) {
+            seen.add(p.manufacturer.id);
+            unique.push(p.manufacturer);
+        }
+    });
+    return unique;
+};
 
 export default function Footer() {
+    const [catalogManufacturers, setCatalogManufacturers] = useState([]);
+    const [equipmentManufacturers, setEquipmentManufacturers] = useState([]);
+
+    useEffect(() => {
+        const fetchAll = async () => {
+            try {
+                const [catRes, eqRes] = await Promise.all([
+                    fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=spare_parts"),
+                    fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=tires"),
+                ]);
+                const catData = await catRes.json();
+                const eqData = await eqRes.json();
+                setCatalogManufacturers(extractUnique(catData.results).slice(0, 3));
+                setEquipmentManufacturers(extractUnique(eqData.results).slice(0, 3));
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        fetchAll();
+    }, []);
+
     return (
         <footer className="bg-black mt-10 lg:mt-0">
             <div className="max-w-[1437px] mx-auto px-4 sm:px-6 pt-8 sm:pt-[42px] pb-6">
@@ -48,18 +80,32 @@ export default function Footer() {
                             <h2 className="font-semibold text-lg sm:text-[22px] uppercase text-white mb-4 sm:mb-[18px]">
                                 Производитель
                             </h2>
-                            <ul className="flex flex-col gap-3 sm:gap-[14px]">
-                                {brands.map((b) => (
-                                    <li key={b}>
-                                        <Link
-                                            to="/catalog"
-                                            className="font-normal text-sm sm:text-base text-[#FFFFFF99] hover:text-white transition-colors"
-                                        >
-                                            {b}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className="flex flex-col gap-3">
+                                <ul className="flex flex-col gap-3 sm:gap-[14px]">
+                                    {catalogManufacturers.map((m) => (
+                                        <li key={`cat-${m.id}`}>
+                                            <Link
+                                                to={`/catalog?manufacturer=${m.id}`}
+                                                className="font-normal text-sm sm:text-base text-[#FFFFFF99] hover:text-white transition-colors"
+                                            >
+                                                {m.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <ul className="flex flex-col gap-3 sm:gap-[14px]">
+                                    {equipmentManufacturers.map((m) => (
+                                        <li key={`eq-${m.id}`}>
+                                            <Link
+                                                to={`/equipment?manufacturer=${m.id}`}
+                                                className="font-normal text-sm sm:text-base text-[#FFFFFF99] hover:text-white transition-colors"
+                                            >
+                                                {m.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
 
                         <div>
@@ -95,7 +141,7 @@ export default function Footer() {
                                     </a>
                                 </span>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -112,7 +158,14 @@ export default function Footer() {
                         © 2025 «Максан групп». Все права защищены.
                     </p>
                     <p className="font-medium text-[13px] sm:text-[15px] text-[#FFFFFF66]">Политика конфиденциальности</p>
-                    <p className="font-medium text-[13px] sm:text-[15px] text-[#FFFFFF66]">Сделано в UserTech</p>
+                    <a
+                        href="https://usertech.ru/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-[13px] sm:text-[15px] text-[#FFFFFF66] hover:text-white transition-colors"
+                    >
+                        Сделано в UserTech
+                    </a>
                 </div>
             </div>
         </footer>

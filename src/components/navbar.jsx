@@ -183,7 +183,7 @@ function MobileManufacturerSection({ onClose }) {
     };
 
     return (
-        <div className="px-4 pb-2">
+        <div className="px-4">
             <button
                 onClick={() => setOpen((v) => !v)}
                 className="font-normal text-[14px] uppercase px-5 py-4 rounded-[20px] bg-white w-full flex items-center justify-between"

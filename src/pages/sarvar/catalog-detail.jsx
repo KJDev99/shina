@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -35,8 +35,8 @@ export default function CatalogDetail() {
   const [qty, setQty] = useState(1);
   const [toast, setToast] = useState(null);
 
-
-
+  const desktopSwiperRef = useRef(null);
+  const mobileSwiperRef = useRef(null);
 
   useEffect(() => {
     fetch(`https://adent-admin.migfastkg.ru/api/v1/products/${id}/`)
@@ -52,13 +52,18 @@ export default function CatalogDetail() {
   const isInCart = cart.some((i) => i.id === product?.id);
   const images = product.images || [];
   const price = Number(product.price).toLocaleString("ru-RU") + " ₽";
+
+  const handleThumbClick = (i) => {
+    setActiveThumb(i);
+    desktopSwiperRef.current?.slideTo(i);
+    mobileSwiperRef.current?.slideTo(i);
+  };
+
   const handleAddToCart = () => {
     if (isInCart) return;
     addToCart(product, qty);
     setToast("Товар добавлен в корзину");
   };
-
-
 
   const handleQuickOrder = () => {
     addToCart(product, qty);
@@ -133,7 +138,7 @@ export default function CatalogDetail() {
             {images.map((img, i) => (
               <div
                 key={img.id}
-                onClick={() => setActiveThumb(i)}
+                onClick={() => handleThumbClick(i)}
                 className={`w-[103px] h-[103px] rounded-md border cursor-pointer bg-gray-100 overflow-hidden transition-all ${activeThumb === i ? "border-2 border-[#355094]" : "border-gray-200"
                   }`}
               >
@@ -143,11 +148,11 @@ export default function CatalogDetail() {
           </div>
           <div className="w-full h-[550px] rounded-xl border border-gray-200 bg-gray-100 overflow-hidden">
             <Swiper
-              modules={[Navigation, Autoplay]}
+              modules={[Navigation]}
               slidesPerView={1}
-              loop={images.length > 1}
-              autoplay={{ delay: 4000, disableOnInteraction: false }}
-              onSlideChange={(s) => setActiveThumb(s.realIndex)}
+              loop={false}
+              onSwiper={(swiper) => (desktopSwiperRef.current = swiper)}
+              onSlideChange={(s) => setActiveThumb(s.activeIndex)}
               className="w-full h-full"
             >
               {images.map((img) => (
@@ -167,12 +172,12 @@ export default function CatalogDetail() {
       <div className="flex flex-col md:hidden">
         <div className="w-full h-[300px] rounded-xl border border-gray-200 bg-gray-100 overflow-hidden mb-3">
           <Swiper
-            modules={[Pagination, Autoplay]}
+            modules={[Pagination]}
             slidesPerView={1}
             pagination={{ clickable: true }}
-            loop={images.length > 1}
-            autoplay={{ delay: 4000 }}
-            onSlideChange={(s) => setActiveThumb(s.realIndex)}
+            loop={false}
+            onSwiper={(swiper) => (mobileSwiperRef.current = swiper)}
+            onSlideChange={(s) => setActiveThumb(s.activeIndex)}
             className="w-full h-full"
           >
             {images.map((img) => (
@@ -186,7 +191,7 @@ export default function CatalogDetail() {
           {images.map((img, i) => (
             <div
               key={img.id}
-              onClick={() => setActiveThumb(i)}
+              onClick={() => handleThumbClick(i)}
               className={`flex-1 h-[70px] rounded-md border cursor-pointer bg-gray-100 overflow-hidden ${activeThumb === i ? "border-2 border-[#355094]" : "border-gray-200"
                 }`}
             >

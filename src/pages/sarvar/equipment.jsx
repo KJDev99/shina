@@ -23,7 +23,8 @@ export default function Equipment() {
     const [appliedMin, setAppliedMin] = useState("");
     const [appliedMax, setAppliedMax] = useState("");
     const [orderPrice, setOrderPrice] = useState("");
-
+    const visibleNewsCount = products.length <= 6 ? 0 : Math.floor((products.length - 4) / 3);
+    const visibleNews = sidebarNews.slice(0, visibleNewsCount);
     const PAGE_SIZE = 15;
 
     // URL param o'zgarganda selectedManufacturer yangilansin
@@ -85,7 +86,26 @@ export default function Equipment() {
         } else {
             setSearchParams({});
         }
+        // QO'SHILGAN QISM:
+        setTimeout(() => {
+            const grid = document.querySelector(".flex-1.flex.flex-col.gap-8");
+            if (grid) {
+                const top = grid.getBoundingClientRect().top + window.scrollY - 100;
+                window.scrollTo({ top, behavior: "smooth" });
+            }
+        }, 100);
     };
+    useEffect(() => {
+        if (selectedManufacturer) {
+            setTimeout(() => {
+                const grid = document.querySelector(".flex-1.flex.flex-col.gap-8");
+                if (grid) {
+                    const top = grid.getBoundingClientRect().top + window.scrollY - 100;
+                    window.scrollTo({ top, behavior: "smooth" });
+                }
+            }, 100);
+        }
+    }, []);
 
     const handleApply = () => {
         setAppliedMin(minPrice);
@@ -119,7 +139,7 @@ export default function Equipment() {
 
     return (
         <div className="min-h-screen">
-            <div className="mt-[30px] md:mt-[50px] max-w-[1436px] mx-auto">
+            <div className="mt-[30px] md:mt-[50px] max-w-[1436px] mx-auto max-md:px-4">
                 <Badge text={"Шины для спецтехники"} />
             </div>
 
@@ -236,17 +256,19 @@ export default function Equipment() {
                     </div>
 
                     {/* Sidebar news */}
-                    <div className="flex flex-col gap-[10px] max-md:hidden">
-                        {sidebarNews.map((item) => (
-                            <NewsCart key={item.id} item={item} />
-                        ))}
-                        <Link
-                            to="/news"
-                            className="w-full bg-white border-none rounded-[25px] py-9 font-medium text-[14px] cursor-pointer mt-2 shadow-sm flex justify-center items-center hover:bg-gray-50 transition-colors"
-                        >
-                            Смотреть больше
-                        </Link>
-                    </div>
+                    {visibleNews.length > 0 && (
+                        <div className="flex flex-col gap-[10px] max-md:hidden">
+                            {visibleNews.map((item) => (
+                                <NewsCart key={item.id} item={item} />
+                            ))}
+                            <Link
+                                to="/news"
+                                className="w-full bg-white border-none rounded-[25px] py-9 font-medium text-[14px] cursor-pointer mt-2 shadow-sm flex justify-center items-center hover:bg-gray-50 transition-colors"
+                            >
+                                Смотреть больше
+                            </Link>
+                        </div>
+                    )}
                 </div>
 
                 {/* Products grid */}
