@@ -50,6 +50,7 @@ export default function Contact() {
         {/* Адрес */}
         <div className="flex flex-col sm:flex-row gap-[11px]">
           <a
+            data-aos="fade-up" data-aos-delay={150}
             href="https://yandex.ru/maps/?text=Санкт-Петербург+Невский+проспект+30"
             target="_blank"
             rel="noopener noreferrer"
@@ -84,7 +85,7 @@ export default function Contact() {
           </a>
 
           {/* Телефоны */}
-          <div className="w-full sm:w-[471px] h-auto sm:h-[262px] bg-white rounded-[20px] sm:rounded-[30px] p-5 sm:p-8 flex flex-col justify-between">
+          <div data-aos="fade-up" data-aos-delay={300} className="w-full sm:w-[471px] h-auto sm:h-[262px] bg-white rounded-[20px] sm:rounded-[30px] p-5 sm:p-8 flex flex-col justify-between">
             <div className="flex justify-between items-start">
               <span className="text-[#999999] text-sm sm:text-lg font-medium">
                 Контактные телефоны
@@ -171,7 +172,7 @@ export default function Contact() {
           </div>
 
           {/* Email */}
-          <div className="w-full sm:w-[471px] h-auto sm:h-[262px] bg-white rounded-[20px] sm:rounded-[30px] p-5 sm:p-8 flex flex-col justify-between">
+          <div data-aos="fade-up" data-aos-delay={450} className="w-full sm:w-[471px] h-auto sm:h-[262px] bg-white rounded-[20px] sm:rounded-[30px] p-5 sm:p-8 flex flex-col justify-between">
             <div className="flex justify-between items-start">
               <span className="text-[#999999] text-sm sm:text-lg font-medium">
                 Электронная почта
@@ -221,7 +222,7 @@ export default function Contact() {
         </div>
 
         {/* Yandex Maps */}
-        <div className="mt-[11px] w-full h-[300px] sm:h-[480px] rounded-[20px] sm:rounded-[30px] overflow-hidden">
+        <div data-aos="fade-up" data-aos-delay={600} className="mt-[11px] w-full h-[300px] sm:h-[480px] rounded-[20px] sm:rounded-[30px] overflow-hidden">
           <div id="yandex-map" className="w-full h-full" />
         </div>
       </div>

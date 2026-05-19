@@ -43,12 +43,13 @@ export default function Detail() {
                     slidesPerView="auto"
                     className="!overflow-visible"
                 >
-                    {manufacturers.map((item) => (
+                    {manufacturers.map((item, i) => (
                         <SwiperSlide
                             key={item.id}
                             className="!w-[270px] sm:!w-[300px] lg:!w-[335px]"
                         >
                             <div
+                                data-aos="fade-up" data-aos-delay={i * 150}
                                 onClick={() => navigate(`/manufacturer/${item.id}`)}
                                 className="h-[260px] relative sm:h-[290px] lg:h-[319px] bg-white p-5 lg:p-6 rounded-[25px] flex flex-col  justify-end cursor-pointer border border-gray-100"
                             >

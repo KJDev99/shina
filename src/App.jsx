@@ -12,12 +12,14 @@ import NewsDetail from "./pages/siroj/news-detail";
 import Contact from "./pages/siroj/contact";
 import Diller from "./pages/siroj/diller";
 import Equipment from "./pages/sarvar/equipment";
+import AOSInit from "./components/AOSInit";
 
 
 export default function App() {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <ScrollToTop />
+      <AOSInit />
       <Navbar />
 
       <Routes >

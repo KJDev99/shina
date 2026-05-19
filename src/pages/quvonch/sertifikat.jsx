@@ -89,12 +89,12 @@ export default function Sertifikat() {
                     }}
                     className="!overflow-visible"
                 >
-                    {certificates.map((cert) => (
+                    {certificates.map((cert, i) => (
                         <SwiperSlide
                             key={cert.id}
                             className="!w-[280px] sm:!w-[320px] lg:!w-[351px]"
                         >
-                            <div className="w-full p-[18px] lg:p-[25px] rounded-[25px] bg-white">
+                            <div data-aos="fade-up" data-aos-delay={i * 150} className="w-full p-[18px] lg:p-[25px] rounded-[25px] bg-white">
                                 <h2 className="text-[18px] sm:text-[20px] lg:text-[22px] mb-[10px] font-semibold leading-[110%] line-clamp-1">
                                     {cert.name}
                                 </h2>

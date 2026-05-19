@@ -7,6 +7,7 @@ export default function NewsCart({ item }) {
     return (
         <Link
             to={`/news/${item.id}`}
+            data-aos="fade-up" data-aos-delay={item?.id * 150}
             className="w-full max-w-[351px] min-h-[380px] sm:h-[428px] rounded-[20px] sm:rounded-[25px] bg-white p-5 sm:p-6 shadow-sm border border-gray-100 flex flex-col"
         >
             <div className="w-max h-[36px] sm:h-[40px] px-3 sm:px-4 bg-[#F3F3F3] rounded-2xl flex items-center justify-center">

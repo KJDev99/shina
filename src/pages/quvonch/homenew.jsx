@@ -19,10 +19,12 @@ export default function Homenew() {
                     </h2>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px]">
-                        {cards.map((card) => (
+                        {cards.map((card, i) => (
                             <div
                                 key={card.num}
                                 className="w-full rounded-[25px] sm:rounded-[35px] flex flex-col items-center min-h-[380px] sm:min-h-[450px] lg:h-[507px] bg-white p-4 sm:p-6"
+                                data-aos="fade-up"
+                                data-aos-delay={i * 150}
                             >
                                 <p className="text-[#00000066] text-[15px] sm:text-[17px] mt-2">{card.num}</p>
                                 <h3 className="font-semibold mt-3 sm:mt-[14px] text-[28px] sm:text-[40px] lg:text-[50px] leading-none uppercase text-center">
@@ -55,14 +57,16 @@ export default function Homenew() {
                             </h2>
                         </div>
                         <div></div>
-                        <div className="flex flex-col justify-center gap-[10px]">
-                            <div className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
+                        <div  className="flex flex-col justify-center gap-[10px]">
+                            <div data-aos="fade-up"
+                            data-aos-delay={300} className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
                                 <p className=" text-[#00000066] text-[17px] mt-[15px]">02</p>
                                 <h1 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase">Лучшие цены</h1>
                                 <img className="mt-3 h-[290px]" src="/quvonch/icon/sas1.svg" alt="" />
                                 <p className="font-normal text-[17px] leading-[100%] tracking-normal text-center">Предлагаем выгодные условия и специальные предложения для покупателей</p>
                             </div>
-                            <div className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
+                            <div data-aos="fade-up"
+                            data-aos-delay={600} className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
                                 <p className=" text-[#00000066] text-[17px] mt-[15px]">04</p>
                                 <h1 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase"> Качество</h1>
                                 <img className="mt-3 h-[290px]" src="/quvonch/icon/sas3.svg" alt="" />
@@ -71,19 +75,22 @@ export default function Homenew() {
 
                         </div>
                         <div className="flex flex-col justify-center gap-[10px]">
-                            <div className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
+                            <div data-aos="fade-up"
+                            data-aos-delay={150} className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
                                 <p className=" text-[#00000066] text-[17px] mt-[15px]">01</p>
                                 <h1 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase">Стабильность</h1>
                                 <img className="mt-3 h-[290px]" src="/quvonch/icon/sas.svg" alt="" />
                                 <p className="font-normal text-[17px] leading-[100%] tracking-normal text-center">Выстраиваем надёжные и долгосрочные <br /> отношения с клиентами</p>
                             </div>
-                            <div className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
+                            <div data-aos="fade-up"
+                            data-aos-delay={450} className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
                                 <p className=" text-[#00000066] text-[17px] mt-[15px]">03</p>
                                 <h1 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase text-center">Широкий ассортимент</h1>
                                 <img className="mt-3 h-[290px]" src="/quvonch/icon/sas2.svg" alt="" />
                                 <p className="font-normal text-[17px] leading-[100%] tracking-normal text-center">Большой выбор запчастей и материалов в наличии и под заказ</p>
                             </div>
-                            <div className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
+                            <div data-aos="fade-up"
+                            data-aos-delay={750} className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
                                 <p className=" text-[#00000066] text-[17px] mt-[15px]">05</p>
                                 <h1 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase">Всегда онлайн</h1>
                                 <img className="mt-[25px] h-[290px]" src="/quvonch/icon/sas4.svg" alt="" />

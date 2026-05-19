@@ -75,7 +75,7 @@ export default function FormPost() {
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
       <div className="max-w-[1400px] w-full rounded-[25px] bg-white mt-[30px] md:mt-[50px] px-2 md:px-5 pb-10">
-        <div className="flex flex-col md:flex-row gap-[11px] mt-[10px]">
+        <div data-aos="fade-up" data-aos-delay={300} className="flex flex-col md:flex-row gap-[11px] mt-[10px]">
           <input
             type="text"
             placeholder="Имя"

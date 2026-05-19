@@ -38,7 +38,7 @@ export default function CatalogCart({ item }) {
             {toast && (
                 <Toast message="Товар добавлен в корзину" onClose={() => setToast(false)} />
             )}
-            <Link to={`/catalog/${item?.id}`} className="block w-full bg-white rounded-[20px] sm:rounded-[25px] p-3 ">
+            <Link data-aos="fade-up" data-aos-delay={item?.id * 150} to={`/catalog/${item?.id}`} className="block w-full bg-white rounded-[20px] sm:rounded-[25px] p-3 ">
                 <div className="flex justify-between items-start">
                     <div className="text-[12px] sm:text-[14px] font-medium min-w-[80px] h-[32px] sm:h-[39px] px-3 sm:w-[93px] rounded-[12px] sm:rounded-[15px] flex justify-center items-center bg-[#F5F5F5] text-nowrap">
                         {item?.is_stock ? "В наличии" : "Под заказ"}

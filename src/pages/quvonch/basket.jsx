@@ -111,9 +111,10 @@ export default function Basket() {
         <div className="flex items-start gap-[30px] py-10 font-sans max-md:flex-col">
           {/* Cart items */}
           <div className="flex flex-col gap-[10px] max-md:w-full">
-            {cart.map((item) => (
+            {cart.map((item, i) => (
               <div
                 key={item.id}
+                data-aos="fade-up" data-aos-delay={i * 150}
                 className="w-[829px] h-[149px] rounded-[20px] bg-white flex items-center p-[10px] gap-[20px] shadow-sm max-md:w-full max-md:h-auto max-md:flex-col max-md:items-start"
               >
                 <div className="w-[129px] h-[129px] rounded-[20px] overflow-hidden flex-shrink-0 max-md:w-full max-md:h-[200px]">

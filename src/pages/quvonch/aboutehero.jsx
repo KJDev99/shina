@@ -32,7 +32,7 @@ export default function Aboutehero() {
 
             <div className="flex max-sm:grid max-sm:grid-cols-2 max-sm:text-[40px] gap-5 mt-[65px] items-center lg:items-start">
 
-                <div className="bg-gradient-to-b from-white to-[#ECF0F5] w-full sm:w-[344px] h-[220px] lg:h-[259px] flex flex-col justify-center items-center rounded-[25px]">
+                <div data-aos="fade-up" data-aos-delay={150} className="bg-gradient-to-b from-white to-[#ECF0F5] w-full sm:w-[344px] h-[220px] lg:h-[259px] flex flex-col justify-center items-center rounded-[25px]">
                     <h1 className="font-semibold max-sm:text-[43px] text-[50px] sm:text-[65px] lg:text-[80px] leading-none tracking-normal text-center uppercase">
                         {data.years_stable}
                     </h1>
@@ -41,7 +41,7 @@ export default function Aboutehero() {
                     </p>
                 </div>
 
-                <div className="bg-gradient-to-b from-white to-[#ECF0F5] w-full sm:w-[344px] h-[220px] lg:h-[259px] mt-0 sm:mt-[20px] lg:mt-[50px] flex flex-col justify-center items-center rounded-[25px]">
+                <div data-aos="fade-up" data-aos-delay={300} className="bg-gradient-to-b from-white to-[#ECF0F5] w-full sm:w-[344px] h-[220px] lg:h-[259px] mt-0 sm:mt-[20px] lg:mt-[50px] flex flex-col justify-center items-center rounded-[25px]">
                     <h1 className="font-semibold max-sm:text-[40px] text-[50px] sm:text-[65px] lg:text-[80px] leading-none tracking-normal text-center uppercase">
                         {data.satisfied_clients}
                     </h1>
@@ -50,7 +50,7 @@ export default function Aboutehero() {
                     </p>
                 </div>
 
-                <div className="bg-gradient-to-b from-white to-[#ECF0F5] w-full sm:w-[344px] h-[220px] lg:h-[259px] mt-0 sm:mt-[40px] lg:mt-[100px] flex flex-col justify-center items-center rounded-[25px]">
+                <div data-aos="fade-up" data-aos-delay={450} className="bg-gradient-to-b from-white to-[#ECF0F5] w-full sm:w-[344px] h-[220px] lg:h-[259px] mt-0 sm:mt-[40px] lg:mt-[100px] flex flex-col justify-center items-center rounded-[25px]">
                     <h1 className="font-semibold max-sm:text-[40px] text-[50px] sm:text-[65px] lg:text-[80px] leading-none tracking-normal text-center uppercase">
                         {data.parts_in_stock}
                     </h1>
@@ -59,7 +59,7 @@ export default function Aboutehero() {
                     </p>
                 </div>
 
-                <div className="bg-gradient-to-b from-white to-[#ECF0F5] w-full sm:w-[344px] h-[220px] lg:h-[259px] mt-0 sm:mt-[60px] lg:mt-[150px] flex flex-col justify-center items-center rounded-[25px]">
+                <div data-aos="fade-up" data-aos-delay={600} className="bg-gradient-to-b from-white to-[#ECF0F5] w-full sm:w-[344px] h-[220px] lg:h-[259px] mt-0 sm:mt-[60px] lg:mt-[150px] flex flex-col justify-center items-center rounded-[25px]">
                     <h1 className="font-semibold max-sm:text-[40px] text-[50px] sm:text-[65px] lg:text-[80px] leading-none tracking-normal text-center uppercase">
                         {data.world_brands}
                     </h1>
