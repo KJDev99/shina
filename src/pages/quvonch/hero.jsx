@@ -67,7 +67,7 @@ export default function Hero() {
             <div className="max-w-[1430px] mx-auto mt-4 sm:mt-[25px] px-4 sm:px-6 lg:px-0">
                 <Swiper
                     modules={[Autoplay]}
-                    autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    autoplay={{ delay: 400000, disableOnInteraction: false }}
                     loop={banners.length > 1}
                     onSlideChange={(s) => setActiveIndex(s.realIndex)}
                     className="rounded-[20px] sm:rounded-[35px] overflow-hidden mobile-swiper"
@@ -168,9 +168,9 @@ export default function Hero() {
                     }
                     
                     .mobile-title {
-                        font-size: 28px !important;
+                        font-size: 40px !important;
                         line-height: 1.25 !important;
-                        margin-bottom: 8px !important;
+                        margin-bottom: 16px !important;
                     }
                     
                     .mobile-description {
