@@ -100,7 +100,16 @@ export default function Compony() {
             <div className="flex justify-center mt-8 px-4">
                 <Link
                     to="/news"
-                    className="w-full sm:w-auto px-10 h-[72px] sm:h-[96px] rounded-[25px] bg-white text-[14px] font-medium flex items-center justify-center hover:bg-gray-50 transition-colors"
+                    className="w-full sm:w-auto px-10 h-[72px] sm:h-[96px] rounded-[25px] text-[14px] font-medium flex items-center justify-center"
+                    style={{ background: '#ffffff', color: '#111111' }}
+                    onMouseEnter={e => {
+                        e.currentTarget.style.background = 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)'
+                        e.currentTarget.style.color = '#ffffff'
+                    }}
+                    onMouseLeave={e => {
+                        e.currentTarget.style.background = '#ffffff'
+                        e.currentTarget.style.color = '#111111'
+                    }}
                 >
                     Все новости
                 </Link>

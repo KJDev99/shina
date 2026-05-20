@@ -8,13 +8,59 @@ export default function Hero() {
     const [open, setOpen] = useState(false);
     const [banners, setBanners] = useState([]);
     const [activeIndex, setActiveIndex] = useState(0);
+    const [loadedImages, setLoadedImages] = useState({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch("https://adent-admin.migfastkg.ru/api/v1/banners/")
             .then((res) => res.json())
-            .then((data) => setBanners(data))
-            .catch((err) => console.error(err));
+            .then((data) => {
+                setBanners(data);
+                setLoading(false);
+                data.forEach((banner) => {
+                    const img = new Image();
+                    img.src = banner.image;
+                    img.onload = () => {
+                        setLoadedImages((prev) => ({ ...prev, [banner.id]: true }));
+                    };
+                });
+            })
+            .catch((err) => {
+                console.error(err);
+                setLoading(false);
+            });
     }, []);
+
+    // Backend kelguncha skeleton
+    if (loading) {
+        return (
+            <div>
+                <div className="max-w-[1430px] mx-auto mt-4 sm:mt-[25px] px-4 sm:px-6 lg:px-0">
+                    <div className="rounded-[20px] sm:rounded-[35px] overflow-hidden bg-white min-h-[420px] sm:min-h-[480px] lg:h-[517px] flex flex-col lg:flex-row justify-between relative p-6 sm:p-8 lg:p-10">
+                        {/* Matn skeleton */}
+                        <div className="w-full lg:w-[580px] z-10 space-y-4">
+                            <div className="h-12 sm:h-16 lg:h-20 w-3/4 bg-gray-200 animate-pulse rounded-xl" />
+                            <div className="h-4 w-full bg-gray-100 animate-pulse rounded-lg" />
+                            <div className="h-4 w-5/6 bg-gray-100 animate-pulse rounded-lg" />
+                            <div className="h-4 w-4/6 bg-gray-100 animate-pulse rounded-lg" />
+                            <div className="w-full sm:w-[228px] h-[64px] sm:h-[80px] lg:h-[96px] mt-5 bg-gray-200 animate-pulse rounded-[20px] sm:rounded-[25px]" />
+                        </div>
+                        {/* Rasm skeleton — shina.png xira */}
+                        <div className="absolute bottom-0 right-0 w-full sm:w-[55%] lg:w-[700px] h-[200px] sm:h-[280px] lg:h-full">
+                            <img
+                                src="/quvonch/img/shina.png"
+                                alt="placeholder"
+                                className="w-full h-full object-contain object-bottom"
+                                style={{ filter: "blur(6px) brightness(1.1) grayscale(0.3)", opacity: 0.4 }}
+                            />
+                        </div>
+                    </div>
+                </div>
+                {/* Marquee skeleton */}
+                <div className="mt-6 sm:mt-11 mb-6 sm:mb-11 h-6 sm:h-8 bg-gray-100 animate-pulse mx-4 rounded-full" />
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -30,15 +76,21 @@ export default function Hero() {
                         <SwiperSlide key={banner.id}>
                             <div className="bg-white max-sm:px-5 max-sm:pt-5 max-sm:pb-0 sm:p-8 lg:p-10 flex flex-col lg:flex-row justify-between relative min-h-[420px] sm:min-h-[480px] lg:h-[517px]">
                                 <div className="w-full lg:w-[580px] z-10 relative">
-                                    <h1 className="font-semibold text-[28px] sm:text-[44px] lg:text-[60px] leading-tight sm:leading-[60px] lg:leading-[70px] uppercase">
+                                    <h1 className="font-semibold text-[25px] sm:text-[44px] lg:text-[60px] leading-tight sm:leading-[60px] lg:leading-[70px] uppercase max-sm:line-clamp-2">
                                         {banner.title}
                                     </h1>
-                                    <p className="text-[#00000066] font-normal text-[14px] sm:text-[16px] lg:text-[17px] mt-2 sm:mt-[10px] leading-snug line-clamp-4 sm:line-clamp-none">
+                                    <p className="text-[#00000066] font-normal text-[14px] sm:text-[16px] lg:text-[17px] mt-2 sm:mt-[10px] leading-snug line-clamp-3 sm:line-clamp-none">
                                         {banner.description}
                                     </p>
                                     <button
                                         onClick={() => setOpen(true)}
-                                        className="w-full sm:w-[228px] h-[64px] sm:h-[80px] lg:h-[96px] mt-5 sm:mt-[30px] font-medium text-[14px] text-white rounded-[20px] sm:rounded-[25px] cursor-pointer bg-gradient-to-b from-[#355094] to-[#5A80C7]"
+                                        className="w-full sm:w-[228px] h-[64px] sm:h-[80px] lg:h-[96px] mt-5 sm:mt-[30px] font-medium text-[14px] text-white rounded-[20px] sm:rounded-[25px] cursor-pointer"
+                                        style={{
+                                            background: 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)',
+                                            transition: 'background 0.3s ease',
+                                        }}
+                                        onMouseEnter={e => e.currentTarget.style.background = 'linear-gradient(180deg, #151515 0%, #676767 100%)'}
+                                        onMouseLeave={e => e.currentTarget.style.background = 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)'}
                                     >
                                         Подробнее
                                     </button>
@@ -48,11 +100,23 @@ export default function Hero() {
                                     {banner.type}
                                 </h2>
 
+                                {/* Rasm — placeholder yoki asl rasm */}
                                 <div className="relative sm:absolute lg:absolute bottom-0 right-0 w-full sm:w-[55%] lg:w-[700px] h-[200px] sm:h-[280px] lg:h-auto mt-4 sm:mt-0">
+                                    {/* shina.png — asl rasm yuklanguncha */}
+                                    {/* {!loadedImages[banner.id] && (
+                                        <img
+                                            src="/quvonch/img/shina.png"
+                                            alt="placeholder"
+                                            className="w-full h-full object-contain object-bottom absolute inset-0"
+                                            style={{ filter: "blur(5px) grayscale(0.2)", opacity: 0.4 }}
+                                        />
+                                    )} */}
+                                    {/* Asl rasm */}
                                     <img
                                         src={banner.image}
                                         alt={banner.title}
-                                        className="w-full h-full object-contain object-bottom"
+                                        className="w-full h-full object-contain object-bottom transition-opacity duration-500"
+                                        style={{ opacity: loadedImages[banner.id] ? 1 : 0 }}
                                     />
                                 </div>
 
@@ -78,20 +142,14 @@ export default function Hero() {
                     {Array(8)
                         .fill("При заказе от 30 000 руб БЕСПЛАТНАЯ доставка по г. Санкт-Петербург!")
                         .map((text, index) => (
-                            <h2
-                                key={index}
-                                className="font-semibold text-[14px] sm:text-[20px] leading-[100%] uppercase text-gray-500 shrink-0"
-                            >
+                            <h2 key={index} className="font-semibold text-[14px] sm:text-[20px] leading-[100%] uppercase text-gray-500 shrink-0">
                                 | {text}
                             </h2>
                         ))}
                     {Array(8)
                         .fill("При заказе от 30 000 руб БЕСПЛАТНАЯ доставка по г. Санкт-Петербург!")
                         .map((text, index) => (
-                            <h2
-                                key={`copy-${index}`}
-                                className="font-semibold text-[14px] sm:text-[20px] leading-[100%] uppercase text-gray-500 shrink-0"
-                            >
+                            <h2 key={`copy-${index}`} className="font-semibold text-[14px] sm:text-[20px] leading-[100%] uppercase text-gray-500 shrink-0">
                                 | {text}
                             </h2>
                         ))}

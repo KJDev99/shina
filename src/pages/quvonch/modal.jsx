@@ -10,9 +10,8 @@ function Toast({ message, type, onClose }) {
 
     return (
         <div
-            className={`fixed bottom-4 left-4 right-4 sm:bottom-6 sm:right-6 sm:left-auto z-[10001] text-white px-5 py-3.5 sm:px-6 sm:py-4 rounded-[16px] sm:rounded-[20px] shadow-lg flex items-center gap-3 max-w-md sm:max-w-none ml-auto ${
-                type === "success" ? "bg-[#355094]" : "bg-red-500"
-            }`}
+            className={`fixed bottom-4 left-4 right-4 sm:bottom-6 sm:right-6 sm:left-auto z-[10001] text-white px-5 py-3.5 sm:px-6 sm:py-4 rounded-[16px] sm:rounded-[20px] shadow-lg flex items-center gap-3 max-w-md sm:max-w-none ml-auto ${type === "success" ? "bg-[#355094]" : "bg-red-500"
+                }`}
         >
             {type === "success" ? (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" className="shrink-0">
@@ -123,9 +122,8 @@ export default function ModalExample({ setOpen }) {
                 aria-labelledby="modal-title"
             >
                 <div
-                    className={`absolute inset-0 bg-black/60 transition-opacity duration-250 ${
-                        animateIn ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`absolute inset-0 bg-black/60 transition-opacity duration-250 ${animateIn ? "opacity-100" : "opacity-0"
+                        }`}
                     onClick={handleClose}
                     aria-hidden="true"
                 />
@@ -194,7 +192,13 @@ export default function ModalExample({ setOpen }) {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full h-[64px] sm:h-[80px] md:h-[101px] rounded-[18px] sm:rounded-[22px] md:rounded-[25px] bg-gradient-to-b from-[#355094] to-[#5A80C7] text-white text-[14px] font-medium hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-60"
+                                className="w-full h-[64px] sm:h-[80px] md:h-[101px] rounded-[18px] sm:rounded-[22px] md:rounded-[25px] text-white text-[14px] font-medium active:scale-[0.99] transition-all disabled:opacity-60"
+                                style={{
+                                    background: 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)',
+                                    transition: 'background 0.3s ease',
+                                }}
+                                onMouseEnter={e => e.currentTarget.style.background = 'linear-gradient(180deg, #151515 0%, #676767 100%)'}
+                                onMouseLeave={e => e.currentTarget.style.background = 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)'}
                             >
                                 {loading ? "Отправка..." : "Отправить"}
                             </button>

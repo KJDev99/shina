@@ -220,11 +220,15 @@ export default function Basket() {
               <button
                 onClick={handleOrder}
                 disabled={loading}
-                className="w-full h-[96px] rounded-[28px] bg-[#4E6EB3] hover:bg-[#3d5a9c] transition-all flex items-center justify-center mt-2 disabled:opacity-60"
+                className="w-full h-[96px] rounded-[28px] text-white text-[14px] font-medium uppercase tracking-[1px] transition-all flex items-center justify-center mt-2 disabled:opacity-60"
+                style={{
+                  background: 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)',
+                  transition: 'background 0.3s ease',
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = 'linear-gradient(180deg, #151515 0%, #676767 100%)'}
+                onMouseLeave={e => e.currentTarget.style.background = 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)'}
               >
-                <span className="text-white text-[14px] font-medium uppercase tracking-[1px]">
-                  {loading ? "Отправка..." : "Отправить заявку"}
-                </span>
+                {loading ? "Отправка..." : "Отправить заявку"}
               </button>
             </div>
 

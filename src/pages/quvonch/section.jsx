@@ -21,7 +21,16 @@ export default function Section() {
                 </p>
                 <Link
                     to="/about"
-                    className="w-full max-w-[380px] h-[72px] sm:h-[96px] mt-6 sm:mt-[25px] rounded-[20px] sm:rounded-[25px] bg-white text-[14px] font-medium flex items-center justify-center hover:bg-gray-100 transition-colors"
+                    className="w-full max-w-[380px] h-[72px] sm:h-[96px] mt-6 sm:mt-[25px] rounded-[20px] sm:rounded-[25px] text-[14px] font-medium flex items-center justify-center"
+                    style={{ background: '#ffffff', color: '#111111' }}
+                    onMouseEnter={e => {
+                        e.currentTarget.style.background = 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)'
+                        e.currentTarget.style.color = '#ffffff'
+                    }}
+                    onMouseLeave={e => {
+                        e.currentTarget.style.background = '#ffffff'
+                        e.currentTarget.style.color = '#111111'
+                    }}
                 >
                     Подробнее о компании
                 </Link>

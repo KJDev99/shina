@@ -86,7 +86,16 @@ export default function CatalogComponents() {
             <div className="flex justify-center mt-6 sm:mt-[30px]">
                 <Link
                     to="/catalog"
-                    className="w-full sm:w-[299px] h-[72px] sm:h-[96px] rounded-[20px] sm:rounded-[25px] bg-white text-[14px] font-medium flex justify-center items-center hover:bg-gray-50 transition-colors"
+                    className="w-full sm:w-[299px] h-[72px] sm:h-[96px] rounded-[20px] sm:rounded-[25px] text-[14px] font-medium flex justify-center items-center transition-all"
+                    style={{ background: '#ffffff', color: '#111111' }}
+                    onMouseEnter={e => {
+                        e.currentTarget.style.background = 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)'
+                        e.currentTarget.style.color = '#ffffff'
+                    }}
+                    onMouseLeave={e => {
+                        e.currentTarget.style.background = '#ffffff'
+                        e.currentTarget.style.color = '#111111'
+                    }}
                 >
                     Смотреть все
                 </Link>

@@ -105,12 +105,17 @@ export default function FormPost() {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="w-full md:w-[263px] h-[70px] md:h-[101px] rounded-2xl md:rounded-3xl bg-[#355094] hover:bg-[#2a4180] transition-colors disabled:opacity-60"
+            className="w-full md:w-[263px] h-[70px] md:h-[101px] text-white font-medium rounded-2xl md:rounded-3xl  transition-all disabled:opacity-60"
+            style={{
+              background: 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)',
+              transition: 'background 0.3s ease',
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = 'linear-gradient(180deg, #151515 0%, #676767 100%)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)'}
           >
-            <h1 className="text-white font-medium">
-              {loading ? "Отправка..." : "Отправить"}
-            </h1>
+            {loading ? "Отправка..." : "Отправить"}
           </button>
+
         </div>
       </div>
     </>
