@@ -91,7 +91,7 @@ export default function Hero() {
             <div className="max-w-[1430px] mx-auto mt-4 sm:mt-[25px] px-4 sm:px-6 lg:px-0">
                 <Swiper
                     modules={[Autoplay]}
-                    autoplay={{ delay: 400000, disableOnInteraction: false }}
+                    autoplay={{ delay: 4000, disableOnInteraction: false }}
                     loop={banners.length > 1}
                     onSlideChange={(s) => setActiveIndex(s.realIndex)}
                     className="rounded-[20px] sm:rounded-[35px] overflow-hidden mobile-swiper"
@@ -103,7 +103,7 @@ export default function Hero() {
                                     <h1 className="font-semibold text-[36px] sm:text-[44px] lg:text-[50px] leading-tight sm:leading-[60px] lg:leading-[70px] uppercase max-sm:line-clamp-3 mobile-title">
                                         {banner.title}
                                     </h1>
-                                    <p className="text-[#00000066] font-normal text-[14px] sm:text-[16px] lg:text-[17px] mt-2 sm:mt-[10px] leading-snug line-clamp-3 sm:line-clamp-none mobile-description">
+                                    <p className="text-[#00000066] font-normal text-[14px] sm:text-[16px] lg:text-[17px] mt-2 sm:mt-[10px] leading-snug line-clamp-4 max-md:h-[100px] sm:line-clamp-none mobile-description">
                                         {banner.description}
                                     </p>
                                     <button
@@ -191,16 +191,17 @@ export default function Hero() {
                     }
                     
                     .mobile-title {
-                        font-size: 40px !important;
+                        font-size: 26px !important;
                         line-height: 1.25 !important;
                         margin-bottom: 16px !important;
+                        height: 100px
                     }
                     
                     .mobile-description {
                         font-size: 18px !important;
                         line-height: 1.4 !important;
-                        margin-top: 16px !important;
-                        margin-bottom: 25px !important;
+                        margin-top: 12px !important;
+                        margin-bottom: 16px !important;
                     }
                     
                     .mobile-button {
