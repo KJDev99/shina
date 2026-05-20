@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { Trash2 } from "lucide-react";
 
 function Toast({ message, onClose }) {
     useEffect(() => {
@@ -19,7 +20,7 @@ function Toast({ message, onClose }) {
 }
 
 export default function CatalogCart({ item }) {
-    const { cart, addToCart } = useCart();
+    const { cart, addToCart, removeFromCart } = useCart();
     const [toast, setToast] = useState(false);
 
     const isInCart = cart.some((i) => i.id === item?.id);
@@ -28,7 +29,10 @@ export default function CatalogCart({ item }) {
     const handleAddToCart = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (isInCart) return;
+        if (isInCart) {
+            removeFromCart(item.id);
+            return;
+        }
         addToCart(item, 1);
         setToast(true);
     };
@@ -79,13 +83,27 @@ export default function CatalogCart({ item }) {
                         </span>
                         <button
                             onClick={handleAddToCart}
-                            className={`flex items-center justify-center w-[48px] h-[48px] sm:w-[59px] sm:h-[59px] rounded-full transition-colors relative shrink-0 ${isInCart ? "bg-[#355094] cursor-default" : "bg-[#F5F5F5] hover:bg-[#e0e0e0]"
+                            className={`flex items-center justify-center w-[48px] h-[48px] sm:w-[59px] sm:h-[59px] rounded-full transition-colors relative shrink-0 group/btn ${isInCart
+                                ? "bg-[#355094] hover:bg-red-500 cursor-pointer"
+                                : "bg-[#F5F5F5] hover:bg-[#e0e0e0]"
                                 }`}
                         >
                             {isInCart ? (
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                                    <polyline points="20 6 9 17 4 12" />
-                                </svg>
+                                <>
+                                    <svg
+                                        className="group-hover/btn:hidden"
+                                        width="22" height="22" viewBox="0 0 24 24"
+                                        fill="none" stroke="white" strokeWidth="2.5"
+                                    >
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                    <Trash2
+                                        className="hidden group-hover/btn:block"
+                                        size={20}
+                                        color="white"
+                                        strokeWidth={2.5}
+                                    />
+                                </>
                             ) : (
                                 <img src="/quvonch/icon/shopicon.svg" alt="" className="w-5 sm:w-auto" />
                             )}

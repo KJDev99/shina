@@ -10,8 +10,7 @@ function Toast({ message, type, onClose }) {
 
     return (
         <div
-            className={`fixed bottom-4 left-4 right-4 sm:bottom-6 sm:right-6 sm:left-auto z-[10001] text-white px-5 py-3.5 sm:px-6 sm:py-4 rounded-[16px] sm:rounded-[20px] shadow-lg flex items-center gap-3 max-w-md sm:max-w-none ml-auto ${type === "success" ? "bg-[#355094]" : "bg-red-500"
-                }`}
+            className={`fixed bottom-4 left-4 right-4 sm:bottom-6 sm:right-6 sm:left-auto z-[10001] text-white px-5 py-3.5 sm:px-6 sm:py-4 rounded-[16px] sm:rounded-[20px] shadow-lg flex items-center gap-3 max-w-md sm:max-w-none ml-auto ${type === "success" ? "bg-[#355094]" : "bg-red-500"}`}
         >
             {type === "success" ? (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" className="shrink-0">
@@ -107,7 +106,7 @@ export default function ModalExample({ setOpen }) {
     };
 
     const inputClass =
-        "outline-none w-full h-[64px] sm:h-[80px] md:h-[101px] rounded-[18px] sm:rounded-[22px] md:rounded-[25px] bg-[#F4F7FF] px-4 sm:px-5 md:px-[25px] text-[16px] md:text-[18px] text-[#1A1A1A] placeholder:text-[#848B8C]";
+        "outline-none w-full h-[56px] sm:h-[64px] md:h-[72px] rounded-[16px] sm:rounded-[20px] bg-[#F4F7FF] px-4 sm:px-5 text-[15px] md:text-[16px] text-[#1A1A1A] placeholder:text-[#848B8C]";
 
     return createPortal(
         <>
@@ -122,14 +121,13 @@ export default function ModalExample({ setOpen }) {
                 aria-labelledby="modal-title"
             >
                 <div
-                    className={`absolute inset-0 bg-black/60 transition-opacity duration-250 ${animateIn ? "opacity-100" : "opacity-0"
-                        }`}
+                    className={`absolute inset-0 bg-black/60 transition-opacity duration-250 ${animateIn ? "opacity-100" : "opacity-0"}`}
                     onClick={handleClose}
                     aria-hidden="true"
                 />
 
                 <div
-                    className={`relative w-full sm:max-w-[560px] md:max-w-[698px] max-h-[92dvh] sm:max-h-[90vh] flex flex-col bg-white shadow-2xl transition-all duration-250 ease-out
+                    className={`relative w-full sm:max-w-[560px] md:max-w-[698px] max-h-[95dvh] sm:max-h-[90vh] flex flex-col bg-white shadow-2xl transition-all duration-250 ease-out
                         rounded-t-[28px] sm:rounded-[30px] md:rounded-[35px]
                         pb-[env(safe-area-inset-bottom)]
                         ${animateIn ? "translate-y-0 opacity-100 sm:scale-100" : "translate-y-full opacity-0 sm:translate-y-4 sm:scale-95"}`}
@@ -140,11 +138,13 @@ export default function ModalExample({ setOpen }) {
                         <div className="w-10 h-1 rounded-full bg-[#E0E0E0]" />
                     </div>
 
-                    <div className="overflow-y-auto overscroll-contain flex-1 px-4 pt-2 pb-5 sm:px-6 sm:pt-6 sm:pb-6 md:p-[30px] md:pb-[30px]">
-                        <div className="flex justify-between items-start gap-3 sm:gap-4">
+                    <div className="overflow-y-auto overscroll-contain flex-1 px-4 pt-3 pb-5 sm:px-6 sm:pt-5 sm:pb-6 md:px-[30px] md:pt-[24px] md:pb-[28px]">
+
+                        {/* Header */}
+                        <div className="flex justify-between items-center gap-3 mb-4 sm:mb-5 md:mb-6">
                             <h1
                                 id="modal-title"
-                                className="font-semibold text-[24px] leading-tight sm:text-[36px] md:text-[48px] lg:text-[60px] uppercase pr-2"
+                                className="font-semibold text-[22px] sm:text-[30px] md:text-[38px] uppercase leading-tight"
                             >
                                 оставить заявку
                             </h1>
@@ -152,14 +152,15 @@ export default function ModalExample({ setOpen }) {
                                 type="button"
                                 onClick={handleClose}
                                 aria-label="Закрыть"
-                                className="w-[44px] h-[44px] sm:w-[56px] sm:h-[56px] md:w-[64px] md:h-[64px] rounded-[16px] sm:rounded-[20px] md:rounded-[25px] bg-[#355094] flex justify-center items-center text-white shrink-0 hover:bg-[#2a4180] active:scale-95 transition-all"
+                                className="w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] md:w-[58px] md:h-[58px] rounded-[14px] sm:rounded-[18px] md:rounded-[20px] bg-[#355094] flex justify-center items-center text-white shrink-0 hover:bg-[#2a4180] active:scale-95 transition-all"
                             >
-                                <IoCloseOutline className="w-6 h-6 sm:w-7 sm:h-7 md:w-[30px] md:h-[30px]" />
+                                <IoCloseOutline className="w-6 h-6 sm:w-7 sm:h-7" />
                             </button>
                         </div>
 
+                        {/* Form */}
                         <form
-                            className="mt-5 sm:mt-6 md:mt-[38px] space-y-2.5 sm:space-y-3 md:space-y-[11px]"
+                            className="space-y-2 sm:space-y-2.5"
                             onSubmit={(e) => {
                                 e.preventDefault();
                                 handleSubmit();
@@ -189,10 +190,27 @@ export default function ModalExample({ setOpen }) {
                                 type="tel"
                                 autoComplete="tel"
                             />
+
+                            {/* Checkbox — перед кнопкой */}
+                            <label className="flex gap-2.5 pt-2 sm:pt-3 pb-1 cursor-pointer items-start">
+                                <input
+                                    className="w-[17px] h-[17px] cursor-pointer accent-[#355094] shrink-0 mt-0.5"
+                                    type="checkbox"
+                                    checked={agreed}
+                                    onChange={(e) => setAgreed(e.target.checked)}
+                                />
+                                <span className="font-normal text-[12px] sm:text-[13px] leading-snug text-[#666]">
+                                    Я даю свое согласие на обработку персональных данных в соответствии с ФЗ №152-ФЗ
+                                    «О персональных данных» на условиях и для целей, определенных Политикой
+                                    Конфиденциальности.
+                                </span>
+                            </label>
+
+                            {/* Кнопка — после галочки */}
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full h-[64px] sm:h-[80px] md:h-[101px] rounded-[18px] sm:rounded-[22px] md:rounded-[25px] text-white text-[14px] font-medium active:scale-[0.99] transition-all disabled:opacity-60"
+                                className="w-full h-[56px] sm:h-[64px] md:h-[72px] rounded-[16px] sm:rounded-[20px] text-white text-[15px] font-medium active:scale-[0.99] transition-all disabled:opacity-60"
                                 style={{
                                     background: 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)',
                                     transition: 'background 0.3s ease',
@@ -202,21 +220,8 @@ export default function ModalExample({ setOpen }) {
                             >
                                 {loading ? "Отправка..." : "Отправить"}
                             </button>
-
-                            <label className="flex gap-2.5 sm:gap-[10px] pt-3 sm:pt-4 md:pt-[30px] cursor-pointer items-start">
-                                <input
-                                    className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px] cursor-pointer accent-[#355094] shrink-0 mt-0.5"
-                                    type="checkbox"
-                                    checked={agreed}
-                                    onChange={(e) => setAgreed(e.target.checked)}
-                                />
-                                <span className="font-normal text-[12px] sm:text-[13px] md:text-[14px] leading-snug text-[#666]">
-                                    Я даю свое согласие на обработку персональных данных в соответствии с ФЗ №152-ФЗ
-                                    «О персональных данных» на условиях и для целей, определенных Политикой
-                                    Конфиденциальности.
-                                </span>
-                            </label>
                         </form>
+
                     </div>
                 </div>
             </div>

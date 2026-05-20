@@ -36,7 +36,7 @@ export default function Hero() {
         return (
             <div>
                 <div className="max-w-[1430px] mx-auto mt-4 sm:mt-[25px] px-4 sm:px-6 lg:px-0">
-                    <div className="rounded-[20px] sm:rounded-[35px] overflow-hidden bg-white min-h-[420px] sm:min-h-[480px] lg:h-[517px] flex flex-col lg:flex-row justify-between relative p-6 sm:p-8 lg:p-10">
+                    <div className="rounded-[20px] sm:rounded-[35px] overflow-hidden bg-white min-h-[420px] sm:min-h-[480px] lg:h-[517px] md:min-h-[480px] flex flex-col lg:flex-row justify-between relative p-6 sm:p-8 lg:p-10 md:min-h-[480px] mobile-slider-skeleton">
                         {/* Matn skeleton */}
                         <div className="w-full lg:w-[580px] z-10 space-y-4">
                             <div className="h-12 sm:h-16 lg:h-20 w-3/4 bg-gray-200 animate-pulse rounded-xl" />
@@ -70,21 +70,21 @@ export default function Hero() {
                     autoplay={{ delay: 4000, disableOnInteraction: false }}
                     loop={banners.length > 1}
                     onSlideChange={(s) => setActiveIndex(s.realIndex)}
-                    className="rounded-[20px] sm:rounded-[35px] overflow-hidden"
+                    className="rounded-[20px] sm:rounded-[35px] overflow-hidden mobile-swiper"
                 >
                     {banners.map((banner) => (
                         <SwiperSlide key={banner.id}>
-                            <div className="bg-white max-sm:px-5 max-sm:pt-5 max-sm:pb-0 sm:p-8 lg:p-10 flex flex-col lg:flex-row justify-between relative min-h-[420px] sm:min-h-[480px] lg:h-[517px]">
-                                <div className="w-full lg:w-[580px] z-10 relative">
-                                    <h1 className="font-semibold text-[25px] sm:text-[44px] lg:text-[60px] leading-tight sm:leading-[60px] lg:leading-[70px] uppercase max-sm:line-clamp-2">
+                            <div className="bg-white max-sm:px-5 sm:p-8 lg:p-10 flex flex-col lg:flex-row justify-between relative min-h-[420px] sm:min-h-[480px] lg:h-[517px] md:min-h-[480px] mobile-slider">
+                                <div className="w-full lg:w-[580px] z-10 relative mobile-content">
+                                    <h1 className="font-semibold text-[36px] sm:text-[44px] lg:text-[60px] leading-tight sm:leading-[60px] lg:leading-[70px] uppercase max-sm:line-clamp-3 mobile-title">
                                         {banner.title}
                                     </h1>
-                                    <p className="text-[#00000066] font-normal text-[14px] sm:text-[16px] lg:text-[17px] mt-2 sm:mt-[10px] leading-snug line-clamp-3 sm:line-clamp-none">
+                                    <p className="text-[#00000066] font-normal text-[14px] sm:text-[16px] lg:text-[17px] mt-2 sm:mt-[10px] leading-snug line-clamp-3 sm:line-clamp-none mobile-description">
                                         {banner.description}
                                     </p>
                                     <button
                                         onClick={() => setOpen(true)}
-                                        className="w-full sm:w-[228px] h-[64px] sm:h-[80px] lg:h-[96px] mt-5 sm:mt-[30px] font-medium text-[14px] text-white rounded-[20px] sm:rounded-[25px] cursor-pointer"
+                                        className="w-full sm:w-[228px] h-[64px] sm:h-[80px] lg:h-[96px] mt-5 sm:mt-[30px] font-medium text-[14px] text-white rounded-[20px] sm:rounded-[25px] cursor-pointer mobile-button"
                                         style={{
                                             background: 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)',
                                             transition: 'background 0.3s ease',
@@ -100,28 +100,18 @@ export default function Hero() {
                                     {banner.type}
                                 </h2>
 
-                                {/* Rasm — placeholder yoki asl rasm */}
-                                <div className="relative sm:absolute lg:absolute bottom-0 right-0 w-full sm:w-[55%] lg:w-[700px] h-[200px] sm:h-[280px] lg:h-auto mt-4 sm:mt-0">
-                                    {/* shina.png — asl rasm yuklanguncha */}
-                                    {/* {!loadedImages[banner.id] && (
-                                        <img
-                                            src="/quvonch/img/shina.png"
-                                            alt="placeholder"
-                                            className="w-full h-full object-contain object-bottom absolute inset-0"
-                                            style={{ filter: "blur(5px) grayscale(0.2)", opacity: 0.1 }}
-                                        />
-                                    )} */}
-                                    {/* Asl rasm */}
+                                {/* Rasm */}
+                                <div className="relative sm:absolute lg:absolute bottom-0 right-0 w-full sm:w-[55%] lg:w-[700px] mt-4 sm:mt-0 mobile-image-wrapper">
                                     <img
                                         src={banner.image}
                                         alt={banner.title}
-                                        className="w-full h-full object-contain object-bottom transition-opacity duration-500"
+                                        className="w-full h-full object-contain object-bottom transition-opacity duration-500 mobile-image"
                                         style={{ opacity: loadedImages[banner.id] ? 1 : 0 }}
                                     />
                                 </div>
 
                                 {banners.length > 1 && (
-                                    <div className="absolute bg-[#F5F5F5] rounded-[48px] left-1/2 -translate-x-1/2 bottom-4 sm:bottom-[29px] flex gap-[5px] p-[7px] z-10">
+                                    <div className="absolute bg-[#F5F5F5] rounded-[48px] left-1/2 -translate-x-1/2 bottom-4 sm:bottom-[29px] flex gap-[5px] p-[7px] z-10 mobile-pagination">
                                         {banners.map((_, i) => (
                                             <div
                                                 key={i}
@@ -157,6 +147,67 @@ export default function Hero() {
             </div>
 
             {open && <ModalExample setOpen={setOpen} />}
+
+            <style jsx>{`
+                @media (max-width: 640px) {
+                    .mobile-swiper,
+                    .mobile-slider {
+                        height: calc(100vh - 120px) !important;
+                        min-height: calc(100vh - 120px) !important;
+                    }
+                    
+                    .mobile-slider {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        padding: 24px 20px 0px 20px !important;
+                    }
+                    
+                    .mobile-content {
+                        flex-shrink: 0;
+                    }
+                    
+                    .mobile-title {
+                        font-size: 28px !important;
+                        line-height: 1.25 !important;
+                        margin-bottom: 8px !important;
+                    }
+                    
+                    .mobile-description {
+                        font-size: 16px !important;
+                        line-height: 1.4 !important;
+                        margin-top: 16px !important;
+                        margin-bottom: 20px !important;
+                    }
+                    
+                    .mobile-button {
+                        width: 100% !important;
+                        height: 56px !important;
+                        margin-top: 20px !important;
+                        font-size: 14px !important;
+                    }
+                    
+                    .mobile-image-wrapper {
+                        position: relative !important;
+                        width: 100% !important;
+                        height: auto !important;
+                        min-height: 240px !important;
+                        flex-shrink: 0;
+                        margin-top: 16px !important;
+                    }
+                    
+                    .mobile-image {
+                        width: 100% !important;
+                        height: 100% !important;
+                        max-height: 280px !important;
+                        object-fit: contain !important;
+                    }
+                    
+                    .mobile-pagination {
+                        bottom: 16px !important;
+                    }
+                }
+            `}</style>
         </div>
     );
 }

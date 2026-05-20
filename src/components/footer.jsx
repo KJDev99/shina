@@ -51,14 +51,14 @@ export default function Footer() {
                 <div className="flex flex-col lg:flex-row lg:justify-center gap-10 lg:gap-[50px]">
                     <div className="flex justify-center lg:justify-start">
                         <img
-                            src="/quvonch/img/footer.png"
+                            src="/flogo.svg"
                             alt="Максан групп"
-                            className="w-[180px] sm:w-auto max-w-full h-auto object-contain"
+                            className="w-[180px]  h-auto object-contain"
                         />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 lg:gap-[80px] xl:gap-[191px]">
-                        <div>
+                        <div className="max-md:text-center">
                             <h2 className="font-semibold text-lg sm:text-[22px] uppercase text-white mb-4 sm:mb-[18px]">
                                 Страницы
                             </h2>
@@ -76,7 +76,7 @@ export default function Footer() {
                             </ul>
                         </div>
 
-                        <div>
+                        <div className="max-md:text-center">
                             <h2 className="font-semibold text-lg sm:text-[22px] uppercase text-white mb-4 sm:mb-[18px]">
                                 Производитель
                             </h2>
@@ -108,7 +108,7 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        <div>
+                        <div className="max-md:text-center">
                             <h2 className="font-semibold text-lg sm:text-[22px] uppercase text-white mb-4 sm:mb-[18px]">
                                 Контакты
                             </h2>

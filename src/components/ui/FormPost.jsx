@@ -7,8 +7,7 @@ function Toast({ message, type, onClose }) {
   }, []);
 
   return (
-    <div className={`fixed bottom-6 right-6 z-50 text-white px-6 py-4 rounded-[20px] shadow-lg flex items-center gap-3 transition-all ${type === "success" ? "bg-[#355094]" : "bg-red-500"
-      }`}>
+    <div className={`fixed bottom-6 right-6 z-50 text-white px-6 py-4 rounded-[20px] shadow-lg flex items-center gap-3 transition-all ${type === "success" ? "bg-[#355094]" : "bg-red-500"}`}>
       {type === "success" ? (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
           <polyline points="20 6 9 17 4 12" />
@@ -27,6 +26,7 @@ export default function FormPost() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("+7 ");
+  const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState(null);
 
@@ -46,6 +46,7 @@ export default function FormPost() {
     if (!name.trim()) return setToast({ message: "Введите имя", type: "error" });
     if (!email.trim()) return setToast({ message: "Введите email", type: "error" });
     if (phone.length < 16) return setToast({ message: "Введите номер телефона", type: "error" });
+    if (!agreed) return setToast({ message: "Примите согласие на обработку данных", type: "error" });
 
     setLoading(true);
     try {
@@ -60,6 +61,7 @@ export default function FormPost() {
         setName("");
         setEmail("");
         setPhone("+7 ");
+        setAgreed(false);
       } else {
         setToast({ message: "Ошибка при отправке. Попробуйте снова.", type: "error" });
       }
@@ -83,7 +85,6 @@ export default function FormPost() {
             onChange={(e) => setName(e.target.value)}
             className="w-full md:w-[352px] h-[70px] md:h-[101px] md:ml-[11px] rounded-2xl md:rounded-3xl bg-[#F4F7FF] px-5 outline-none text-lg"
           />
-
           <input
             type="email"
             placeholder="Электронный адрес"
@@ -91,7 +92,6 @@ export default function FormPost() {
             onChange={(e) => setEmail(e.target.value)}
             className="w-full md:w-[353px] h-[70px] md:h-[101px] rounded-2xl md:rounded-3xl bg-[#F4F7FF] px-5 outline-none text-lg"
           />
-
           <div className="w-full md:w-[352px] h-[70px] md:h-[101px] rounded-2xl md:rounded-3xl bg-[#F4F7FF] flex items-center px-5 gap-3">
             <img src="/quvonch/Siroj/image0.png" alt="" className="w-6 h-auto" />
             <input
@@ -101,21 +101,33 @@ export default function FormPost() {
               className="bg-transparent outline-none text-gray-900 text-lg w-full"
             />
           </div>
-
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="w-full md:w-[263px] h-[70px] md:h-[101px] text-white font-medium rounded-2xl md:rounded-3xl  transition-all disabled:opacity-60"
-            style={{
-              background: 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)',
-              transition: 'background 0.3s ease',
-            }}
+            className="w-full md:w-[263px] h-[70px] md:h-[101px] text-white font-medium rounded-2xl md:rounded-3xl transition-all disabled:opacity-60"
+            style={{ background: 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)', transition: 'background 0.3s ease' }}
             onMouseEnter={e => e.currentTarget.style.background = 'linear-gradient(180deg, #151515 0%, #676767 100%)'}
             onMouseLeave={e => e.currentTarget.style.background = 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)'}
           >
             {loading ? "Отправка..." : "Отправить"}
           </button>
+        </div>
 
+        {/* ✅ Checkbox — inputlardan 30px pastda */}
+        <div data-aos="fade-up" data-aos-delay={400} className="mt-[30px] md:ml-[11px]">
+          <label className="flex gap-2.5 cursor-pointer items-start w-fit">
+            <input
+              type="checkbox"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+              className="w-[17px] h-[17px] cursor-pointer accent-[#355094] shrink-0 mt-0.5"
+            />
+            <span className="font-normal text-[12px] sm:text-[13px] leading-snug text-[#666] max-w-[880px]">
+              Я даю свое согласие на обработку персональных данных в соответствии с ФЗ №152-ФЗ
+              «О персональных данных» на условиях и для целей, определенных Политикой
+              Конфиденциальности.
+            </span>
+          </label>
         </div>
       </div>
     </>
