@@ -173,10 +173,10 @@ export default function Hero() {
                     }
                     
                     .mobile-description {
-                        font-size: 16px !important;
+                        font-size: 18px !important;
                         line-height: 1.4 !important;
                         margin-top: 16px !important;
-                        margin-bottom: 20px !important;
+                        margin-bottom: 25px !important;
                     }
                     
                     .mobile-button {
