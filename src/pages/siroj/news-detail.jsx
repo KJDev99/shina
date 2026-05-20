@@ -102,7 +102,7 @@ export default function NewsDetail() {
       <div className="max-w-none">
         {news.description?.split("\n").map((para, i) =>
           para.trim() ? (
-            <p key={i} className="text-base sm:text-lg font-normal mb-5 leading-relaxed">
+            <p key={i} className="text-base sm:text-lg font-normal mb-5 leading-relaxed whitespace-pre-line">
               {para}
             </p>
           ) : null

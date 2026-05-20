@@ -76,7 +76,7 @@ export default function Hero() {
                         <SwiperSlide key={banner.id}>
                             <div className="bg-white max-sm:px-5 sm:p-8 lg:p-10 flex flex-col lg:flex-row justify-between relative min-h-[420px] sm:min-h-[480px] lg:h-[517px] md:min-h-[480px] mobile-slider">
                                 <div className="w-full lg:w-[580px] z-10 relative mobile-content">
-                                    <h1 className="font-semibold text-[36px] sm:text-[44px] lg:text-[60px] leading-tight sm:leading-[60px] lg:leading-[70px] uppercase max-sm:line-clamp-3 mobile-title">
+                                    <h1 className="font-semibold text-[36px] sm:text-[44px] lg:text-[50px] leading-tight sm:leading-[60px] lg:leading-[70px] uppercase max-sm:line-clamp-3 mobile-title">
                                         {banner.title}
                                     </h1>
                                     <p className="text-[#00000066] font-normal text-[14px] sm:text-[16px] lg:text-[17px] mt-2 sm:mt-[10px] leading-snug line-clamp-3 sm:line-clamp-none mobile-description">
@@ -105,7 +105,7 @@ export default function Hero() {
                                     <img
                                         src={banner.image}
                                         alt={banner.title}
-                                        className="w-full h-full object-contain object-bottom transition-opacity duration-500 mobile-image"
+                                        className="w-full object-contain object-bottom transition-opacity duration-500 mobile-image md:max-h-[458px]"
                                         style={{ opacity: loadedImages[banner.id] ? 1 : 0 }}
                                     />
                                 </div>

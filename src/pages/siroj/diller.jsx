@@ -38,7 +38,7 @@ export default function Diller() {
       </div>
 
       <div>
-        <p className="font-normal text-[14px] sm:text-lg mb-[12px] sm:mb-[15px]">
+        <p className="font-normal text-[14px] sm:text-lg mb-[12px] sm:mb-[15px] whitespace-pre-line">
           {manufacturer.description}
         </p>
 
