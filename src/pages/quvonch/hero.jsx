@@ -51,7 +51,7 @@ export default function Hero() {
                                 src="/quvonch/img/shina.png"
                                 alt="placeholder"
                                 className="w-full h-full object-contain object-bottom"
-                                style={{ filter: "blur(6px) brightness(1.1) grayscale(0.3)", opacity: 0.4 }}
+                                style={{ filter: "blur(6px) brightness(1.1) grayscale(0.3)", opacity: 0.0 }}
                             />
                         </div>
                     </div>
@@ -108,7 +108,7 @@ export default function Hero() {
                                             src="/quvonch/img/shina.png"
                                             alt="placeholder"
                                             className="w-full h-full object-contain object-bottom absolute inset-0"
-                                            style={{ filter: "blur(5px) grayscale(0.2)", opacity: 0.4 }}
+                                            style={{ filter: "blur(5px) grayscale(0.2)", opacity: 0.1 }}
                                         />
                                     )} */}
                                     {/* Asl rasm */}
