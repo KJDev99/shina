@@ -31,21 +31,44 @@ export default function Hero() {
             });
     }, []);
 
+
     // Backend kelguncha skeleton
     if (loading) {
         return (
             <div>
                 <div className="max-w-[1430px] mx-auto mt-4 sm:mt-[25px] px-4 sm:px-6 lg:px-0">
-                    <div className="rounded-[20px] sm:rounded-[35px] overflow-hidden bg-white min-h-[420px] sm:min-h-[480px] lg:h-[517px] md:min-h-[480px] flex flex-col lg:flex-row justify-between relative p-6 sm:p-8 lg:p-10 md:min-h-[480px] mobile-slider-skeleton">
-                        {/* Matn skeleton */}
-                        <div className="w-full lg:w-[580px] z-10 space-y-4">
+                    <div className="rounded-[20px] sm:rounded-[35px] overflow-hidden bg-white min-h-[420px] sm:min-h-[480px] lg:h-[517px] flex flex-col lg:flex-row justify-between relative p-6 sm:p-8 lg:p-10">
+                        {/* Desktop skeleton */}
+                        <div className="hidden sm:block w-full lg:w-[580px] z-10 space-y-4">
                             <div className="h-12 sm:h-16 lg:h-20 w-3/4 bg-gray-200 animate-pulse rounded-xl" />
                             <div className="h-4 w-full bg-gray-100 animate-pulse rounded-lg" />
                             <div className="h-4 w-5/6 bg-gray-100 animate-pulse rounded-lg" />
                             <div className="h-4 w-4/6 bg-gray-100 animate-pulse rounded-lg" />
                             <div className="w-full sm:w-[228px] h-[64px] sm:h-[80px] lg:h-[96px] mt-5 bg-gray-200 animate-pulse rounded-[20px] sm:rounded-[25px]" />
                         </div>
-                        {/* Rasm skeleton — shina.png xira */}
+
+                        {/* Mobile skeleton */}
+                        <div className="sm:hidden flex flex-col justify-between h-full min-h-[420px]">
+                            <div className="space-y-3">
+                                <div className="h-10 w-3/4 bg-gray-200 animate-pulse rounded-lg" />
+                                <div className="h-12 w-5/6 bg-gray-200 animate-pulse rounded-lg" />
+                                <div className="space-y-2 mt-2">
+                                    <div className="h-3 w-full bg-gray-100 animate-pulse rounded" />
+                                    <div className="h-3 w-11/12 bg-gray-100 animate-pulse rounded" />
+                                    <div className="h-3 w-10/12 bg-gray-100 animate-pulse rounded" />
+                                </div>
+                                <div className="w-full h-14 bg-gray-200 animate-pulse rounded-[20px] mt-4" />
+                            </div>
+                            <div className="w-full mt-4">
+                                <div className="w-full h-[240px] bg-gray-200 animate-pulse rounded-xl" />
+                            </div>
+                            <div className="flex justify-center gap-2 py-3">
+                                <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse" />
+                                <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse" />
+                                <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse" />
+                            </div>
+                        </div>
+
                         <div className="absolute bottom-0 right-0 w-full sm:w-[55%] lg:w-[700px] h-[200px] sm:h-[280px] lg:h-full">
                             <img
                                 src="/quvonch/img/shina.png"
@@ -56,8 +79,9 @@ export default function Hero() {
                         </div>
                     </div>
                 </div>
-                {/* Marquee skeleton */}
-                <div className="mt-6 sm:mt-11 mb-6 sm:mb-11 h-6 sm:h-8 bg-gray-100 animate-pulse mx-4 rounded-full" />
+                <div className="mt-6 sm:mt-11 mb-6 sm:mb-11">
+                    <div className="h-6 sm:h-8 bg-gray-100 animate-pulse mx-4 rounded-full" />
+                </div>
             </div>
         );
     }
