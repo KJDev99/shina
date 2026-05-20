@@ -152,8 +152,7 @@ export default function Hero() {
                 @media (max-width: 640px) {
                     .mobile-swiper,
                     .mobile-slider {
-                        height: calc(100vh - 120px) !important;
-                        min-height: calc(100vh - 120px) !important;
+                        height: calc(100vh - 160px) !important;
                     }
                     
                     .mobile-slider {
