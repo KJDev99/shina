@@ -284,8 +284,12 @@ function MobileMenu({ open, onClose }) {
             >
                 <div className="flex items-center justify-between p-4 border-b border-black/5 shrink-0">
                     <Link to="/" onClick={onClose}>
-                        <div className="flex justify-center items-center w-[120px] h-[52px] rounded-[40px] bg-white">
-                            <img src="/quvonch/icon/navbaricon1.svg" alt="Максан групп" className="h-8 w-auto" />
+                        <div className="flex justify-center items-center w-[120px] h-[56px] sm:w-[140px] sm:h-[64px] rounded-[40px] bg-white">
+                            <img
+                                src="/quvonch/icon/navbaricon1.svg"
+                                alt="Максан групп"
+                                className="h-11 w-auto object-contain"
+                            />
                         </div>
                     </Link>
                     <button
@@ -348,12 +352,23 @@ export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [manufacturerDropdownOpen, setManufacturerDropdownOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const manufacturerBtnRef = useRef(null);
     const { cartCount } = useCart();
     const location = useLocation();
 
     const closeMenu = () => setMenuOpen(false);
     const closeSearch = () => setSearchOpen(false);
+
+    // Scroll bo'lganda tepa qismni fixed qilish
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+        window.addEventListener("scroll", handleScroll);
+        handleScroll();
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     useEffect(() => {
         setMenuOpen(false);
@@ -370,16 +385,20 @@ export default function Navbar() {
 
     return (
         <>
-            <header className="sticky top-0 z-50 bg-[#ECF0F5]/95 backdrop-blur-sm">
-                <div className="max-w-[1436px] mx-auto px-4 sm:px-6 lg:px-0 mt-3 lg:mt-[15px] pb-3 lg:pb-0">
+            {/* FIXED TOP SECTION - Scroll qilganda yuqorida qoladi */}
+            <div className={`
+                fixed top-0 left-0 right-0 z-[60] bg-[#ECF0F5] transition-all duration-300
+                ${isScrolled ? 'shadow-md backdrop-blur-sm bg-[#ECF0F5]/95' : ''}
+            `}>
+                <div className="max-w-[1436px] mx-auto px-4 sm:px-6 lg:px-0">
                     {/* Mobile header */}
-                    <div className="flex lg:hidden items-center justify-between gap-3">
+                    <div className="flex lg:hidden items-center justify-between gap-3 py-3">
                         <Link to="/" className="shrink-0">
                             <div className="flex justify-center items-center w-[120px] h-[56px] sm:w-[140px] sm:h-[64px] rounded-[40px] bg-white">
                                 <img
                                     src="/quvonch/icon/navbaricon1.svg"
                                     alt="Максан групп"
-                                    className="h-8 sm:h-9 w-auto object-contain"
+                                    className="h-11 w-auto object-contain"
                                 />
                             </div>
                         </Link>
@@ -419,10 +438,10 @@ export default function Navbar() {
                     </div>
 
                     {/* Desktop top bar */}
-                    <div className="hidden lg:flex items-center gap-6">
+                    <div className="hidden lg:flex items-center gap-6 py-3">
                         <Link to="/" className="shrink-0">
                             <div className="flex justify-center items-center w-[190px] h-[90px] rounded-[69px] bg-white">
-                                <img src="/quvonch/icon/navbaricon1.svg" alt="Максан групп" />
+                                <img src="/quvonch/icon/navbaricon1.svg" alt="Максан групп" className="h-[70px] w-auto" />
                             </div>
                         </Link>
 
@@ -447,9 +466,9 @@ export default function Navbar() {
 
                         <Link
                             to="/basket"
-                            className="w-[59px] h-[59px] bg-white ml-[25px] flex items-center justify-center rounded-full relative shrink-0"
+                            className="w-[55px] h-[55px] bg-white ml-[20px] flex items-center justify-center rounded-full relative shrink-0"
                         >
-                            <img src="/quvonch/icon/shopicon.svg" alt="Корзина" />
+                            <img src="/quvonch/icon/shopicon.svg" alt="Корзина" className="w-5 h-5" />
                             {cartCount > 0 && (
                                 <span className="absolute -top-1 -right-1 w-6 h-6 flex items-center justify-center border-4 border-[#f5ecec] rounded-full text-sm font-semibold text-white bg-[#355094]">
                                     {cartCount}
@@ -457,9 +476,18 @@ export default function Navbar() {
                             )}
                         </Link>
                     </div>
+                </div>
+            </div>
 
-                    {/* Desktop nav pills */}
-                    <nav className="hidden lg:flex mt-[15px] w-full max-w-[1400px] min-h-[88px] px-7 bg-white rounded-[69px] items-center gap-4 overflow-x-auto relative">
+            {/* Placeholder - fixed qism bo'sh joy qoldirmasligi uchun */}
+            <div className="hidden mt-3 lg:block" style={{ height: '106px' }}></div>
+            <div className="lg:hidden" style={{ height: '80px' }}></div>
+
+            {/* NORMAL HEADER - Linklar qismi (fixed emas) */}
+            <header className="bg-[#ECF0F5]">
+                <div className="max-w-[1436px] mx-auto px-4 sm:px-6 lg:px-0">
+                    {/* Desktop nav pills - BU QISM FIXED EMAS, normal scroll qiladi */}
+                    <nav className="hidden lg:flex w-full max-w-[1400px] min-h-[88px] px-7 bg-white rounded-[69px] items-center gap-4 overflow-x-auto relative">
                         {navItems.map((item, index) => {
                             if (item.hasDropdown) {
                                 return (

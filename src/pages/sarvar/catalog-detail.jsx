@@ -117,7 +117,7 @@ function ImageModal({ images, initialIndex, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center"
+      className="fixed inset-0 z-[200] bg-black/85 flex items-center justify-center"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -134,7 +134,7 @@ function ImageModal({ images, initialIndex, onClose }) {
       </button>
 
       {/* Zoom tugmalari */}
-      <div className="absolute top-4 left-4 z-10 flex gap-2">
+      <div className="absolute top-4 left-4 z-10 flex gap-2 hidden">
         <button
           onClick={handleZoomOut}
           className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur flex items-center justify-center text-white transition-all"
@@ -205,14 +205,14 @@ function ImageModal({ images, initialIndex, onClose }) {
       {/* Rasm konteyneri */}
       <div
         ref={containerRef}
-        className="w-[80vw] h-[80vh] overflow-hidden cursor-grab active:cursor-grabbing flex items-center justify-center"
+        className="w-[80vw] max-md:w-full h-[80vh] overflow-hidden cursor-grab active:cursor-grabbing flex items-center justify-center"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
         <div
-          className="transition-transform duration-200"
+          className="transition-transform duration-200 max-md:w-[85%]"
           style={{
             transform: `translate(${position.x}px, ${position.y}px)`
           }}
