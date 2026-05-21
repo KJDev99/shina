@@ -225,7 +225,7 @@ export default function Hero() {
 
                     /* Mobile rasm: height slider bilan mos, width auto — tashqariga chiqsa qirqiladi */
                     .hero-img {
-                        height: 300px !important;
+                        height: 250px !important;
                         width: auto !important;
                         object-fit: cover !important;
                         object-position: bottom center !important;
