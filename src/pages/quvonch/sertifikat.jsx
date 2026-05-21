@@ -102,6 +102,10 @@ export default function Sertifikat() {
                                 <img
                                     src={cert.thumbnail_image}
                                     alt={cert.name}
+                                    loading="lazy"
+                                    decoding="async"
+                                    width="351"
+                                    height="245"
                                     className="w-full rounded-[12px]"
                                 />
 
@@ -117,7 +121,7 @@ export default function Sertifikat() {
                                         download
                                         className="w-[42px] h-[42px] lg:w-[48px] lg:h-[48px] rounded-full bg-[#F5F5F5] flex justify-center items-center shrink-0 hover:bg-gray-200 transition-colors"
                                     >
-                                        <img src="/quvonch/icon/down.png" alt="" className="w-4 lg:w-auto" />
+                                        <img src="/quvonch/icon/down.png" alt="" loading="lazy" decoding="async" width="24" height="24" className="w-4 lg:w-auto" />
                                     </a>
                                 </div>
                             </div>

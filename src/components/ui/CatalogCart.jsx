@@ -67,7 +67,7 @@ export default function CatalogCart({ item }) {
                     </div>
                 </div>
                 <div className="w-full aspect-[332/257] rounded-[16px] sm:rounded-[25px] overflow-hidden mt-2 sm:mt-[10px] bg-[#F5F5F5]">
-                    <img src={item?.thumbnail} alt={item?.name} className="w-full h-full object-cover" />
+                    <img src={item?.thumbnail} alt={item?.name} loading="lazy" decoding="async" width="332" height="257" className="w-full h-full object-cover" />
                 </div>
                 <div className="px-1 sm:px-[14px] flex flex-col pb-2 sm:pb-0">
                     <h2 className="text-[#11111166] font-medium text-[12px] sm:text-[14px] mt-2 sm:mt-[10px]">

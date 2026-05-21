@@ -168,9 +168,9 @@ export default function Catalog() {
 
           {/* Производители */}
           <div className="bg-[#FFFFFF] p-5 rounded-[25px]">
-            <h1 className="font-semibold text-[16px] mb-[11px] leading-none tracking-normal uppercase">
+            <h2 className="font-semibold text-[16px] mb-[11px] leading-none tracking-normal uppercase">
               Производители
-            </h1>
+            </h2>
             <div className="flex flex-col gap-[5px]">
               {manufacturers.map((m) => (
                 <div
@@ -178,9 +178,9 @@ export default function Catalog() {
                   onClick={() => handleManufacturer(m.id)}
                   className={`h-[75px] rounded-[20px] flex items-center justify-between px-4 cursor-pointer transition-colors ${selectedManufacturer === m.id ? "bg-[#355094] text-white" : "bg-[#F5F5F5]"}`}
                 >
-                  <h1 className="font-semibold text-[16px] leading-none tracking-normal uppercase">
+                  <h3 className="font-semibold text-[16px] leading-none tracking-normal uppercase">
                     {m.name}
-                  </h1>
+                  </h3>
                 </div>
               ))}
             </div>
@@ -188,9 +188,9 @@ export default function Catalog() {
 
           {/* Narx filtri */}
           <div className="w-full bg-[#FFFFFF] p-[18px] rounded-[25px]">
-            <h1 className="font-semibold text-[16px] mb-[11px] leading-none tracking-normal uppercase">
+            <h2 className="font-semibold text-[16px] mb-[11px] leading-none tracking-normal uppercase">
               Фильтры
-            </h1>
+            </h2>
             <div className="mt-6">
               <p className="font-medium text-[15px] leading-none tracking-normal mb-[10px]">Цена</p>
               <div className="flex items-center gap-2">

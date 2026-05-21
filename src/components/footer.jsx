@@ -53,6 +53,10 @@ export default function Footer() {
                         <img
                             src="/flogo.svg"
                             alt="Максан групп"
+                            loading="lazy"
+                            decoding="async"
+                            width="180"
+                            height="60"
                             className="w-[180px]  h-auto object-contain"
                         />
                     </div>
@@ -149,7 +153,7 @@ export default function Footer() {
                     <div className="w-[120px] h-[56px] rounded-[25px] text-white items-center justify-center flex gap-5 bg-[#FFFFFF1A]">
                         <FaTelegramPlane size={26} />
                         <div className="h-[31px] w-[2px] bg-[#FFFFFF33]" />
-                        <img src="/quvonch/icon/per.png" alt="" />
+                        <img src="/quvonch/icon/per.png" alt="" loading="lazy" decoding="async" width="24" height="24" />
                     </div>
                 </div>
 

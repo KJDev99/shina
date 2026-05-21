@@ -11,9 +11,9 @@ export default function Homenew() {
         <>
             <section className="overflow-hidden mt-[60px] lg:mt-[100px] mb-[60px] lg:mb-[100px] md:hidden">
                 <div className="max-w-[1436px] mx-auto px-4 sm:px-6 lg:px-0">
-                    <h1 className="font-semibold text-[36px] sm:text-[60px] lg:text-[100px] leading-none uppercase">
+                    <h2 className="font-semibold text-[36px] sm:text-[60px] lg:text-[100px] leading-none uppercase">
                         Наши
-                    </h1>
+                    </h2>
                     <h2 className="text-[#0000001A] font-semibold text-[36px] sm:text-[60px] lg:text-[85px] leading-none uppercase mt-1 mb-8 sm:mb-10">
                         сильные стороны
                     </h2>
@@ -34,6 +34,10 @@ export default function Homenew() {
                                     className="mt-3 h-[180px] sm:h-[240px] lg:h-[290px] w-auto object-contain"
                                     src={card.img}
                                     alt={card.title}
+                                    loading="lazy"
+                                    decoding="async"
+                                    width="290"
+                                    height="290"
                                 />
                                 <p className="font-normal text-[15px] sm:text-[17px] leading-snug tracking-normal text-center mt-auto px-2 pb-4">
                                     {card.text}
@@ -48,9 +52,9 @@ export default function Homenew() {
 
                     <div className="relative grid grid-cols-3 gap-[10px]">
                         <div className="absolute">
-                            <h1 className="font-semibold text-[42px] sm:text-[60px] lg:text-[100px] leading-none uppercase ">
+                            <h2 className="font-semibold text-[42px] sm:text-[60px] lg:text-[100px] leading-none uppercase ">
                                 Наши
-                            </h1>
+                            </h2>
 
                             <h2 className="text-[#0000001A] font-semibold text-[42px] sm:text-[60px] lg:text-[85px] leading-none uppercase  mt-1">
                                 сильные стороны
@@ -61,15 +65,15 @@ export default function Homenew() {
                             <div data-aos="fade-up"
                             data-aos-delay={300} className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
                                 <p className=" text-[#00000066] text-[17px] mt-[15px]">02</p>
-                                <h1 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase">Лучшие цены</h1>
-                                <img className="mt-3 h-[290px]" src="/quvonch/icon/sas1.svg" alt="" />
+                                <h3 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase">Лучшие цены</h3>
+                                <img className="mt-3 h-[290px]" src="/quvonch/icon/sas1.svg" alt="Лучшие цены" loading="lazy" decoding="async" width="290" height="290" />
                                 <p className="font-normal text-[17px] leading-[100%] tracking-normal text-center">Предлагаем выгодные условия и специальные предложения для покупателей</p>
                             </div>
                             <div data-aos="fade-up"
                             data-aos-delay={600} className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
                                 <p className=" text-[#00000066] text-[17px] mt-[15px]">04</p>
-                                <h1 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase"> Качество</h1>
-                                <img className="mt-3 h-[290px]" src="/quvonch/icon/sas3.svg" alt="" />
+                                <h3 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase"> Качество</h3>
+                                <img className="mt-3 h-[290px]" src="/quvonch/icon/sas3.svg" alt="Качество" loading="lazy" decoding="async" width="290" height="290" />
                                 <p className="font-normal text-[17px] leading-[100%] tracking-normal text-center">Поставляем только проверенные и надёжные комплектующие</p>
                             </div>
 
@@ -78,22 +82,22 @@ export default function Homenew() {
                             <div data-aos="fade-up"
                             data-aos-delay={150} className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
                                 <p className=" text-[#00000066] text-[17px] mt-[15px]">01</p>
-                                <h1 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase">Стабильность</h1>
-                                <img className="mt-3 h-[290px]" src="/quvonch/icon/sas.svg" alt="" />
+                                <h3 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase">Стабильность</h3>
+                                <img className="mt-3 h-[290px]" src="/quvonch/icon/sas.svg" alt="Стабильность" loading="lazy" decoding="async" width="290" height="290" />
                                 <p className="font-normal text-[17px] leading-[100%] tracking-normal text-center">Выстраиваем надёжные и долгосрочные <br /> отношения с клиентами</p>
                             </div>
                             <div data-aos="fade-up"
                             data-aos-delay={450} className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
                                 <p className=" text-[#00000066] text-[17px] mt-[15px]">03</p>
-                                <h1 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase text-center">Широкий ассортимент</h1>
-                                <img className="mt-3 h-[290px]" src="/quvonch/icon/sas2.svg" alt="" />
+                                <h3 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase text-center">Широкий ассортимент</h3>
+                                <img className="mt-3 h-[290px]" src="/quvonch/icon/sas2.svg" alt="Широкий ассортимент" loading="lazy" decoding="async" width="290" height="290" />
                                 <p className="font-normal text-[17px] leading-[100%] tracking-normal text-center">Большой выбор запчастей и материалов в наличии и под заказ</p>
                             </div>
                             <div data-aos="fade-up"
                             data-aos-delay={750} className="w-full rounded-[35px] flex flex-col items-center h-[507px] bg-white ">
                                 <p className=" text-[#00000066] text-[17px] mt-[15px]">05</p>
-                                <h1 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase">Всегда онлайн</h1>
-                                <img className="mt-[25px] h-[290px]" src="/quvonch/icon/sas4.svg" alt="" />
+                                <h3 className="font-semibold mt-[14px] text-[50px] leading-[100%] tracking-normal uppercase">Всегда онлайн</h3>
+                                <img className="mt-[25px] h-[290px]" src="/quvonch/icon/sas4.svg" alt="Всегда онлайн" loading="lazy" decoding="async" width="290" height="290" />
                                 <p className="font-normal text-[17px] leading-[100%] tracking-normal text-center">Оперативно отвечаем на запросы
                                     и помогаем в кратчайшие сроки</p>
                             </div>

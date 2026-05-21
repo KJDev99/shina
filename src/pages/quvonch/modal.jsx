@@ -142,12 +142,12 @@ export default function ModalExample({ setOpen }) {
 
                         {/* Header */}
                         <div className="flex justify-between items-center gap-3 mb-4 sm:mb-5 md:mb-6">
-                            <h1
+                            <h2
                                 id="modal-title"
                                 className="font-semibold text-[22px] sm:text-[30px] md:text-[38px] uppercase leading-tight"
                             >
                                 оставить заявку
-                            </h1>
+                            </h2>
                             <button
                                 type="button"
                                 onClick={handleClose}

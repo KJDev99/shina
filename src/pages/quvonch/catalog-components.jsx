@@ -51,9 +51,9 @@ export default function CatalogComponents() {
 
     return (
         <section className="max-w-[1436px] mx-auto px-4 sm:px-6 lg:px-0 py-8 sm:py-0">
-            <h1 className="font-semibold text-[36px] sm:text-[60px] lg:text-[85px] leading-none uppercase mb-4 sm:mb-[20px]">
+            <h2 className="font-semibold text-[36px] sm:text-[60px] lg:text-[85px] leading-none uppercase mb-4 sm:mb-[20px]">
                 каталог запчастей
-            </h1>
+            </h2>
 
             <div className="flex gap-2 overflow-x-auto pb-2 bg-[#EEF3F8] p-2 sm:p-3 rounded-[20px] sm:rounded-[30px] w-full sm:w-fit max-w-full scrollbar-hide">
                 <button

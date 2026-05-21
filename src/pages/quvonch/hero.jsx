@@ -96,7 +96,7 @@ export default function Hero() {
                     onSlideChange={(s) => setActiveIndex(s.realIndex)}
                     className="rounded-[20px] sm:rounded-[35px] overflow-hidden mobile-swiper"
                 >
-                    {banners.map((banner) => (
+                    {banners.map((banner, idx) => (
                         <SwiperSlide key={banner.id}>
                             <div className="bg-white max-sm:px-5 sm:p-8 lg:p-10 flex flex-col lg:flex-row justify-between relative min-h-[420px] sm:min-h-[480px] lg:h-[517px] md:min-h-[480px] mobile-slider">
                                 <div className="w-full lg:w-[580px] z-10 relative mobile-content">
@@ -129,6 +129,11 @@ export default function Hero() {
                                     <img
                                         src={banner.image}
                                         alt={banner.title}
+                                        width="700"
+                                        height="458"
+                                        loading={idx === 0 ? "eager" : "lazy"}
+                                        decoding={idx === 0 ? "sync" : "async"}
+                                        fetchpriority={idx === 0 ? "high" : "auto"}
                                         className="w-full object-contain object-bottom transition-opacity duration-500 mobile-image md:max-h-[458px]"
                                         style={{ opacity: loadedImages[banner.id] ? 1 : 0 }}
                                     />

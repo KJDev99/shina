@@ -20,9 +20,9 @@ export default function Detail() {
     return (
         <section className="overflow-hidden mt-[60px] lg:mt-[100px]">
             <div className="max-w-[1436px] mx-auto px-4 sm:px-6 lg:px-0">
-                <h1 className="font-semibold text-[42px] sm:text-[60px] lg:text-[100px] leading-none uppercase text-center">
+                <h2 className="font-semibold text-[42px] sm:text-[60px] lg:text-[100px] leading-none uppercase text-center">
                     ЗАПЧАСТИ,
-                </h1>
+                </h2>
                 <h2 className="text-[#0000001A] font-semibold text-[42px] sm:text-[60px] lg:text-[100px] leading-none uppercase text-center mt-1">
                     КОТОРЫЕ РАБОТАЮТ!
                 </h2>
@@ -57,13 +57,17 @@ export default function Detail() {
                                     <img
                                         src={item.logo}
                                         alt={item.name}
+                                        loading="lazy"
+                                        decoding="async"
+                                        width="244"
+                                        height="104"
                                         className="object-contain max-w-[244px] max-h-[104px]"
                                     />
                                 </div>
                                 <div className="flex justify-between items-center mt-6">
-                                    <h1 className="text-[16px] sm:text-[18px] font-semibold text-black">
+                                    <h3 className="text-[16px] sm:text-[18px] font-semibold text-black">
                                         {item.name}
-                                    </h1>
+                                    </h3>
                                     <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-full bg-[#F5F5F5] flex justify-center items-center hover:bg-[#355094] duration-300 group">
                                         <svg className="group-hover:[&_path]:fill-white" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M7.72173 2.26242V1.13121V0L9.98415 0V2.26242H7.72173Z" fill="#111111" />

@@ -8,11 +8,15 @@ export default function Section() {
                 className="absolute top-0 left-0 w-full h-full object-cover z-20"
                 src="/quvonch/img/darkcar.png"
                 alt=""
+                loading="lazy"
+                decoding="async"
+                width="1491"
+                height="760"
             />
             <div className="relative z-30 max-w-[1491px] mx-auto px-4 sm:px-6 h-full flex flex-col items-center justify-start pt-9  text-center">
-                <h1 className="font-semibold text-[32px] sm:text-[50px] md:text-[70px] lg:text-[100px] leading-tight uppercase text-white">
+                <h2 className="font-semibold text-[32px] sm:text-[50px] md:text-[70px] lg:text-[100px] leading-tight uppercase text-white">
                     О нашей
-                </h1>
+                </h2>
                 <p className="font-semibold text-[32px] sm:text-[50px] md:text-[70px] lg:text-[100px] leading-tight uppercase text-white ">
                     Компании
                 </p>

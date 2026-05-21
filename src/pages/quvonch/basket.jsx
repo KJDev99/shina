@@ -121,6 +121,10 @@ export default function Basket() {
                   <img
                     src={item.thumbnail || item.images?.[0]?.image}
                     alt={item.name}
+                    loading="lazy"
+                    decoding="async"
+                    width="129"
+                    height="129"
                     className="w-full h-full object-cover"
                   />
                 </div>
