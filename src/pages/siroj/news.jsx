@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import CantactForm from "../../components/ui/cantactform";
 import NewsCart from "../../components/ui/NewsCart";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const FILTERS = [
   { label: "ВСЕ", value: "" },
@@ -29,6 +30,10 @@ export default function News() {
 
   return (
     <div className="max-w-[1436px] mx-auto py-6 md:py-10 px-4">
+      <Helmet>
+        <title>Новости МАКСАН ГРУПП – спецтехника и запчасти в СПБ</title>
+        <meta name="description" content="Новости компании, обзоры запчастей, шин и решений для спецтехники. Полезная информация для владельцев и сервисов промышленной техники в СПБ." />
+      </Helmet>
       <div className="flex items-center gap-2 mb-6 text-[12px] md:text-[14px]">
         <Link to="/" className="text-black hover:text-[#355094] transition-colors">
           Главная

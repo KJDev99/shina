@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import FormPost from "../../components/ui/FormPost";
 import CantactForm from "../../components/ui/cantactform";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 export default function Contact() {
   useEffect(() => {
@@ -34,6 +35,10 @@ export default function Contact() {
 
   return (
     <div className="bg-[#E9EEF4] min-h-screen font-sans">
+      <Helmet>
+        <title>Контакты МАКСАН ГРУПП в Санкт-Петербурге</title>
+        <meta name="description" content="Свяжитесь с МАКСАН ГРУПП в Санкт-Петербурге для подбора запчастей, агрегатов и шин для спецтехники. Консультация по срокам и стоимости." />
+      </Helmet>
       <div className="max-w-[1436px] m-auto py-10 px-4">
         <div className="flex items-center gap-2 mb-6 text-[12px] sm:text-[14px]">
           <span className="text-black">Главная</span>

@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useCart } from "../../context/CartContext";
 import SimilarProduct from "./similar-product";
+import { Helmet } from "react-helmet-async";
 
 function Toast({ message, onClose }) {
   useEffect(() => {
@@ -302,6 +303,10 @@ export default function CatalogDetail() {
 
   const InfoBlock = () => (
     <>
+      <Helmet>
+        <title>Каталог запчастей для спецтехники в СПБ – МАКСАН ГРУПП</title>
+        <meta name="description" content="Каталог запчастей, агрегатов, шин и комплектующих для спецтехники в Санкт-Петербурге. Caterpillar, Atlas Copco, Epiroc, Cummins и другие бренды." />
+      </Helmet>
       <span className={`inline-block text-sm font-medium px-4 py-1 rounded-full mb-4 ${product.is_stock ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"
         }`}>
         {product.is_stock ? "В наличии" : "Под заказ"}

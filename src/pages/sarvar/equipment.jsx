@@ -4,6 +4,7 @@ import Badge from "../../components/ui/Badge";
 import CantactForm from "../../components/ui/cantactform";
 import CatalogCart from "../../components/ui/CatalogCart";
 import NewsCart from "../../components/ui/NewsCart";
+import { Helmet } from "react-helmet-async";
 
 export default function Equipment() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -139,6 +140,10 @@ export default function Equipment() {
 
     return (
         <div className="min-h-screen">
+            <Helmet>
+                <title>Шины для спецтехники в СПБ – МАКСАН ГРУПП</title>
+                <meta name="description" content="Шины для спецтехники, погрузчиков, карьерной и строительной техники в Санкт-Петербурге. Подбор по размеру, назначению и условиям эксплуатации." />
+            </Helmet>
             <div className="mt-[30px] md:mt-[50px] max-w-[1436px] mx-auto max-md:px-4">
                 <Badge text={"Шины для спецтехники"} />
             </div>
