@@ -34,11 +34,11 @@ export default function News() {
         <title>Новости МАКСАН ГРУПП – спецтехника и запчасти в СПБ</title>
         <meta name="description" content="Новости компании, обзоры запчастей, шин и решений для спецтехники. Полезная информация для владельцев и сервисов промышленной техники в СПБ." />
       </Helmet>
-      <div className="flex items-center gap-2 mb-6 text-[12px] md:text-[14px]">
+      <div className="flex items-center gap-2 mb-6 text-[12px] sm:text-[14px]">
         <Link to="/" className="text-black hover:text-[#355094] transition-colors">
           Главная
         </Link>
-        <span className="text-[#999999] text-[8px] md:text-[10px]">❯</span>
+        <span className="text-[#999999] text-[10px]">❯</span>
         <span className="text-[#999999]">Новости</span>
       </div>
 

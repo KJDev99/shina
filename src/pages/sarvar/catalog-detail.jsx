@@ -367,12 +367,12 @@ export default function CatalogDetail() {
         />
       )}
 
-      <div className="flex items-center gap-2 mb-6 text-sm flex-wrap">
-        <Link to="/" className="text-base font-medium text-black hover:text-[#355094] transition-colors">Главная</Link>
-        <span className="text-gray-400 text-xs">❯</span>
+      <div className="flex items-center gap-2 mb-6 text-[12px] sm:text-[14px] flex-wrap">
+        <Link to="/" className="text-black hover:text-[#355094] transition-colors">Главная</Link>
+        <span className="text-[#999999] text-[10px]">❯</span>
         <Link to="/catalog" className="text-black hover:text-[#355094] transition-colors">Каталог запчастей</Link>
-        <span className="text-gray-400 text-xs">❯</span>
-        <span className="text-gray-400 hidden sm:inline">{product.name?.slice(0, 25)}...</span>
+        <span className="text-[#999999] text-[10px]">❯</span>
+        <span className="text-[#999999] hidden sm:inline">{product.name?.slice(0, 25)}...</span>
       </div>
 
       {/* Desktop */}

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaTelegramPlane } from "react-icons/fa";
 
@@ -11,44 +10,11 @@ const pages = [
     { label: "О нас", path: "/about" },
 ];
 
-const extractUnique = (results) => {
-    const unique = [];
-    const seen = new Set();
-    (results || []).forEach((p) => {
-        if (p.manufacturer && !seen.has(p.manufacturer.id)) {
-            seen.add(p.manufacturer.id);
-            unique.push(p.manufacturer);
-        }
-    });
-    return unique;
-};
-
 export default function Footer() {
-    const [catalogManufacturers, setCatalogManufacturers] = useState([]);
-    const [equipmentManufacturers, setEquipmentManufacturers] = useState([]);
-
-    useEffect(() => {
-        const fetchAll = async () => {
-            try {
-                const [catRes, eqRes] = await Promise.all([
-                    fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=spare_parts"),
-                    fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=tires"),
-                ]);
-                const catData = await catRes.json();
-                const eqData = await eqRes.json();
-                setCatalogManufacturers(extractUnique(catData.results).slice(0, 3));
-                setEquipmentManufacturers(extractUnique(eqData.results).slice(0, 3));
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        fetchAll();
-    }, []);
-
     return (
         <footer className="bg-black mt-10 lg:mt-0">
             <div className="max-w-[1437px] mx-auto px-4 sm:px-6 pt-8 sm:pt-[42px] pb-6">
-                <div className="flex flex-col lg:flex-row lg:justify-center gap-10 lg:gap-[50px]">
+                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-10 lg:gap-[50px]">
                     <div className="flex justify-center lg:justify-start">
                         <img
                             src="/flogo.svg"
@@ -61,7 +27,7 @@ export default function Footer() {
                         />
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 lg:gap-[80px] xl:gap-[191px]">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-8 lg:gap-[80px] xl:gap-[191px]">
                         <div className="max-md:text-center">
                             <h2 className="font-semibold text-lg sm:text-[22px] uppercase text-white mb-4 sm:mb-[18px]">
                                 Страницы
@@ -78,38 +44,6 @@ export default function Footer() {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
-
-                        <div className="max-md:text-center">
-                            <h2 className="font-semibold text-lg sm:text-[22px] uppercase text-white mb-4 sm:mb-[18px]">
-                                Производитель
-                            </h2>
-                            <div className="flex flex-col gap-3">
-                                <ul className="flex flex-col gap-3 sm:gap-[14px]">
-                                    {catalogManufacturers.map((m) => (
-                                        <li key={`cat-${m.id}`}>
-                                            <Link
-                                                to={`/catalog?manufacturer=${m.id}`}
-                                                className="font-normal text-sm sm:text-base text-[#FFFFFF99] hover:text-white transition-colors"
-                                            >
-                                                {m.name}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <ul className="flex flex-col gap-3 sm:gap-[14px]">
-                                    {equipmentManufacturers.map((m) => (
-                                        <li key={`eq-${m.id}`}>
-                                            <Link
-                                                to={`/equipment?manufacturer=${m.id}`}
-                                                className="font-normal text-sm sm:text-base text-[#FFFFFF99] hover:text-white transition-colors"
-                                            >
-                                                {m.name}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
                         </div>
 
                         <div className="max-md:text-center">

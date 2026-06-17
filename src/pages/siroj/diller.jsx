@@ -32,7 +32,7 @@ export default function Diller() {
       </div>
 
       <div className="mb-8 sm:mb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h1 className="text-[42px] sm:text-[120px] font-bold uppercase tracking-tighter leading-[1] sm:leading-[0.9] text-black">
+        <h1 className="text-[42px] sm:text-[120px] font-semibold uppercase tracking-tighter leading-[1] sm:leading-[0.9] text-black">
           {manufacturer.name}
         </h1>
         <img

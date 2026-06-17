@@ -10,9 +10,8 @@ import MobileSearchOverlay from "./MobileSearchOverlay";
 
 const navItems = [
     { name: "О нас", path: "/about" },
-    { name: "Шины для спецтехники", path: "/equipment" },
-    { name: "Производитель", path: null, hasDropdown: true },
-    { name: "Каталог", path: "/catalog" },
+    { name: "Шины для спецтехники", path: "/equipment", dropdownType: "tires" },
+    { name: "Каталог", path: "/catalog", dropdownType: "spare_parts" },
     { name: "Новости", path: "/news" },
     { name: "Контакты", path: "/contact" },
     { name: "Официальный дилер WOLF", path: "/manufacturer/1" },
@@ -30,119 +29,75 @@ const extractUnique = (results) => {
     return unique;
 };
 
-function ManufacturerDropdown({ anchorRef, onClose }) {
-    const navigate = useNavigate();
-    const [catalogManufacturers, setCatalogManufacturers] = useState([]);
-    const [equipmentManufacturers, setEquipmentManufacturers] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const dropdownRef = useRef(null);
+// Manufacturerlarni type bo'yicha bir marta yuklab keshlaymiz
+const manufacturerCache = {};
+async function fetchManufacturers(type) {
+    if (manufacturerCache[type]) return manufacturerCache[type];
+    const res = await fetch(
+        `https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=${type}`
+    );
+    const data = await res.json();
+    const unique = extractUnique(data.results);
+    manufacturerCache[type] = unique;
+    return unique;
+}
+
+/* ----------------------- DESKTOP HOVER DROPDOWN ----------------------- */
+function HoverDropdown({ anchorRef, type, onEnter, onLeave, onPick }) {
+    const [list, setList] = useState(manufacturerCache[type] || []);
+    const [loading, setLoading] = useState(!manufacturerCache[type]);
+    const [pos, setPos] = useState(null);
 
     useEffect(() => {
-        const fetchAll = async () => {
-            try {
-                const [catRes, eqRes] = await Promise.all([
-                    fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=spare_parts"),
-                    fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=tires"),
-                ]);
-                const catData = await catRes.json();
-                const eqData = await eqRes.json();
-                setCatalogManufacturers(extractUnique(catData.results));
-                setEquipmentManufacturers(extractUnique(eqData.results));
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchAll();
-    }, []);
+        const node = anchorRef.current;
+        if (node) {
+            const rect = node.getBoundingClientRect();
+            setPos({ top: rect.bottom + 10, left: rect.left });
+        }
+    }, [anchorRef]);
 
     useEffect(() => {
-        const handleOutside = (e) => {
-            if (
-                dropdownRef.current &&
-                !dropdownRef.current.contains(e.target) &&
-                anchorRef.current &&
-                !anchorRef.current.contains(e.target)
-            ) {
-                onClose();
-            }
-        };
-        const handleKey = (e) => { if (e.key === "Escape") onClose(); };
-        document.addEventListener("mousedown", handleOutside);
-        document.addEventListener("keydown", handleKey);
-        return () => {
-            document.removeEventListener("mousedown", handleOutside);
-            document.removeEventListener("keydown", handleKey);
-        };
-    }, [onClose, anchorRef]);
+        if (manufacturerCache[type]) return;
+        let active = true;
+        fetchManufacturers(type)
+            .then((d) => { if (active) setList(d); })
+            .catch((err) => console.error(err))
+            .finally(() => { if (active) setLoading(false); });
+        return () => { active = false; };
+    }, [type]);
 
-    const rect = anchorRef.current?.getBoundingClientRect();
-    if (!rect) return null;
-
-    const handleSelect = (manufacturerId, type) => {
-        navigate(`${type === "catalog" ? "/catalog" : "/equipment"}?manufacturer=${manufacturerId}`);
-        onClose();
-    };
+    if (!pos) return null;
 
     return createPortal(
         <div
-            ref={dropdownRef}
+            onMouseEnter={onEnter}
+            onMouseLeave={onLeave}
             style={{
                 position: "fixed",
-                top: rect.bottom + 8,
-                left: rect.left,
+                top: pos.top,
+                left: pos.left,
                 zIndex: 9998,
-                minWidth: 320,
-                maxWidth: 480,
-                maxHeight: "60vh",
+                width: 340,
+                maxHeight: "72vh",
                 overflowY: "auto",
             }}
-            className="bg-white rounded-[20px] shadow-xl border border-black/5"
+            className="bg-white rounded-[28px] shadow-2xl border border-black/5 p-3"
         >
             {loading ? (
-                <div className="p-5 text-[14px] text-gray-400">Загрузка...</div>
+                <div className="px-5 py-5 text-[14px] text-gray-400">Загрузка...</div>
+            ) : list.length === 0 ? (
+                <div className="px-5 py-5 text-[14px] text-gray-400">Не найдено</div>
             ) : (
-                <div className="p-4 flex flex-col gap-4">
-                    {equipmentManufacturers.length > 0 && (
-                        <div>
-                            <p className="text-[11px] uppercase font-semibold text-gray-400 mb-2 px-1 tracking-wider">
-                                Шины для спецтехники
-                            </p>
-                            <div className="flex flex-col gap-[5px]">
-                                {equipmentManufacturers.map((m) => (
-                                    <button
-                                        key={`eq-${m.id}`}
-                                        onClick={() => handleSelect(m.id, "equipment")}
-                                        className="h-[52px] rounded-[14px] flex items-center px-4 cursor-pointer bg-[#F5F5F5] hover:bg-[#355094] hover:text-white transition-colors text-left w-full"
-                                    >
-                                        <span className="font-semibold text-[14px] uppercase">{m.name}</span>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                    {catalogManufacturers.length > 0 && (
-                        <div>
-                            <p className="text-[11px] uppercase font-semibold text-gray-400 mb-2 px-1 tracking-wider">
-                                Каталог запчастей
-                            </p>
-                            <div className="flex flex-col gap-[5px]">
-                                {catalogManufacturers.map((m) => (
-                                    <button
-                                        key={`cat-${m.id}`}
-                                        onClick={() => handleSelect(m.id, "catalog")}
-                                        className="h-[52px] rounded-[14px] flex items-center px-4 cursor-pointer bg-[#F5F5F5] hover:bg-[#355094] hover:text-white transition-colors text-left w-full"
-                                    >
-                                        <span className="font-semibold text-[14px] uppercase">{m.name}</span>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                    {catalogManufacturers.length === 0 && equipmentManufacturers.length === 0 && (
-                        <p className="text-[14px] text-gray-400 p-2">Производители не найдены</p>
-                    )}
+                <div className="flex flex-col gap-1">
+                    {list.map((m) => (
+                        <button
+                            key={m.id}
+                            onClick={() => onPick(m.id)}
+                            className="text-left px-6 py-4 rounded-full font-semibold text-[14px] uppercase text-black/80 hover:bg-[#355094] hover:text-white transition-colors w-full"
+                        >
+                            {m.name}
+                        </button>
+                    ))}
                 </div>
             )}
         </div>,
@@ -150,97 +105,129 @@ function ManufacturerDropdown({ anchorRef, onClose }) {
     );
 }
 
-function MobileManufacturerSection({ onClose }) {
+function NavDropdownItem({ item }) {
     const navigate = useNavigate();
-    const [catalogManufacturers, setCatalogManufacturers] = useState([]);
-    const [equipmentManufacturers, setEquipmentManufacturers] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const anchorRef = useRef(null);
+    const closeTimer = useRef(null);
     const [open, setOpen] = useState(false);
 
-    useEffect(() => {
-        const fetchAll = async () => {
-            try {
-                const [catRes, eqRes] = await Promise.all([
-                    fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=spare_parts"),
-                    fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=tires"),
-                ]);
-                const catData = await catRes.json();
-                const eqData = await eqRes.json();
-                setCatalogManufacturers(extractUnique(catData.results));
-                setEquipmentManufacturers(extractUnique(eqData.results));
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchAll();
-    }, []);
+    const handleEnter = () => {
+        if (closeTimer.current) clearTimeout(closeTimer.current);
+        setOpen(true);
+    };
+    const handleLeave = () => {
+        if (closeTimer.current) clearTimeout(closeTimer.current);
+        closeTimer.current = setTimeout(() => setOpen(false), 120);
+    };
 
-    const handleSelect = (manufacturerId, type) => {
-        navigate(`${type === "catalog" ? "/catalog" : "/equipment"}?manufacturer=${manufacturerId}`);
+    useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current); }, []);
+
+    const handlePick = (id) => {
+        navigate(`${item.path}?manufacturer=${id}`);
+        setOpen(false);
+    };
+
+    return (
+        <div
+            ref={anchorRef}
+            onMouseEnter={handleEnter}
+            onMouseLeave={handleLeave}
+            className="shrink-0"
+        >
+            <Link
+                to={item.path}
+                className={`font-normal text-[16px] uppercase whitespace-nowrap transition-all duration-300 flex items-center gap-2 px-[27px] py-[18px] rounded-full ${open ? "bg-[#F5F5F5]" : "hover:bg-[#F5F5F5]"}`}
+            >
+                {item.name}
+                <svg
+                    width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                    className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                >
+                    <polyline points="6 9 12 15 18 9" />
+                </svg>
+            </Link>
+
+            {open && (
+                <HoverDropdown
+                    anchorRef={anchorRef}
+                    type={item.dropdownType}
+                    onEnter={handleEnter}
+                    onLeave={handleLeave}
+                    onPick={handlePick}
+                />
+            )}
+        </div>
+    );
+}
+
+/* ----------------------- MOBILE DROPDOWN ITEM ----------------------- */
+function MobileNavDropdownItem({ item, onClose }) {
+    const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
+    const [list, setList] = useState(manufacturerCache[item.dropdownType] || []);
+    const [loading, setLoading] = useState(false);
+
+    const toggle = () => {
+        const next = !open;
+        setOpen(next);
+        if (next && list.length === 0) {
+            setLoading(true);
+            fetchManufacturers(item.dropdownType)
+                .then((d) => setList(d))
+                .catch((err) => console.error(err))
+                .finally(() => setLoading(false));
+        }
+    };
+
+    const handlePick = (id) => {
+        navigate(`${item.path}?manufacturer=${id}`);
         onClose();
     };
 
     return (
         <div className="px-4">
-            <button
-                onClick={() => setOpen((v) => !v)}
-                className="font-normal text-[14px] uppercase px-5 py-4 rounded-[20px] bg-white w-full flex items-center justify-between"
-            >
-                <span>Производитель</span>
-                <svg
-                    width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                    className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            <div className="flex items-stretch gap-2">
+                <Link
+                    to={item.path}
+                    onClick={onClose}
+                    className="flex-1 font-normal text-[14px] uppercase px-5 py-4 rounded-[20px] bg-white active:bg-[#F5F5F5] transition-colors flex items-center"
                 >
-                    <polyline points="6 9 12 15 18 9" />
-                </svg>
-            </button>
+                    {item.name}
+                </Link>
+                <button
+                    type="button"
+                    onClick={toggle}
+                    aria-label={`${item.name} — производители`}
+                    aria-expanded={open}
+                    className="w-[56px] shrink-0 rounded-[20px] bg-white flex items-center justify-center active:bg-[#F5F5F5] transition-colors"
+                >
+                    <svg
+                        width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                        className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                    >
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+            </div>
 
             {open && (
-                <div className="mt-1 bg-white rounded-[20px] p-3 flex flex-col gap-3 max-h-[50vh] overflow-y-auto">
+                <div className="mt-1 bg-white rounded-[20px] p-3 flex flex-col gap-1 max-h-[50vh] overflow-y-auto">
                     {loading ? (
                         <p className="text-[13px] text-gray-400 px-2 py-2">Загрузка...</p>
+                    ) : list.length === 0 ? (
+                        <p className="text-[13px] text-gray-400 px-2 py-2">Не найдено</p>
                     ) : (
-                        <>
-                            {equipmentManufacturers.length > 0 && (
-                                <div>
-                                    <p className="text-[10px] uppercase font-semibold text-gray-400 mb-1 px-1 tracking-wider">
-                                        Шины для спецтехники
-                                    </p>
-                                    <div className="flex flex-col gap-[4px]">
-                                        {equipmentManufacturers.map((m) => (
-                                            <button
-                                                key={`mob-eq-${m.id}`}
-                                                onClick={() => handleSelect(m.id, "equipment")}
-                                                className="h-[48px] rounded-[12px] flex items-center px-4 cursor-pointer bg-[#F5F5F5] active:bg-[#355094] active:text-white transition-colors text-left w-full"
-                                            >
-                                                <span className="font-semibold text-[13px] uppercase">{m.name}</span>
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                            {catalogManufacturers.length > 0 && (
-                                <div>
-                                    <p className="text-[10px] uppercase font-semibold text-gray-400 mb-1 px-1 tracking-wider">
-                                        Каталог запчастей
-                                    </p>
-                                    <div className="flex flex-col gap-[4px]">
-                                        {catalogManufacturers.map((m) => (
-                                            <button
-                                                key={`mob-cat-${m.id}`}
-                                                onClick={() => handleSelect(m.id, "catalog")}
-                                                className="h-[48px] rounded-[12px] flex items-center px-4 cursor-pointer bg-[#F5F5F5] active:bg-[#355094] active:text-white transition-colors text-left w-full"
-                                            >
-                                                <span className="font-semibold text-[13px] uppercase">{m.name}</span>
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </>
+                        list.map((m) => (
+                            <button
+                                key={`mob-${item.dropdownType}-${m.id}`}
+                                onClick={() => handlePick(m.id)}
+                                className="text-left px-4 py-3 rounded-[14px] font-semibold text-[13px] uppercase text-black/80 bg-[#F5F5F5] active:bg-[#355094] active:text-white transition-colors w-full"
+                            >
+                                {m.name}
+                            </button>
+                        ))
                     )}
                 </div>
             )}
@@ -307,8 +294,8 @@ function MobileMenu({ open, onClose }) {
 
                     <nav className="flex flex-col gap-1 pb-4">
                         {navItems.map((item, index) => {
-                            if (item.hasDropdown) {
-                                return <MobileManufacturerSection key={index} onClose={onClose} />;
+                            if (item.dropdownType) {
+                                return <MobileNavDropdownItem key={index} item={item} onClose={onClose} />;
                             }
                             return (
                                 <div key={`${item.path}-${index}`} className="px-4">
@@ -351,9 +338,7 @@ export default function Navbar() {
     const [active, setActive] = useState(null);
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
-    const [manufacturerDropdownOpen, setManufacturerDropdownOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const manufacturerBtnRef = useRef(null);
     const { cartCount } = useCart();
     const location = useLocation();
 
@@ -373,7 +358,6 @@ export default function Navbar() {
     useEffect(() => {
         setMenuOpen(false);
         setSearchOpen(false);
-        setManufacturerDropdownOpen(false);
     }, [location.pathname]);
 
     useEffect(() => {
@@ -487,27 +471,10 @@ export default function Navbar() {
             <header className="bg-[#ECF0F5]">
                 <div className="max-w-[1436px] mx-auto px-4 sm:px-6 lg:px-0">
                     {/* Desktop nav pills - BU QISM FIXED EMAS, normal scroll qiladi */}
-                    <nav className="hidden lg:flex w-full max-w-[1400px] min-h-[88px] px-7 bg-white rounded-[69px] items-center gap-4 overflow-x-auto relative">
+                    <nav className="hidden lg:flex w-full max-w-[1400px] min-h-[88px] px-7 bg-white rounded-[69px] items-center justify-between gap-4 relative">
                         {navItems.map((item, index) => {
-                            if (item.hasDropdown) {
-                                return (
-                                    <button
-                                        key={index}
-                                        ref={manufacturerBtnRef}
-                                        type="button"
-                                        onClick={() => setManufacturerDropdownOpen((v) => !v)}
-                                        className={`font-normal text-[16px] uppercase whitespace-nowrap transition-all duration-300 shrink-0 flex items-center gap-2 px-[27px] py-[18px] rounded-full ${manufacturerDropdownOpen ? "bg-[#355094] text-white" : "hover:bg-[#F5F5F5]"}`}
-                                    >
-                                        {item.name}
-                                        <svg
-                                            width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                                            className={`transition-transform duration-200 ${manufacturerDropdownOpen ? "rotate-180" : ""}`}
-                                        >
-                                            <polyline points="6 9 12 15 18 9" />
-                                        </svg>
-                                    </button>
-                                );
+                            if (item.dropdownType) {
+                                return <NavDropdownItem key={index} item={item} />;
                             }
                             return (
                                 <Link
@@ -529,13 +496,6 @@ export default function Navbar() {
 
             <MobileMenu open={menuOpen} onClose={closeMenu} />
             <MobileSearchOverlay open={searchOpen} onClose={closeSearch} />
-
-            {manufacturerDropdownOpen && (
-                <ManufacturerDropdown
-                    anchorRef={manufacturerBtnRef}
-                    onClose={() => setManufacturerDropdownOpen(false)}
-                />
-            )}
         </>
     );
 }

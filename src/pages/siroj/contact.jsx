@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import FormPost from "../../components/ui/FormPost";
 import CantactForm from "../../components/ui/cantactform";
 import { useEffect } from "react";
@@ -41,7 +42,7 @@ export default function Contact() {
       </Helmet>
       <div className="max-w-[1436px] m-auto py-10 px-4">
         <div className="flex items-center gap-2 mb-6 text-[12px] sm:text-[14px]">
-          <span className="text-black">Главная</span>
+          <Link to="/" className="text-black hover:text-[#355094] transition-colors">Главная</Link>
           <span className="text-[#999999] text-[10px]">❯</span>
           <span className="text-[#999999]">Контакты</span>
         </div>
