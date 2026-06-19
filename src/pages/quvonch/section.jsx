@@ -17,7 +17,7 @@ export default function Section() {
                 <h2 className="font-semibold text-[32px] sm:text-[50px] md:text-[70px] lg:text-[100px] leading-tight uppercase text-white">
                     О нашей
                 </h2>
-                <p className="font-semibold text-[32px] sm:text-[50px] md:text-[70px] lg:text-[100px] leading-tight uppercase text-white ">
+                <p className="font-semibold text-[32px] sm:text-[50px] md:text-[70px] lg:text-[100px] leading-tight uppercase text-white " style={{ fontFamily: "Tektur, sans-serif" }}>
                     Компании
                 </p>
                 <p className="text-white mt-5 sm:mt-[25px] font-normal text-[14px] sm:text-[16px] lg:text-[17px] leading-[100%] max-w-[1490px] px-2">

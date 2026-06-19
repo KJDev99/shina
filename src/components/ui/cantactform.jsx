@@ -13,9 +13,9 @@ export default function CantactForm() {
             <br className=" md:block" /> и проконсультируем
           </h3>
         </div>
-        <div className="flex justify-center items-center max-md:mt-[100px]">
+        <div className="flex justify-center items-center max-md:mt-[100px] max-md:hidden">
           <img
-            src="/quvonch/Siroj/1780.png"
+            src="/quvonch/Siroj/1781.png"
             alt=""
             className="w-2/3 md:w-auto mt-[-100px] md:ml-[200px]"
           />

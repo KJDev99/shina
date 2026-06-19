@@ -44,6 +44,8 @@ export default function Equipment() {
 
     // Barcha manufacturerlarni bir marta, filtersiz yuklash
     useEffect(() => {
+        // Shinalar bo'limida ko'rsatilmaydigan ishlab chiqaruvchilar
+        const HIDDEN = ["Caterpillar"];
         fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=tires")
             .then((res) => res.json())
             .then((data) => {
@@ -55,7 +57,7 @@ export default function Equipment() {
                         unique.push(p.manufacturer);
                     }
                 });
-                setManufacturers(unique);
+                setManufacturers(unique.filter((m) => !HIDDEN.includes(m.name)));
             })
             .catch((err) => console.error(err));
     }, []);
@@ -191,7 +193,7 @@ export default function Equipment() {
                     </div>
 
                     {/* Narx filtri */}
-                    <div className="w-full bg-[#FFFFFF] p-[18px] rounded-[25px]">
+                    <div className="w-full bg-[#FFFFFF] p-[18px] rounded-[25px] hidden">
                         <h2 className="font-semibold text-[16px] mb-[11px] leading-none tracking-normal uppercase">
                             Фильтры
                         </h2>
@@ -245,7 +247,7 @@ export default function Equipment() {
                     </div>
 
                     {/* Tugmalar */}
-                    <div className="flex gap-[10px]">
+                    <div className="flex gap-[10px] hidden">
                         <button
                             onClick={handleApply}
                             className="flex-1 bg-[#355094] text-white border-none rounded-[25px] h-[80px] md:h-[96px] font-bold text-[14px] cursor-pointer active:scale-95 transition-transform hover:bg-[#2a4180]"

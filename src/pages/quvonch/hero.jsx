@@ -99,15 +99,16 @@ export default function Hero() {
                                     <h1 className="font-semibold text-[36px] sm:text-[44px] lg:text-[50px] leading-tight sm:leading-[60px] lg:leading-[70px] uppercase max-sm:line-clamp-3 mobile-title">
                                         {banner.title}
                                     </h1>
-                                    <p className="text-[#00000066] font-normal text-[14px] sm:text-[16px] lg:text-[17px] mt-2 sm:mt-[10px] leading-snug line-clamp-4 max-md:h-[100px] sm:line-clamp-none mobile-description">
+                                    <p className="text-[#00000066] font-normal text-[14px] sm:text-[16px] lg:text-[17px] mt-2 sm:mt-[10px] leading-snug line-clamp-4 max-md:h-[100px] sm:line-clamp-none mobile-description" style={{ fontFamily: "Onest, sans-serif" }}>
                                         {banner.description}
                                     </p>
                                     <button
                                         onClick={() => setOpen(true)}
-                                        className="w-full sm:w-[228px] h-[64px] sm:h-[80px] lg:h-[96px] mt-5 sm:mt-[30px] font-medium text-[14px] text-white rounded-[20px] sm:rounded-[25px] cursor-pointer mobile-button"
+                                        className="w-full sm:w-[228px] h-[64px] sm:h-[80px] lg:h-[96px] mt-5 sm:mt-[30px] font-medium text-[14px] text-white rounded-[20px] sm:rounded-[25px] cursor-pointer mobile-button uppercase"
                                         style={{
                                             background: 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)',
                                             transition: 'background 0.3s ease',
+                                            fontFamily: "Onest, sans-serif"
                                         }}
                                         onMouseEnter={e => e.currentTarget.style.background = 'linear-gradient(180deg, #151515 0%, #676767 100%)'}
                                         onMouseLeave={e => e.currentTarget.style.background = 'linear-gradient(180deg, #355094 0%, #5A80C7 100%)'}
@@ -152,7 +153,7 @@ export default function Hero() {
             </div>
 
             <div className="overflow-hidden mt-6 sm:mt-11 mb-6 sm:mb-11">
-                <div className="flex animate-marquee min-w-max gap-6 sm:gap-10">
+                <div className="flex animate-marquee min-w-max gap-6 sm:gap-10 hidden">
                     {Array(8)
                         .fill("При заказе от 30 000 руб БЕСПЛАТНАЯ доставка по г. Санкт-Петербург!")
                         .map((text, index) => (

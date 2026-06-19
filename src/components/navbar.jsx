@@ -30,6 +30,11 @@ const extractUnique = (results) => {
     return unique;
 };
 
+// Ba'zi bo'limlarda ko'rsatilmaydigan ishlab chiqaruvchilar (faqat shu type uchun)
+const HIDDEN_MANUFACTURERS_BY_TYPE = {
+    tires: ["Caterpillar"],
+};
+
 // Manufacturerlarni type bo'yicha bir marta yuklab keshlaymiz
 const manufacturerCache = {};
 async function fetchManufacturers(type) {
@@ -47,6 +52,8 @@ async function fetchManufacturers(type) {
         const data = await res.json();
         unique = extractUnique(data.results);
     }
+    const hidden = HIDDEN_MANUFACTURERS_BY_TYPE[type] || [];
+    if (hidden.length) unique = unique.filter((m) => !hidden.includes(m.name));
     manufacturerCache[type] = unique;
     return unique;
 }
@@ -351,6 +358,29 @@ function MobileMenu({ open, onClose }) {
     );
 }
 
+// Telegram havolasi telefon raqamidan quriladi, MAX havolasi esa har bir blok uchun aniq beriladi.
+const tgLink = (phoneRaw) => `https://t.me/+${phoneRaw}`;
+
+function ContactBlock({ label, phoneDisplay, phoneRaw, email, maxUrl }) {
+    return (
+        <div className="flex items-center gap-[15px]">
+            <div className="flex items-center gap-[10px] shrink-0">
+                <a href={tgLink(phoneRaw)} target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                    <img src="/quvonch/icon/tg.png" alt="Telegram" className="w-[28px] h-[24px] object-contain cursor-pointer" />
+                </a>
+                <a href={maxUrl} target="_blank" rel="noopener noreferrer" aria-label="MAX">
+                    <img src="/quvonch/icon/icon1.png" alt="MAX" className="w-[22px] h-[22px] object-contain cursor-pointer" />
+                </a>
+            </div>
+            <div className="flex flex-col gap-[5px]">
+                <p className="font-normal text-[14px] text-gray-500 whitespace-nowrap">{label}</p>
+                <a href={`tel:+${phoneRaw}`} className="font-semibold text-[18px] whitespace-nowrap hover:text-[#355094] transition-colors">{phoneDisplay}</a>
+                <a href={`mailto:${email}`} className="font-normal text-[14px] text-gray-500 whitespace-nowrap hover:text-[#355094] transition-colors">{email}</a>
+            </div>
+        </div>
+    );
+}
+
 export default function Navbar() {
     const [active, setActive] = useState(null);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -448,21 +478,22 @@ export default function Navbar() {
 
                         <NavbarSearchDesktop />
 
-                        <div className="flex items-center gap-5 shrink-0">
-                            <img className="w-[35px] h-[30px] cursor-pointer" src="/quvonch/icon/tg.png" alt="Telegram" />
-                            <img className="w-[30px] h-[30px] cursor-pointer" src="/quvonch/icon/icon1.png" alt="" />
-                        </div>
-
-                        <div className="flex items-center shrink-0">
-                            <span className="flex flex-col items-end gap-[6px] mr-[25px]">
-                                <p className="font-normal text-[14px] text-gray-500">Номер менеджера</p>
-                                <a href="tel:+79219057021" className="font-semibold text-[18px] whitespace-nowrap">+7 (921) 905-70-21</a>
-                            </span>
+                        <div className="flex items-center gap-[25px] shrink-0">
+                            <ContactBlock
+                                label="Номер менеджера"
+                                phoneDisplay="+7 (921) 905-70-21"
+                                phoneRaw="79219057021"
+                                email="info@maksan-group.ru"
+                                maxUrl="https://max.ru/u/f9LHodD0cOJ4erYW8Q4KRK1pyz3ew3Nr5xQ0wGKsJG-rClhgV-fYvhQ0UGY"
+                            />
                             <div className="h-[38px] bg-gray-300 w-[2px]" />
-                            <span className="flex flex-col items-end gap-[6px] ml-[25px]">
-                                <p className="font-normal text-[14px] text-gray-500">Продажа шин</p>
-                                <a href="tel:+79213065125" className="font-semibold text-[18px] whitespace-nowrap">+7 (921) 306-51-25</a>
-                            </span>
+                            <ContactBlock
+                                label="Продажа шин для спецтехники"
+                                phoneDisplay="+7 (921) 306-51-25"
+                                phoneRaw="79213065125"
+                                email="andrey.ivanov@maksan-group.ru"
+                                maxUrl="https://max.ru/u/f9LHodD0cOJywXG1d5TTd30sFljJdngBGgSQkoWiBokjYw0y1aBekHNqbBM"
+                            />
                         </div>
 
                         <Link

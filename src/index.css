@@ -1,8 +1,14 @@
 @import 'tailwindcss';
 
 body {
-    font-family: "Tektur", sans-serif;
+    font-family: "Onest", sans-serif;
     background-color: #ECF0F5;
+}
+
+/* Figma: sarlavhalar va navigatsiya Tektur, qolgan oddiy matn Onest */
+h1, h2, h3, h4, h5, h6,
+nav {
+    font-family: "Tektur", sans-serif;
 }
 
 @keyframes marquee {

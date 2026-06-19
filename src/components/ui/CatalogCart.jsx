@@ -70,7 +70,7 @@ export default function CatalogCart({ item }) {
                     <img src={item?.thumbnail} alt={item?.name} loading="lazy" decoding="async" width="332" height="257" className="w-full h-full object-cover" />
                 </div>
                 <div className="px-1 sm:px-[14px] flex flex-col pb-2 sm:pb-0">
-                    <h2 className="text-[#11111166] font-medium text-[12px] sm:text-[14px] mt-2 sm:mt-[10px]">
+                    <h2 className="text-[#11111166] font-medium text-[12px] sm:text-[14px] mt-2 sm:mt-[10px]" style={{ fontFamily: "Onest, sans-serif" }}>
                         {item?.manufacturer?.name}
                     </h2>
                     <h2 className="font-semibold text-[16px] sm:text-[22px] uppercase mt-1 sm:mt-2 min-h-[40px] sm:h-[64px] line-clamp-2">
@@ -78,7 +78,7 @@ export default function CatalogCart({ item }) {
                     </h2>
                     <div className="flex items-center justify-between mt-4 sm:mt-[35px] gap-2">
                         <span className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-[10px] min-w-0">
-                            {price.slice(0, 1) == 0 ? 'Цена по запросу' : <> <h2 className="text-[18px] sm:text-[22px] font-semibold">{price}</h2>
+                            {price.slice(0, 1) == 0 ? 'Цена по запросу' : <> <h2 className="text-[18px] sm:text-[22px] font-semibold" style={{ fontFamily: "Onest, sans-serif" }}>{price}</h2>
                                 <p className="text-[12px] sm:text-[14px] text-[#11111166]">Цена с НДС</p></>}
 
                         </span>
