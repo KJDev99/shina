@@ -3,6 +3,7 @@ import { FaTelegramPlane } from "react-icons/fa";
 
 const pages = [
     { label: "Шины для спецтехники", path: "/equipment" },
+    { label: "Двигатели", path: "/engines" },
     { label: "Контакты", path: "/contact" },
     { label: "Официальный дилер WOLF", path: "/manufacturer/1" },
     { label: "Новости", path: "/news" },

@@ -12,6 +12,7 @@ const navItems = [
     { name: "О нас", path: "/about" },
     { name: "Шины для спецтехники", path: "/equipment", dropdownType: "tires" },
     { name: "Каталог", path: "/catalog", dropdownType: "spare_parts" },
+    { name: "Двигатели", path: "/engines", dropdownType: "engines" },
     { name: "Новости", path: "/news" },
     { name: "Контакты", path: "/contact" },
     { name: "Официальный дилер WOLF", path: "/manufacturer/1" },
@@ -33,11 +34,19 @@ const extractUnique = (results) => {
 const manufacturerCache = {};
 async function fetchManufacturers(type) {
     if (manufacturerCache[type]) return manufacturerCache[type];
-    const res = await fetch(
-        `https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=${type}`
-    );
-    const data = await res.json();
-    const unique = extractUnique(data.results);
+    let unique;
+    if (type === "engines") {
+        // Dvigatel ishlab chiqaruvchilari alohida endpointdan keladi (slug bilan)
+        const res = await fetch("https://adent-admin.migfastkg.ru/api/v1/engines/manufacturers/");
+        const data = await res.json();
+        unique = (Array.isArray(data) ? data : []).map((m) => ({ id: m.id, name: m.name, slug: m.slug }));
+    } else {
+        const res = await fetch(
+            `https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=${type}`
+        );
+        const data = await res.json();
+        unique = extractUnique(data.results);
+    }
     manufacturerCache[type] = unique;
     return unique;
 }
@@ -92,7 +101,7 @@ function HoverDropdown({ anchorRef, type, onEnter, onLeave, onPick }) {
                     {list.map((m) => (
                         <button
                             key={m.id}
-                            onClick={() => onPick(m.id)}
+                            onClick={() => onPick(m)}
                             className="text-left px-6 py-4 rounded-full font-semibold text-[14px] uppercase text-black/80 hover:bg-[#355094] hover:text-white transition-colors w-full"
                         >
                             {m.name}
@@ -122,8 +131,12 @@ function NavDropdownItem({ item }) {
 
     useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current); }, []);
 
-    const handlePick = (id) => {
-        navigate(`${item.path}?manufacturer=${id}`);
+    const handlePick = (m) => {
+        if (item.dropdownType === "engines") {
+            navigate(`/engines/${m.slug}`);
+        } else {
+            navigate(`${item.path}?manufacturer=${m.id}`);
+        }
         setOpen(false);
     };
 
@@ -180,8 +193,12 @@ function MobileNavDropdownItem({ item, onClose }) {
         }
     };
 
-    const handlePick = (id) => {
-        navigate(`${item.path}?manufacturer=${id}`);
+    const handlePick = (m) => {
+        if (item.dropdownType === "engines") {
+            navigate(`/engines/${m.slug}`);
+        } else {
+            navigate(`${item.path}?manufacturer=${m.id}`);
+        }
         onClose();
     };
 
@@ -222,7 +239,7 @@ function MobileNavDropdownItem({ item, onClose }) {
                         list.map((m) => (
                             <button
                                 key={`mob-${item.dropdownType}-${m.id}`}
-                                onClick={() => handlePick(m.id)}
+                                onClick={() => handlePick(m)}
                                 className="text-left px-4 py-3 rounded-[14px] font-semibold text-[13px] uppercase text-black/80 bg-[#F5F5F5] active:bg-[#355094] active:text-white transition-colors w-full"
                             >
                                 {m.name}

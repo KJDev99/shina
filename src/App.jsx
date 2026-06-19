@@ -12,6 +12,8 @@ import NewsDetail from "./pages/siroj/news-detail";
 import Contact from "./pages/siroj/contact";
 import Diller from "./pages/siroj/diller";
 import Equipment from "./pages/sarvar/equipment";
+import Engines from "./pages/sarvar/engines";
+import EnginesManufacturer from "./pages/sarvar/engines-manufacturer";
 import AOSInit from "./components/AOSInit";
 
 
@@ -28,6 +30,8 @@ export default function App() {
         <Route path="/basket" element={<Basket />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/equipment" element={<Equipment />} />
+        <Route path="/engines" element={<Engines />} />
+        <Route path="/engines/:slug" element={<EnginesManufacturer />} />
         <Route path="/catalog/:id" element={<CatalogDetail />} />
         <Route path="/news" element={<News />} />
         <Route path="/news/:id" element={<NewsDetail />} />
