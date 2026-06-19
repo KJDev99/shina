@@ -75,12 +75,12 @@ export default function EnginesManufacturer() {
             </Helmet>
 
             {/* Breadcrumb */}
-            <div className="mt-[30px] md:mt-[50px] max-w-[1436px] mx-auto max-md:px-4">
+            <div className="mt-[30px] max-w-[1436px] mx-auto max-md:px-4">
                 <Badge text={title} />
             </div>
 
             {/* H1 */}
-            <div className="max-w-[1436px] m-auto px-4 md:px-0 mt-5">
+            <div className="max-w-[1436px] m-auto px-4 md:px-0 mt-0">
                 <h1 className="font-semibold text-[34px] sm:text-[56px] md:text-[60px] leading-[1.05] uppercase text-[#111111]">
                     {title}
                 </h1>
@@ -88,7 +88,7 @@ export default function EnginesManufacturer() {
 
             {/* Hero banner */}
             {m.hero_image && (
-                <div className="max-w-[1436px] m-auto px-4 md:px-0 mt-6 md:mt-[30px]">
+                <div className="max-w-[1436px] m-auto px-4 md:px-0 mt-4 md:mt-[20px]">
                     <img
                         src={fixUrl(m.hero_image)}
                         alt={m.name}
@@ -101,7 +101,7 @@ export default function EnginesManufacturer() {
 
             {/* Description */}
             {m.description && (
-                <div className="max-w-[1436px] m-auto px-4 md:px-0 mt-6 md:mt-[30px]">
+                <div className="max-w-[1436px] m-auto px-4 md:px-0 mt-4 md:mt-[20px]">
                     <p className="font-normal text-[15px] md:text-[18px] leading-[1.4] text-[#111111] whitespace-pre-line">
                         {m.description}
                     </p>

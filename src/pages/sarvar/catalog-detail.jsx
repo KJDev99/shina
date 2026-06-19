@@ -315,8 +315,14 @@ export default function CatalogDetail() {
         {product.name}
       </h1>
       <p className="text-sm text-gray-400 mb-4">Артикул: {product.artikul}</p>
-      <p className="text-[32px] font-bold text-black mb-1">{price}</p>
-      <p className="text-sm text-gray-400 mb-6">Цена с НДС</p>
+      {price.slice(0, 1) == 0
+        ? 'Цена по запросу' :
+        <>
+          <p className="text-[32px] font-bold text-black mb-1">{price}</p>
+          <p className="text-sm text-gray-400 mb-6">Цена с НДС</p>
+        </>
+      }
+
       <hr className="border-gray-200 mb-5" />
       <p className="text-sm text-black mb-3">Количество</p>
       <div className="flex items-center border border-gray-200 rounded-lg w-fit overflow-hidden mb-5">

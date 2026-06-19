@@ -152,10 +152,13 @@ export default function Basket() {
 
                   <div className="flex items-center gap-[40px] max-md:justify-between max-md:w-full">
                     <div className="text-right">
-                      <p className="text-[22px] font-bold text-[#1A1A1A] max-md:text-[18px]">
-                        {(Number(item.price) * item.quantity).toLocaleString("ru-RU")}₽
-                      </p>
-                      <p className="text-[15px] font-medium text-[#11111166]">Цена с НДС</p>
+                      {(Number(item.price) * item.quantity).toLocaleString("ru-RU") == 0
+                        ? 'Цена по запросу'
+                        : <> <p className="text-[22px] font-bold text-[#1A1A1A] max-md:text-[18px]">
+                          {(Number(item.price) * item.quantity).toLocaleString("ru-RU")}₽
+                        </p>
+                          <p className="text-[15px] font-medium text-[#11111166]">Цена с НДС</p></>}
+
                     </div>
                     <button
                       onClick={() => removeFromCart(item.id)}
