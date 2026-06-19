@@ -81,7 +81,7 @@ export default function EnginesManufacturer() {
 
             {/* H1 */}
             <div className="max-w-[1436px] m-auto px-4 md:px-0 mt-5">
-                <h1 className="font-semibold text-[34px] sm:text-[56px] md:text-[85px] leading-[1.05] uppercase text-[#111111]">
+                <h1 className="font-semibold text-[34px] sm:text-[56px] md:text-[60px] leading-[1.05] uppercase text-[#111111]">
                     {title}
                 </h1>
             </div>
@@ -120,7 +120,7 @@ export default function EnginesManufacturer() {
                         {features.map((f) => (
                             <div
                                 key={f.id}
-                                className="bg-white rounded-[15px] p-[22px] md:py-[37px] md:px-[22px] flex flex-col md:min-h-[559px]"
+                                className="bg-white rounded-[15px] p-[22px] md:py-[37px] md:px-[22px] flex flex-col md:max-h-[559px]"
                             >
                                 {f.icon && (
                                     <img src={fixUrl(f.icon)} alt="" className="w-12 h-12 mb-4 object-contain" />

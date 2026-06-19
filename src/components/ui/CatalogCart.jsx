@@ -78,8 +78,9 @@ export default function CatalogCart({ item }) {
                     </h2>
                     <div className="flex items-center justify-between mt-4 sm:mt-[35px] gap-2">
                         <span className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-[10px] min-w-0">
-                            <h2 className="text-[18px] sm:text-[22px] font-semibold">{price}</h2>
-                            <p className="text-[12px] sm:text-[14px] text-[#11111166]">Цена с НДС</p>
+                            {price.slice(0, 1) == 0 ? 'Цена по запросу' : <> <h2 className="text-[18px] sm:text-[22px] font-semibold">{price}</h2>
+                                <p className="text-[12px] sm:text-[14px] text-[#11111166]">Цена с НДС</p></>}
+
                         </span>
                         <button
                             onClick={handleAddToCart}
