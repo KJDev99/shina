@@ -54,7 +54,7 @@ export default function Contact() {
         </div>
 
         {/* Адрес */}
-        <div className="flex flex-col sm:flex-row gap-[11px]">
+        <div className="flex flex-col sm:flex-row gap-[11px]" style={{ fontFamily: "Onest, sans-serif" }}>
           <a
             data-aos="fade-up" data-aos-delay={150}
             href="https://yandex.ru/maps/?text=Санкт-Петербург+Невский+проспект+30"
@@ -135,10 +135,10 @@ export default function Contact() {
                       className="w-[28px] h-[22px] sm:w-[36px] sm:h-[28px] object-contain hover:opacity-70 transition-opacity cursor-pointer"
                     />
                   </a>
-                  <a href="https://wa.me/79219057021" target="_blank" rel="noopener noreferrer">
+                  <a href="https://max.ru/u/f9LHodD0cOJ4erYW8Q4KRK1pyz3ew3Nr5xQ0wGKsJG-rClhgV-fYvhQ0UGY" target="_blank" rel="noopener noreferrer">
                     <img
                       src="/quvonch/Siroj/icon2.png"
-                      alt="whatsapp"
+                      alt="MAX"
                       className="w-[28px] h-[22px] sm:w-[36px] sm:h-[28px] object-contain hover:opacity-70 transition-opacity cursor-pointer"
                     />
                   </a>
@@ -165,10 +165,10 @@ export default function Contact() {
                       className="w-[28px] h-[22px] sm:w-[36px] sm:h-[28px] object-contain hover:opacity-70 transition-opacity cursor-pointer"
                     />
                   </a>
-                  <a href="https://wa.me/79213065125" target="_blank" rel="noopener noreferrer">
+                  <a href="https://max.ru/u/f9LHodD0cOJywXG1d5TTd30sFljJdngBGgSQkoWiBokjYw0y1aBekHNqbBM" target="_blank" rel="noopener noreferrer">
                     <img
                       src="/quvonch/Siroj/icon2.png"
-                      alt="whatsapp"
+                      alt="MAX"
                       className="w-[28px] h-[22px] sm:w-[36px] sm:h-[28px] object-contain hover:opacity-70 transition-opacity cursor-pointer"
                     />
                   </a>
