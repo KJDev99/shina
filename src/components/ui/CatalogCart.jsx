@@ -76,7 +76,12 @@ export default function CatalogCart({ item }) {
                     <h2 className="font-semibold text-[16px] sm:text-[22px] uppercase mt-1 sm:mt-2 min-h-[40px] sm:h-[64px] line-clamp-2">
                         {item?.name}
                     </h2>
-                    <div className="flex items-center justify-between mt-4 sm:mt-[35px] gap-2">
+                    {item?.artikul && (
+                        <p className="text-[#11111166] text-[12px] sm:text-[14px] mt-0" style={{ fontFamily: "Onest, sans-serif" }}>
+                            Артикул: {item.artikul}
+                        </p>
+                    )}
+                    <div className="flex items-center justify-between mt-3 sm:mt-4 gap-2">
                         <span className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-[10px] min-w-0">
                             {price.slice(0, 1) == 0 ? 'Цена по запросу' : <> <h2 className="text-[18px] sm:text-[22px] font-semibold" style={{ fontFamily: "Onest, sans-serif" }}>{price}</h2>
                                 <p className="text-[12px] sm:text-[14px] text-[#11111166]">Цена с НДС</p></>}

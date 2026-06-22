@@ -13,16 +13,19 @@ export default function Contact() {
     script.onload = () => {
       window.ymaps.ready(() => {
         const map = new window.ymaps.Map("yandex-map", {
-          center: [59.934216, 30.327122],
+          center: [59.935543, 30.327349],
           zoom: 16,
         });
         const placemark = new window.ymaps.Placemark(
-          [59.934216, 30.327122],
+          [59.935543, 30.327349],
           {
-            balloonContent: "г. Санкт-Петербург, Невский проспект, д. 30",
+            iconCaption: "Максан групп",
+            hintContent: "Максан групп — Невский проспект, д. 30",
+            balloonContentHeader: "Максан групп",
+            balloonContent: "Шины и запчасти для спецтехники.<br/>г. Санкт-Петербург, Невский проспект, д. 30",
           },
           {
-            preset: "islands#blueDotIcon",
+            preset: "islands#blueStretchyIcon",
           }
         );
         map.geoObjects.add(placemark);
