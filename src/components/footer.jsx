@@ -8,13 +8,13 @@ const pages = [
     { label: "Контакты", path: "/contact" },
     { label: "Официальный дилер WOLF", path: "/manufacturer/1" },
     { label: "Новости", path: "/news" },
-    { label: "Каталог", path: "/catalog" },
+    { label: "Запчасти", path: "/catalog" },
     { label: "О нас", path: "/about" },
 ];
 
 const contacts = [
-    { label: "Номер менеджера", phoneDisplay: "+7 (921) 905-70-21", phoneRaw: "79219057021" },
-    { label: "Продажа шин для спецтехники", phoneDisplay: "+7 (921) 306-51-25", phoneRaw: "79213065125" },
+    { label: "Запчасти для спецтехники", phoneDisplay: "+7 (921) 905-70-21", phoneRaw: "79219057021" },
+    { label: "Шины для спецтехники", phoneDisplay: "+7 (921) 306-51-25", phoneRaw: "79213065125" },
 ];
 
 const EMAIL = "info@maksan-group.ru";

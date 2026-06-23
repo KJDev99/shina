@@ -11,7 +11,7 @@ import MobileSearchOverlay from "./MobileSearchOverlay";
 const navItems = [
     { name: "О нас", path: "/about" },
     { name: "Шины для спецтехники", path: "/equipment", dropdownType: "tires" },
-    { name: "Каталог", path: "/catalog", dropdownType: "spare_parts" },
+    { name: "Запчасти", path: "/catalog", dropdownType: "spare_parts" },
     { name: "Двигатели", path: "/engines", dropdownType: "engines" },
     { name: "Новости", path: "/news" },
     { name: "Контакты", path: "/contact" },
@@ -338,7 +338,7 @@ function MobileMenu({ open, onClose }) {
                     <div className="p-4 pt-0 space-y-4 border-t border-black/5">
                         <div className="bg-white rounded-[20px] p-4 space-y-3">
                             <div>
-                                <p className="text-[12px] text-gray-500">Номер менеджера</p>
+                                <p className="text-[12px] text-gray-500">Запчасти для спецтехники</p>
                                 <a href="tel:+79219057021" className="font-semibold text-[16px]">+7 (921) 905-70-21</a>
                             </div>
                             <div>
@@ -480,7 +480,7 @@ export default function Navbar() {
 
                         <div className="flex items-center gap-[25px] shrink-0">
                             <ContactBlock
-                                label="Номер менеджера"
+                                label="Запчасти для спецтехники"
                                 phoneDisplay="+7 (921) 905-70-21"
                                 phoneRaw="79219057021"
                                 email="info@maksan-group.ru"
@@ -488,7 +488,7 @@ export default function Navbar() {
                             />
                             <div className="h-[38px] bg-gray-300 w-[2px]" />
                             <ContactBlock
-                                label="Продажа шин для спецтехники"
+                                label="Шины для спецтехники"
                                 phoneDisplay="+7 (921) 306-51-25"
                                 phoneRaw="79213065125"
                                 email="andrey.ivanov@maksan-group.ru"
