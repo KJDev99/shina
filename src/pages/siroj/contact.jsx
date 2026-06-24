@@ -211,7 +211,7 @@ export default function Contact() {
                 </p>
                 <a
                   href="mailto:info@maksan-group.ru"
-                  className="text-lg sm:text-2xl font-semibold text-black underline underline-offset-4 break-all hover:text-[#355094] transition-colors"
+                  className="text-lg sm:text-2xl font-semibold text-black break-all hover:text-[#355094] transition-colors"
                 >
                   info@maksan-group.ru
                 </a>
@@ -221,7 +221,7 @@ export default function Contact() {
                 <p className="text-[#999999] text-xs sm:text-sm mb-1">Шины:</p>
                 <a
                   href="mailto:andrey.ivanov@maksan-group.ru"
-                  className="text-lg sm:text-2xl font-semibold text-black underline underline-offset-4 break-all hover:text-[#355094] transition-colors"
+                  className="text-lg sm:text-2xl font-semibold text-black break-all hover:text-[#355094] transition-colors"
                 >
                   andrey.ivanov@maksan-group.ru
                 </a>
