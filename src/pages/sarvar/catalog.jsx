@@ -143,7 +143,7 @@ export default function Catalog() {
     <div className="min-h-screen">
       <Helmet>
         <title>Каталог запчастей для спецтехники в СПБ – МАКСАН ГРУПП</title>
-        <meta name="description" content="Каталог запчастей, агрегатов, шин и комплектующих для спецтехники в Санкт-Петербурге. Caterpillar, Atlas Copco, Epiroc, Cummins и другие бренды." />
+        <meta name="description" content="Исследуйте каталог ООО «МАКСАН ГРУПП» с оборудованием и запчастями ведущих брендов горно-шахтного направления. Для заявок звоните: +7 (999) 035-27-17." />
       </Helmet>
       <div className="mt-[30px] md:mt-[50px] max-w-[1436px] mx-auto max-md:px-4">
         <Badge text={"Каталог запчастей"} />

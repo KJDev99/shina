@@ -144,7 +144,7 @@ export default function Equipment() {
         <div className="min-h-screen">
             <Helmet>
                 <title>Шины для спецтехники в СПБ – МАКСАН ГРУПП</title>
-                <meta name="description" content="Шины для спецтехники, погрузчиков, карьерной и строительной техники в Санкт-Петербурге. Подбор по размеру, назначению и условиям эксплуатации." />
+                <meta name="description" content="Поставка шин, запасных частей, агрегатов, Санкт-Петербург, Невский проспект д. 30 офис 5.4" />
             </Helmet>
             <div className="mt-[30px] md:mt-[50px] max-w-[1436px] mx-auto max-md:px-4">
                 <Badge text={"Шины для спецтехники"} />

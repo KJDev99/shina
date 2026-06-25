@@ -32,7 +32,7 @@ export default function News() {
     <div className="max-w-[1436px] mx-auto py-6 md:py-10 px-4">
       <Helmet>
         <title>Новости МАКСАН ГРУПП – спецтехника и запчасти в СПБ</title>
-        <meta name="description" content="Новости компании, обзоры запчастей, шин и решений для спецтехники. Полезная информация для владельцев и сервисов промышленной техники в СПБ." />
+        <meta name="description" content="Узнавайте последние новости и обновления ООО «МАКСАН ГРУПП» о поставках оборудования и запчастей. Свяжитесь с нами: +7 (999) 035-27-17. Будьте в курсе!" />
       </Helmet>
       <div className="flex items-center gap-2 mb-6 text-[12px] sm:text-[14px]">
         <Link to="/" className="text-black hover:text-[#355094] transition-colors">

@@ -23,7 +23,7 @@ export default function Diller() {
     <div className="max-w-[1436px] m-auto py-10 px-4">
       <Helmet>
         <title>Официальный дилер WOLF в СПБ – МАКСАН ГРУПП</title>
-        <meta name="description" content="МАКСАН ГРУПП – официальный дилер WOLF в Санкт-Петербурге. Поставка продукции WOLF для техники и оборудования, консультация по подбору и заказу." />
+        <meta name="description" content="Поставка оборудования, запасных частей, агрегатов, Санкт-Петербург, Невский проспект д. 30 офис 5.4" />
       </Helmet>
       <div className="flex items-center gap-2 mb-6 text-[12px] sm:text-[14px]">
         <Link to="/" className="text-black hover:text-[#355094] transition-colors">Главная</Link>

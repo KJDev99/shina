@@ -41,7 +41,7 @@ export default function Contact() {
     <div className="bg-[#E9EEF4] min-h-screen font-sans">
       <Helmet>
         <title>Контакты МАКСАН ГРУПП в Санкт-Петербурге</title>
-        <meta name="description" content="Свяжитесь с МАКСАН ГРУПП в Санкт-Петербурге для подбора запчастей, агрегатов и шин для спецтехники. Консультация по срокам и стоимости." />
+        <meta name="description" content="Свяжитесь с ООО «МАКСАН ГРУПП» для решения вопросов поставок оборудования и запчастей. Мы всегда на связи: +7 (999) 035-27-17. Ждем ваших обращений!" />
       </Helmet>
       <div className="max-w-[1436px] m-auto py-10 px-4">
         <div className="flex items-center gap-2 mb-6 text-[12px] sm:text-[14px]">
