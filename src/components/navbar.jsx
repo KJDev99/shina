@@ -15,7 +15,7 @@ const navItems = [
     { name: "Двигатели", path: "/engines", dropdownType: "engines" },
     { name: "Новости", path: "/news" },
     { name: "Контакты", path: "/contact" },
-    { name: "Официальный дилер WOLF", path: "/manufacturer/1" },
+    { name: "Официальный дилер WOLF", path: "/official-wolf-dealer" },
 ];
 
 const extractUnique = (results) => {

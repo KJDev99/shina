@@ -6,7 +6,7 @@ const pages = [
     { label: "Шины для спецтехники", path: "/equipment" },
     { label: "Двигатели", path: "/engines" },
     { label: "Контакты", path: "/contact" },
-    { label: "Официальный дилер WOLF", path: "/manufacturer/1" },
+    { label: "Официальный дилер WOLF", path: "/official-wolf-dealer" },
     { label: "Новости", path: "/news" },
     { label: "Запчасти", path: "/catalog" },
     { label: "О нас", path: "/about" },

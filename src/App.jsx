@@ -15,6 +15,7 @@ import Equipment from "./pages/sarvar/equipment";
 import Engines from "./pages/sarvar/engines";
 import EnginesManufacturer from "./pages/sarvar/engines-manufacturer";
 import AOSInit from "./components/AOSInit";
+import Officialdealer from "./pages/siroj/officialdealer";
 
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/news/:id" element={<NewsDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/manufacturer/:id" element={<Diller />} />
+        <Route path="/official-wolf-dealer" element={<Officialdealer />} />
       </Routes>
 
       <Footer />
