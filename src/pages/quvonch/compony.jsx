@@ -13,7 +13,7 @@ export default function Compony() {
     const [news, setNews] = useState([]);
 
     useEffect(() => {
-        fetch("https://adent-admin.migfastkg.ru/api/v1/news/?page=1&page_size=10")
+        fetch("https://admin.maksan-group.ru/api/v1/news/?page=1&page_size=10")
             .then((res) => res.json())
             .then((data) => setNews(data.results || []))
             .catch((err) => console.error(err));

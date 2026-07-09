@@ -37,7 +37,7 @@ export default function Equipment() {
 
     // Sidebar news
     useEffect(() => {
-        fetch("https://adent-admin.migfastkg.ru/api/v1/news/?page=1&page_size=4")
+        fetch("https://admin.maksan-group.ru/api/v1/news/?page=1&page_size=4")
             .then((res) => res.json())
             .then((data) => setSidebarNews(data.results || []));
     }, []);
@@ -46,7 +46,7 @@ export default function Equipment() {
     useEffect(() => {
         // Shinalar bo'limida ko'rsatilmaydigan ishlab chiqaruvchilar
         const HIDDEN = ["Caterpillar"];
-        fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=tires")
+        fetch("https://admin.maksan-group.ru/api/v1/products/?page=1&page_size=1000&type=tires")
             .then((res) => res.json())
             .then((data) => {
                 const unique = [];
@@ -71,7 +71,7 @@ export default function Equipment() {
         if (appliedMax) params.set("max_price", appliedMax);
         if (orderPrice) params.set("order_price", orderPrice);
 
-        fetch(`https://adent-admin.migfastkg.ru/api/v1/products/?${params}&type=tires`)
+        fetch(`https://admin.maksan-group.ru/api/v1/products/?${params}&type=tires`)
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data.results || []);

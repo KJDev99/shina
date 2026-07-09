@@ -5,7 +5,7 @@ import Badge from "../../components/ui/Badge";
 import CatalogCart from "../../components/ui/CatalogCart";
 import CantactForm from "../../components/ui/cantactform";
 
-const API = "https://adent-admin.migfastkg.ru/api/v1";
+const API = "https://admin.maksan-group.ru/api/v1";
 const PAGE_SIZE = 12;
 
 // Backend media URL'lari http:// bilan kelishi mumkin -> https saytda mixed-content bo'lmasligi uchun

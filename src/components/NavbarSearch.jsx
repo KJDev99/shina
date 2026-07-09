@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 
-const API = "https://adent-admin.migfastkg.ru/api/v1/products/";
+const API = "https://admin.maksan-group.ru/api/v1/products/";
 
 function SearchResults({ results, loading, query, onSelect }) {
     if (!query.trim()) return null;

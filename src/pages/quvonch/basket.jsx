@@ -57,7 +57,7 @@ export default function Basket() {
 
     setLoading(true);
     try {
-      const res = await fetch("https://adent-admin.migfastkg.ru/api/v1/orders/", {
+      const res = await fetch("https://admin.maksan-group.ru/api/v1/orders/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

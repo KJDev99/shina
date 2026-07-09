@@ -12,7 +12,7 @@ export default function Hero() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("https://adent-admin.migfastkg.ru/api/v1/banners/")
+        fetch("https://admin.maksan-group.ru/api/v1/banners/")
             .then((res) => res.json())
             .then((data) => {
                 setBanners(data);

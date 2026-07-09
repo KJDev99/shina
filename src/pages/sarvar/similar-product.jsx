@@ -14,7 +14,7 @@ export default function SimilarProduct({ id }) {
 
     useEffect(() => {
         if (!id) return;
-        fetch(`https://adent-admin.migfastkg.ru/api/v1/products/${id}/similar/`)
+        fetch(`https://admin.maksan-group.ru/api/v1/products/${id}/similar/`)
             .then((res) => res.json())
             .then((data) => setProducts(data))
             .catch((err) => console.error(err));

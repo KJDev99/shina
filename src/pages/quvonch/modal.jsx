@@ -82,7 +82,7 @@ export default function ModalExample({ setOpen }) {
 
         setLoading(true);
         try {
-            const res = await fetch("https://adent-admin.migfastkg.ru/api/v1/messages/", {
+            const res = await fetch("https://admin.maksan-group.ru/api/v1/messages/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ full_name: name, email, phone }),

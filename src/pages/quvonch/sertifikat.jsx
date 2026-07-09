@@ -13,7 +13,7 @@ export default function Sertifikat() {
     const [certificates, setCertificates] = useState([]);
 
     useEffect(() => {
-        fetch("https://adent-admin.migfastkg.ru/api/v1/certificates/")
+        fetch("https://admin.maksan-group.ru/api/v1/certificates/")
             .then((res) => res.json())
             .then((data) => setCertificates(data))
             .catch((err) => console.error(err));

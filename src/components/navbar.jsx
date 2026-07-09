@@ -42,12 +42,12 @@ async function fetchManufacturers(type) {
     let unique;
     if (type === "engines") {
         // Dvigatel ishlab chiqaruvchilari alohida endpointdan keladi (slug bilan)
-        const res = await fetch("https://adent-admin.migfastkg.ru/api/v1/engines/manufacturers/");
+        const res = await fetch("https://admin.maksan-group.ru/api/v1/engines/manufacturers/");
         const data = await res.json();
         unique = (Array.isArray(data) ? data : []).map((m) => ({ id: m.id, name: m.name, slug: m.slug }));
     } else {
         const res = await fetch(
-            `https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=1000&type=${type}`
+            `https://admin.maksan-group.ru/api/v1/products/?page=1&page_size=1000&type=${type}`
         );
         const data = await res.json();
         unique = extractUnique(data.results);

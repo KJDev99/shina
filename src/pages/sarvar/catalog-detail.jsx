@@ -265,7 +265,7 @@ export default function CatalogDetail() {
   const mobileSwiperRef = useRef(null);
 
   useEffect(() => {
-    fetch(`https://adent-admin.migfastkg.ru/api/v1/products/${id}/`)
+    fetch(`https://admin.maksan-group.ru/api/v1/products/${id}/`)
       .then((res) => res.json())
       .then((data) => setProduct(data))
       .catch((err) => console.error(err))

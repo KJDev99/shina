@@ -11,7 +11,7 @@ export default function Detail() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("https://adent-admin.migfastkg.ru/api/v1/manufacturers/")
+        fetch("https://admin.maksan-group.ru/api/v1/manufacturers/")
             .then((res) => res.json())
             .then((data) => setManufacturers(data))
             .catch((err) => console.error(err));

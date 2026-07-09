@@ -9,7 +9,7 @@ export default function CatalogComponents() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=80")
+        fetch("https://admin.maksan-group.ru/api/v1/products/?page=1&page_size=80")
             .then((res) => res.json())
             .then((data) => {
                 const all = data.results || [];
@@ -35,13 +35,13 @@ export default function CatalogComponents() {
     useEffect(() => {
         setLoading(true);
         if (active === null) {
-            fetch(`https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=80`)
+            fetch(`https://admin.maksan-group.ru/api/v1/products/?page=1&page_size=80`)
                 .then((res) => res.json())
                 .then((data) => setProducts((data.results || []).slice(0, 8)))
                 .catch((err) => console.error(err))
                 .finally(() => setLoading(false));
         } else {
-            fetch(`https://adent-admin.migfastkg.ru/api/v1/products/?page=1&page_size=80&manufacturer=${active}`)
+            fetch(`https://admin.maksan-group.ru/api/v1/products/?page=1&page_size=80&manufacturer=${active}`)
                 .then((res) => res.json())
                 .then((data) => setProducts((data.results || []).slice(0, 8)))
                 .catch((err) => console.error(err))

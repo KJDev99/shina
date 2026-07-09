@@ -14,7 +14,7 @@ export default function NewsDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://adent-admin.migfastkg.ru/api/v1/news/${id}/`)
+    fetch(`https://admin.maksan-group.ru/api/v1/news/${id}/`)
       .then((res) => res.json())
       .then((data) => setNews(data))
       .catch((err) => console.error(err))

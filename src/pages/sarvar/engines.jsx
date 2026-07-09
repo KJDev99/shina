@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import Badge from "../../components/ui/Badge";
 import CantactForm from "../../components/ui/cantactform";
 
-const API = "https://adent-admin.migfastkg.ru/api/v1";
+const API = "https://admin.maksan-group.ru/api/v1";
 const fixUrl = (u) => (u ? String(u).replace(/^http:\/\//, "https://") : u);
 
 export default function Engines() {

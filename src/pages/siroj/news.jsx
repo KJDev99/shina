@@ -21,7 +21,7 @@ export default function News() {
     const params = new URLSearchParams({ page: 1, page_size: 12 });
     if (activeFilter) params.set("news_type", activeFilter);
 
-    fetch(`https://adent-admin.migfastkg.ru/api/v1/news/?${params}`)
+    fetch(`https://admin.maksan-group.ru/api/v1/news/?${params}`)
       .then((res) => res.json())
       .then((data) => setNews(data.results || []))
       .catch((err) => console.error(err))

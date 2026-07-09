@@ -10,7 +10,7 @@ export default function Aboutehero() {
     });
 
     useEffect(() => {
-        fetch("https://adent-admin.migfastkg.ru/api/v1/about/")
+        fetch("https://admin.maksan-group.ru/api/v1/about/")
             .then((res) => res.json())
             .then((json) => setData(json))
             .catch((err) => console.error("Failed to fetch about data:", err));
