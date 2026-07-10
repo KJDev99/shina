@@ -30,6 +30,7 @@ export default function Compony() {
                     <div className="flex gap-[6px] items-center sm:self-end">
                         <button
                             ref={prevRef}
+                            aria-label="Предыдущий слайд"
                             className="w-[50px] h-[50px] lg:w-[63px] lg:h-[63px] rounded-full bg-white flex justify-center items-center shrink-0 group hover:bg-[#000000]"
                         >
                             <svg className="group-hover:[&_path]:fill-white" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,6 +52,7 @@ export default function Compony() {
                         </button>
                         <button
                             ref={nextRef}
+                            aria-label="Следующий слайд"
                             className="w-[50px] h-[50px] lg:w-[63px] lg:h-[63px] rounded-full bg-white flex justify-center items-center shrink-0 group hover:bg-[#000000]"
                         >
                             <svg className="group-hover:[&_path]:fill-white" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">

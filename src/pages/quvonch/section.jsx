@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 
 export default function Section() {
     return (
-        <section className="relative mt-[60px] lg:mt-[100px] min-h-[500px] sm:min-h-[600px] lg:h-[760px] bg-[url('/quvonch/img/car.png')] bg-cover bg-center overflow-hidden">
+        <section className="relative mt-[60px] lg:mt-[100px] min-h-[500px] sm:min-h-[600px] lg:h-[760px] bg-[url('/quvonch/img/car.webp')] bg-cover bg-center overflow-hidden">
             <div className="absolute inset-0 z-10" style={{ background: "linear-gradient(180deg, #05082A 12.1%, rgba(5, 8, 42, 0) 136.03%)" }} />
             <img
                 className="absolute top-0 left-0 w-full h-full object-cover z-20"
-                src="/quvonch/img/darkcar.png"
+                src="/quvonch/img/darkcar.webp"
                 alt=""
                 loading="lazy"
                 decoding="async"

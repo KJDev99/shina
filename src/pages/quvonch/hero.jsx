@@ -65,7 +65,7 @@ export default function Hero() {
                         </div>
                         <div className="absolute bottom-0 right-0 w-full sm:w-[55%] lg:w-[700px] h-[200px] sm:h-[280px] lg:h-full">
                             <img
-                                src="/quvonch/img/shina.png"
+                                src="/quvonch/img/shina.webp"
                                 alt="placeholder"
                                 className="w-full h-full object-contain object-bottom"
                                 style={{ filter: "blur(6px) brightness(1.1) grayscale(0.3)", opacity: 0.0 }}

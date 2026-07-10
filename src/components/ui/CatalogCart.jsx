@@ -89,6 +89,7 @@ export default function CatalogCart({ item }) {
                         </span>
                         <button
                             onClick={handleAddToCart}
+                            aria-label={isInCart ? "Удалить из корзины" : "Добавить в корзину"}
                             className={`flex items-center justify-center w-[48px] h-[48px] sm:w-[59px] sm:h-[59px] rounded-full transition-colors relative shrink-0 group/btn ${isInCart
                                 ? "bg-[#355094] hover:bg-red-500 cursor-pointer"
                                 : "bg-[#F5F5F5] hover:bg-[#e0e0e0]"

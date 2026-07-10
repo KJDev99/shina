@@ -22,7 +22,7 @@ export default function Officialdealer() {
                 Дилер Wolf
             </h2>
             <div className="flex max-w-[895px] mx-auto justify-center mt-16 mb-25 max-md:mb-0 max-md:mt-10">
-                <img src="/ser.png" alt="" className='w-full' />
+                <img src="/ser.webp" alt="" loading="lazy" decoding="async" className='w-full' />
             </div>
             <div className="mt-10 sm:mt-16">
                 <CantactForm />

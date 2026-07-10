@@ -25,6 +25,7 @@ export default function App() {
       <AOSInit />
       <Navbar />
 
+      <main>
       <Routes >
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -40,6 +41,7 @@ export default function App() {
         <Route path="/manufacturer/:id" element={<Diller />} />
         <Route path="/official-wolf-dealer" element={<Officialdealer />} />
       </Routes>
+      </main>
 
       <Footer />
     </div>

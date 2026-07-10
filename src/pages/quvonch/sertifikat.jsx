@@ -30,6 +30,7 @@ export default function Sertifikat() {
                     <div className="flex gap-[6px] items-center sm:self-end">
                         <button
                             ref={prevRef}
+                            aria-label="Предыдущий слайд"
                             className="w-[50px] h-[50px] lg:w-[63px] lg:h-[63px] rounded-full bg-white flex justify-center items-center shrink-0 group hover:bg-[#000000]"
                         >
                             <svg className="group-hover:[&_path]:fill-white" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,6 +52,7 @@ export default function Sertifikat() {
                         </button>
                         <button
                             ref={nextRef}
+                            aria-label="Следующий слайд"
                             className="w-[50px] h-[50px] lg:w-[63px] lg:h-[63px] rounded-full bg-white flex justify-center items-center shrink-0 group hover:bg-[#000000]"
                         >
                             <svg className="group-hover:[&_path]:fill-white" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,6 +121,7 @@ export default function Sertifikat() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         download
+                                        aria-label="Скачать сертификат"
                                         className="w-[42px] h-[42px] lg:w-[48px] lg:h-[48px] rounded-full bg-[#F5F5F5] flex justify-center items-center shrink-0 hover:bg-gray-200 transition-colors"
                                     >
                                         <img src="/quvonch/icon/down.png" alt="" loading="lazy" decoding="async" width="24" height="24" className="w-4 lg:w-auto" />

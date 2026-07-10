@@ -297,8 +297,10 @@ function MobileMenu({ open, onClose }) {
                     <Link to="/" onClick={onClose}>
                         <div className="flex justify-center items-center w-[120px] h-[56px] sm:w-[140px] sm:h-[64px] rounded-[40px] bg-white">
                             <img
-                                src="/quvonch/icon/navbaricon1.svg"
+                                src="/quvonch/icon/navbaricon1.webp"
                                 alt="Максан групп"
+                                width="192"
+                                height="110"
                                 className="h-11 w-auto object-contain"
                             />
                         </div>
@@ -427,8 +429,10 @@ export default function Navbar() {
                         <Link to="/" className="shrink-0">
                             <div className="flex justify-center items-center w-[120px] h-[56px] sm:w-[140px] sm:h-[64px] rounded-[40px] bg-white">
                                 <img
-                                    src="/quvonch/icon/navbaricon1.svg"
+                                    src="/quvonch/icon/navbaricon1.webp"
                                     alt="Максан групп"
+                                    width="192"
+                                    height="110"
                                     className="h-11 w-auto object-contain"
                                 />
                             </div>
@@ -472,7 +476,7 @@ export default function Navbar() {
                     <div className="hidden lg:flex items-center gap-6 py-3">
                         <Link to="/" className="shrink-0">
                             <div className="flex justify-center items-center w-[190px] h-[90px] rounded-[69px] bg-white">
-                                <img src="/quvonch/icon/navbaricon1.svg" alt="Максан групп" className="h-[70px] w-auto" />
+                                <img src="/quvonch/icon/navbaricon1.webp" alt="Максан групп" width="192" height="110" className="h-[70px] w-auto" />
                             </div>
                         </Link>
 
