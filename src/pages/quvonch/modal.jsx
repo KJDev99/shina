@@ -201,8 +201,16 @@ export default function ModalExample({ setOpen }) {
                                 />
                                 <span className="font-normal text-[12px] sm:text-[13px] leading-snug text-[#666]">
                                     Я даю свое согласие на обработку персональных данных в соответствии с ФЗ №152-ФЗ
-                                    «О персональных данных» на условиях и для целей, определенных Политикой
-                                    Конфиденциальности.
+                                    «О персональных данных» на условиях и для целей, определенных{" "}
+                                    <a
+                                        href="/politika.docx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="underline hover:text-[#355094] transition-colors"
+                                    >
+                                        Политикой Конфиденциальности
+                                    </a>.
                                 </span>
                             </label>
 

@@ -130,7 +130,14 @@ export default function Footer() {
                     <p className="font-medium text-[13px] sm:text-[15px] text-[#FFFFFF66]">
                         © 2025 «Максан групп». Все права защищены.
                     </p>
-                    <p className="font-medium text-[13px] sm:text-[15px] text-[#FFFFFF66]">Политика конфиденциальности</p>
+                    <a
+                        href="/politika.docx"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-[13px] sm:text-[15px] text-[#FFFFFF66] hover:text-white transition-colors"
+                    >
+                        Политика конфиденциальности
+                    </a>
                     <a
                         href="https://usertech.ru/"
                         target="_blank"

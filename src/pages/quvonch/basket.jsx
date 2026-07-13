@@ -247,7 +247,16 @@ export default function Basket() {
                 className="w-5 h-5 rounded border-[#C4C4C4] mt-1 accent-[#4E6EB3] flex-shrink-0 cursor-pointer"
               />
               <label className="text-[#A1A1A1] text-[14px] font-normal leading-[1.5]">
-                Я даю свое согласие на обработку персональных данных в соответствии с ФЗ №152-ФЗ "О персональных данных"
+                Я даю свое согласие на обработку персональных данных в соответствии с ФЗ №152-ФЗ "О персональных данных" на условиях и для целей, определенных{" "}
+                <a
+                  href="/politika.docx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="underline hover:text-[#4E6EB3] transition-colors"
+                >
+                  Политикой Конфиденциальности
+                </a>.
               </label>
             </div>
           </div>
