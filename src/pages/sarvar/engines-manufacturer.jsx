@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Badge from "../../components/ui/Badge";
@@ -17,6 +17,17 @@ export default function EnginesManufacturer() {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [orderPrice, setOrderPrice] = useState("");
+    const productsRef = useRef(null);
+
+    // Sahifa almashganda mahsulotlar boshiga scroll qilish
+    const goToPage = (p) => {
+        setPage(p);
+        const el = productsRef.current;
+        if (el) {
+            const top = el.getBoundingClientRect().top + window.scrollY - 140;
+            window.scrollTo({ top, behavior: "smooth" });
+        }
+    };
 
     useEffect(() => {
         setPage(1);
@@ -138,7 +149,7 @@ export default function EnginesManufacturer() {
             )}
 
             {/* Mahsulotlar */}
-            <div className="max-w-[1436px] m-auto px-4 md:px-0 mt-10 md:mt-[60px] mb-[100px]">
+            <div ref={productsRef} className="max-w-[1436px] m-auto px-4 md:px-0 mt-10 md:mt-[60px] mb-[100px]">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-8">
                     <h2 className="font-semibold text-[22px] md:text-[32px] uppercase text-[#111111]">
                         Двигатели {m.name}
@@ -181,7 +192,7 @@ export default function EnginesManufacturer() {
                             ) : (
                                 <button
                                     key={p}
-                                    onClick={() => setPage(p)}
+                                    onClick={() => goToPage(p)}
                                     className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-[10px] font-semibold transition-colors ${page === p ? "bg-[#355094] text-white" : "bg-white text-[#111]"}`}
                                 >
                                     {p}
@@ -190,7 +201,7 @@ export default function EnginesManufacturer() {
                         )}
                         {page < totalPages && (
                             <button
-                                onClick={() => setPage((v) => v + 1)}
+                                onClick={() => goToPage(page + 1)}
                                 className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white text-[#111] rounded-[10px]"
                             >
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

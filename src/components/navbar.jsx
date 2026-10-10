@@ -13,6 +13,7 @@ const navItems = [
     { name: "Шины для спецтехники", path: "/equipment", dropdownType: "tires" },
     { name: "Запчасти", path: "/catalog", dropdownType: "spare_parts" },
     { name: "Двигатели", path: "/engines", dropdownType: "engines" },
+    { name: "Ремонт двигателей", href: "https://salta-service.ru/" },
     { name: "Новости", path: "/news" },
     { name: "Контакты", path: "/contact" },
     { name: "Официальный дилер WOLF", path: "/official-wolf-dealer" },
@@ -156,7 +157,7 @@ function NavDropdownItem({ item }) {
         >
             <Link
                 to={item.path}
-                className={`font-normal text-[16px] uppercase whitespace-nowrap transition-all duration-300 flex items-center gap-2 px-[27px] py-[18px] rounded-full ${open ? "bg-[#F5F5F5]" : "hover:bg-[#F5F5F5]"}`}
+                className={`font-normal text-[12px] xl:text-[14px] min-[1400px]:text-[16px] uppercase whitespace-nowrap transition-all duration-300 flex items-center gap-2 px-[8px] xl:px-[14px] min-[1400px]:px-[18px] py-[18px] rounded-full ${open ? "bg-[#F5F5F5]" : "hover:bg-[#F5F5F5]"}`}
             >
                 {item.name}
                 <svg
@@ -323,15 +324,28 @@ function MobileMenu({ open, onClose }) {
                             if (item.dropdownType) {
                                 return <MobileNavDropdownItem key={index} item={item} onClose={onClose} />;
                             }
+                            const mobileLinkClass = "font-normal text-[14px] uppercase px-5 py-4 rounded-[20px] bg-white active:bg-[#F5F5F5] transition-colors block";
                             return (
-                                <div key={`${item.path}-${index}`} className="px-4">
-                                    <Link
-                                        to={item.path}
-                                        onClick={onClose}
-                                        className="font-normal text-[14px] uppercase px-5 py-4 rounded-[20px] bg-white active:bg-[#F5F5F5] transition-colors block"
-                                    >
-                                        {item.name}
-                                    </Link>
+                                <div key={`${item.path || item.href}-${index}`} className="px-4">
+                                    {item.href ? (
+                                        <a
+                                            href={item.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={onClose}
+                                            className={mobileLinkClass}
+                                        >
+                                            {item.name}
+                                        </a>
+                                    ) : (
+                                        <Link
+                                            to={item.path}
+                                            onClick={onClose}
+                                            className={mobileLinkClass}
+                                        >
+                                            {item.name}
+                                        </Link>
+                                    )}
                                 </div>
                             );
                         })}
@@ -523,19 +537,32 @@ export default function Navbar() {
             <header className="bg-[#ECF0F5]">
                 <div className="max-w-[1436px] mx-auto px-4 sm:px-6 lg:px-0">
                     {/* Desktop nav pills - BU QISM FIXED EMAS, normal scroll qiladi */}
-                    <nav className="hidden lg:flex w-full max-w-[1400px] min-h-[88px] px-7 bg-white rounded-[69px] items-center justify-between gap-4 relative">
+                    <nav className="hidden lg:flex w-full max-w-[1400px] min-h-[88px] px-5 bg-white rounded-[69px] items-center justify-between gap-1 relative">
                         {navItems.map((item, index) => {
                             if (item.dropdownType) {
                                 return <NavDropdownItem key={index} item={item} />;
+                            }
+                            if (item.href) {
+                                return (
+                                    <a
+                                        key={index}
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="font-normal text-[12px] xl:text-[14px] min-[1400px]:text-[16px] uppercase whitespace-nowrap transition-all duration-300 shrink-0 hover:bg-[#F5F5F5] px-[8px] xl:px-[14px] min-[1400px]:px-[18px] py-[18px] rounded-full"
+                                    >
+                                        {item.name}
+                                    </a>
+                                );
                             }
                             return (
                                 <Link
                                     key={index}
                                     to={item.path}
                                     onClick={() => setActive(index)}
-                                    className={`font-normal text-[16px] uppercase whitespace-nowrap transition-all duration-300 shrink-0 ${active === index
-                                        ? "bg-[#F5F5F5] px-[27px] py-[18px] rounded-full"
-                                        : "hover:bg-[#F5F5F5] px-[27px] py-[18px] rounded-full"
+                                    className={`font-normal text-[12px] xl:text-[14px] min-[1400px]:text-[16px] uppercase whitespace-nowrap transition-all duration-300 shrink-0 ${active === index
+                                        ? "bg-[#F5F5F5] px-[8px] xl:px-[14px] min-[1400px]:px-[18px] py-[18px] rounded-full"
+                                        : "hover:bg-[#F5F5F5] px-[8px] xl:px-[14px] min-[1400px]:px-[18px] py-[18px] rounded-full"
                                         }`}
                                 >
                                     {item.name}

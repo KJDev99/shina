@@ -4,6 +4,9 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import ModalExample from "./modal";
 
+// Backend media URL'lari http:// bilan keladi -> https saytda mixed-content bo'lib rasm bloklanmasligi uchun
+const fixUrl = (u) => (u ? String(u).replace(/^http:\/\//, "https://") : u);
+
 export default function Hero() {
     const [open, setOpen] = useState(false);
     const [banners, setBanners] = useState([]);
@@ -15,9 +18,10 @@ export default function Hero() {
         fetch("https://admin.maksan-group.ru/api/v1/banners/")
             .then((res) => res.json())
             .then((data) => {
-                setBanners(data);
+                const list = (Array.isArray(data) ? data : []).map((b) => ({ ...b, image: fixUrl(b.image) }));
+                setBanners(list);
                 setLoading(false);
-                data.forEach((banner) => {
+                list.forEach((banner) => {
                     const img = new Image();
                     img.src = banner.image;
                     img.onload = () => {

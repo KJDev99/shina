@@ -5,6 +5,7 @@ import CantactForm from "../../components/ui/cantactform";
 import CatalogCart from "../../components/ui/CatalogCart";
 import NewsCart from "../../components/ui/NewsCart";
 import { Helmet } from "react-helmet-async";
+import { fetchProductsCached, getCachedProducts } from "../../utils/productsCache";
 
 export default function Catalog() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -63,22 +64,47 @@ export default function Catalog() {
 
   // Mahsulotlarni yuklash (filter bilan)
   useEffect(() => {
-    setLoading(true);
-    const params = new URLSearchParams({ page: currentPage, page_size: PAGE_SIZE });
-    if (selectedManufacturer) params.set("manufacturer", selectedManufacturer);
-    if (appliedMin) params.set("min_price", appliedMin);
-    if (appliedMax) params.set("max_price", appliedMax);
-    if (orderPrice) params.set("order_price", orderPrice);
+    const buildUrl = (page) => {
+      const params = new URLSearchParams({ page, page_size: PAGE_SIZE });
+      if (selectedManufacturer) params.set("manufacturer", selectedManufacturer);
+      if (appliedMin) params.set("min_price", appliedMin);
+      if (appliedMax) params.set("max_price", appliedMax);
+      if (orderPrice) params.set("order_price", orderPrice);
+      return `https://admin.maksan-group.ru/api/v1/products/?${params}&type=spare_parts`;
+    };
+    const applyData = (data) => {
+      setProducts(data.results || []);
+      setTotalPages(data.total_pages || 1);
+    };
 
-    fetch(`https://admin.maksan-group.ru/api/v1/products/?${params}&type=spare_parts`)
-      .then((res) => res.json())
+    const url = buildUrl(currentPage);
+    const cached = getCachedProducts(url);
+    if (cached) applyData(cached);
+    setLoading(!cached);
+
+    let active = true;
+    fetchProductsCached(url)
       .then((data) => {
-        setProducts(data.results || []);
-        setTotalPages(data.total_pages || 1);
+        if (!active) return;
+        applyData(data);
+        // Keyingi sahifani oldindan yuklab qo'yamiz — bosilganda darhol chiqadi
+        if (currentPage < (data.total_pages || 1)) {
+          fetchProductsCached(buildUrl(currentPage + 1)).catch(() => {});
+        }
       })
       .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
   }, [currentPage, selectedManufacturer, appliedMin, appliedMax, orderPrice]);
+
+  // Mahsulotlar ro'yxati boshiga silliq scroll
+  const scrollToProducts = () => {
+    const grid = document.querySelector(".flex-1.flex.flex-col.gap-8");
+    if (grid) {
+      const top = grid.getBoundingClientRect().top + window.scrollY - 140;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  };
 
   const handleManufacturer = (id) => {
     const newId = id === selectedManufacturer ? null : id;
@@ -88,26 +114,19 @@ export default function Catalog() {
     } else {
       setSearchParams({});
     }
-    // QO'SHILGAN QISM:
-    setTimeout(() => {
-      const grid = document.querySelector(".flex-1.flex.flex-col.gap-8");
-      if (grid) {
-        const top = grid.getBoundingClientRect().top + window.scrollY - 100;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
-    }, 100);
+    setTimeout(scrollToProducts, 100);
   };
   useEffect(() => {
     if (selectedManufacturer) {
-      setTimeout(() => {
-        const grid = document.querySelector(".flex-1.flex.flex-col.gap-8");
-        if (grid) {
-          const top = grid.getBoundingClientRect().top + window.scrollY - 100;
-          window.scrollTo({ top, behavior: "smooth" });
-        }
-      }, 100);
+      setTimeout(scrollToProducts, 100);
     }
   }, []);
+
+  // Sahifa almashganda mahsulotlar boshiga scroll qilish
+  const goToPage = (page) => {
+    setCurrentPage(page);
+    scrollToProducts();
+  };
 
   const handleApply = () => {
     setAppliedMin(minPrice);
@@ -307,7 +326,7 @@ export default function Catalog() {
                 ) : (
                   <button
                     key={page}
-                    onClick={() => setCurrentPage(page)}
+                    onClick={() => goToPage(page)}
                     className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-[10px] font-semibold transition-colors ${currentPage === page ? "bg-[#355094] text-white" : "bg-white text-[#111]"}`}
                   >
                     {page}
@@ -316,7 +335,7 @@ export default function Catalog() {
               )}
               {currentPage < totalPages && (
                 <button
-                  onClick={() => setCurrentPage((p) => p + 1)}
+                  onClick={() => goToPage(currentPage + 1)}
                   className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white text-[#111] rounded-[10px]"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

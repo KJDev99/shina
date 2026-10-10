@@ -134,7 +134,9 @@ export default function Basket() {
                   <h2 className="text-[18px] font-bold leading-tight text-[#1A1A1A] uppercase max-md:text-[14px]">
                     {item.name}
                   </h2>
-                  <p className="text-[13px] text-[#A1A1A1] mt-1">Арт: {item.artikul}</p>
+                  {item.artikul && (
+                    <p className="text-[13px] text-[#A1A1A1] mt-1">Арт: {item.artikul}</p>
+                  )}
                 </div>
 
                 <div className="flex flex-col items-end justify-between h-full py-2 pr-4 max-md:w-full max-md:items-start max-md:gap-3">
@@ -195,10 +197,10 @@ export default function Basket() {
                 <label className="text-[#848B8C] text-[15px] font-normal mb-0.5">Имя</label>
                 <input
                   type="text"
-                  placeholder="Александр"
+                  placeholder="Имя"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="bg-transparent text-[#1A1A1A] text-[18px] font-medium outline-none placeholder:text-[#1A1A1A]"
+                  className="bg-transparent text-[#1A1A1A] text-[18px] font-medium outline-none placeholder:text-[#1A1A1A]/30 placeholder:font-normal"
                 />
               </div>
 

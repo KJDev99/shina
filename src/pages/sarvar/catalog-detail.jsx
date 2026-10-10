@@ -314,7 +314,18 @@ export default function CatalogDetail() {
       <h1 className="text-[22px] font-bold uppercase leading-snug tracking-wide text-black mb-2">
         {product.name}
       </h1>
-      <p className="text-sm text-gray-400 mb-4">Артикул: {product.artikul}</p>
+      {(product.manufacturer?.name || product.artikul) && (
+        <div className="flex flex-col gap-1 mb-4">
+          {product.manufacturer?.name && (
+            <p className="text-sm text-gray-400">
+              Бренд: <span className="text-black font-medium">{product.manufacturer.name}</span>
+            </p>
+          )}
+          {product.artikul && (
+            <p className="text-sm text-gray-400">Артикул: {product.artikul}</p>
+          )}
+        </div>
+      )}
       {price.slice(0, 1) == 0
         ? 'Цена по запросу' :
         <>
@@ -357,6 +368,12 @@ export default function CatalogDetail() {
           БЫСТРЫЙ ЗАКАЗ
         </button>
       </div>
+      {product.description && (
+        <div className="mt-8">
+          <p className="text-sm font-bold uppercase tracking-wide text-black mb-3">ОПИСАНИЕ</p>
+          <p className="text-sm text-gray-500 leading-relaxed">{product.description}</p>
+        </div>
+      )}
     </>
   );
 
@@ -466,11 +483,6 @@ export default function CatalogDetail() {
           ))}
         </div>
         <InfoBlock />
-      </div>
-
-      <div className="mt-2 md:mt-10">
-        <p className="text-sm font-bold uppercase tracking-wide text-black mb-3">ОПИСАНИЕ</p>
-        <p className="text-sm text-gray-500 leading-relaxed">{product.description}</p>
       </div>
 
       <SimilarProduct id={id} />

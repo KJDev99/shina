@@ -5,6 +5,7 @@ import ModalExample from "../pages/quvonch/modal";
 const pages = [
     { label: "Шины для спецтехники", path: "/equipment" },
     { label: "Двигатели", path: "/engines" },
+    { label: "Ремонт двигателей", href: "https://salta-service.ru/" },
     { label: "Контакты", path: "/contact" },
     { label: "Официальный дилер WOLF", path: "/official-wolf-dealer" },
     { label: "Новости", path: "/news" },
@@ -52,13 +53,24 @@ export default function Footer() {
                             </h2>
                             <ul className="flex flex-col gap-3 sm:gap-[14px]">
                                 {pages.map((p) => (
-                                    <li key={p.path + p.label}>
-                                        <Link
-                                            to={p.path}
-                                            className="font-normal text-sm sm:text-base text-[#FFFFFF99] hover:text-white transition-colors"
-                                        >
-                                            {p.label}
-                                        </Link>
+                                    <li key={(p.path || p.href) + p.label}>
+                                        {p.href ? (
+                                            <a
+                                                href={p.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="font-normal text-sm sm:text-base text-[#FFFFFF99] hover:text-white transition-colors"
+                                            >
+                                                {p.label}
+                                            </a>
+                                        ) : (
+                                            <Link
+                                                to={p.path}
+                                                className="font-normal text-sm sm:text-base text-[#FFFFFF99] hover:text-white transition-colors"
+                                            >
+                                                {p.label}
+                                            </Link>
+                                        )}
                                     </li>
                                 ))}
                             </ul>
