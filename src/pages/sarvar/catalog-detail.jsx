@@ -307,10 +307,12 @@ export default function CatalogDetail() {
         <title>Каталог запчастей для спецтехники в СПБ – МАКСАН ГРУПП</title>
         <meta name="description" content="Каталог запчастей, агрегатов, шин и комплектующих для спецтехники в Санкт-Петербурге. Caterpillar, Atlas Copco, Epiroc, Cummins и другие бренды." />
       </Helmet>
-      <span className={`inline-block text-sm font-medium px-4 py-1 rounded-full mb-4 ${product.is_stock ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"
-        }`}>
-        {product.is_stock ? "В наличии" : "Под заказ"}
-      </span>
+      {/* Faqat "В наличии" ko'rsatiladi; "Под заказ" yozuvi chiqmaydi */}
+      {product.is_stock && (
+        <span className="inline-block text-sm font-medium px-4 py-1 rounded-full mb-4 bg-green-100 text-green-700">
+          В наличии
+        </span>
+      )}
       <h1 className="text-[22px] font-bold uppercase leading-snug tracking-wide text-black mb-2">
         {product.name}
       </h1>
